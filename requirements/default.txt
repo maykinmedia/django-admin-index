@@ -1,0 +1,1 @@
+django-ordered-model>=1.0

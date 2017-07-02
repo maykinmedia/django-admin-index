@@ -1,0 +1,17 @@
+include .bumpversion.cfg
+include .coveragerc
+include .editorconfig
+include LICENSE
+include README.rst
+include MANIFEST.in
+include Makefile
+include setup.cfg
+include setup.py
+include manage.py
+include tox.ini
+recursive-include requirements *.txt
+recursive-include tests *.py
+recursive-include django_admin_index *.html
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .*.sw*
