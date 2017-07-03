@@ -8,6 +8,7 @@ import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
 from django.test import RequestFactory, TestCase, override_settings
+from mock import Mock, patch
 
 from django_admin_index.apps import check_admin_index_app
 from django_admin_index.compat.django18 import get_app_list
@@ -86,8 +87,6 @@ class AdminIndexTests(TestCase):
         for key in ['app_label', 'app_url', 'has_module_perms']:
             self.assertEqual(app_model[key], original_app[key])
 
-    @skipIf(django.VERSION >= (1, 9),
-            'The django_admin_index.compat.django18 helpers are only used with Django < 1.9.')
     def test_as_list_structure_compat_django18(self):
         request = self.factory.get(reverse('admin:index'))
         request.user = self.superuser
@@ -115,6 +114,14 @@ class AdminIndexTests(TestCase):
         # belonged to.
         for key in ['app_label', 'app_url', 'has_module_perms']:
             self.assertEqual(app_model[key], original_app[key])
+
+    @patch('django_admin_index.models.django', Mock(VERSION=(1, 8, 18, 'mock', 0)))
+    def test_as_list_structure_with_django18(self):
+        request = self.factory.get(reverse('admin:index'))
+        request.user = self.superuser
+
+        result = AppGroup.objects.as_list(request, False)
+        self.assertEqual(len(result), 1)
 
     def test_as_list_without_include_remaining(self):
         request = self.factory.get(reverse('admin:index'))
