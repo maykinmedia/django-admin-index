@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from django.apps import apps
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.text import capfirst

@@ -8,6 +8,7 @@ import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
 from django.test import RequestFactory, TestCase, override_settings
+
 from django_admin_index.apps import check_admin_index_app
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
@@ -173,7 +174,6 @@ class AdminIndexTests(TestCase):
     def test_installed_apps_check(self):
         result = check_admin_index_app([])
         self.assertEquals(len(result), 1)
-
 
 
 class AdminIndexIntegrationTests(TestCase):

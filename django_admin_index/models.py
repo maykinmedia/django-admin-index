@@ -1,3 +1,5 @@
+from __future__ import absolute_import, unicode_literals
+
 import django
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
@@ -65,7 +67,7 @@ class AppGroupQuerySet(models.QuerySet):
                     'name': _('Miscellaneous'),
                     'app_label': 'misc',
                     'models': sorted(
-                        [model_dict for key, model_dict in model_dicts.items() if key in other],
+                        [model_dict for key, model_dict in model_dicts.items() if key in other],  # noqa
                         key=lambda m: m['name'],
                     )
                 })

@@ -1,6 +1,7 @@
 include .bumpversion.cfg
 include .coveragerc
 include .editorconfig
+include .isort.cfg
 include LICENSE
 include README.rst
 include MANIFEST.in
