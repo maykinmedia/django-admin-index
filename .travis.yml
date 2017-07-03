@@ -6,6 +6,6 @@ python:
 - '3.5'
 - '3.6'
 install: travis_retry pip install -U codecov tox-travis
-script: tox -v --travis-after -- -v
+script: tox -v
 after_success:
 - codecov
