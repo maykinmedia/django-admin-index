@@ -4,19 +4,18 @@ from __future__ import absolute_import, unicode_literals
 
 from unittest import skipIf
 
+import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
-
-import django
-if django.VERSION[0] == 1 and django.VERSION[1] >= 11:
-    from django.urls import reverse
-else:
-    from django.core.urlresolvers import reverse
-
 from django.test import RequestFactory, TestCase, override_settings
 from django_admin_index.apps import check_admin_index_app
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
+
+if django.VERSION >= (1, 11):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
 
 
 class AdminIndexTests(TestCase):
@@ -54,7 +53,7 @@ class AdminIndexTests(TestCase):
         app = result[0]
         app_model = app['models'][0]
 
-        if django.VERSION[0] == 1 and django.VERSION[1] <= 8:
+        if django.VERSION < (1, 9):
             from django_admin_index.compat.django18 import get_app_list
             original_app_list = get_app_list(site, request)
         else:
@@ -196,7 +195,7 @@ class AdminIndexIntegrationTests(TestCase):
 
         self.assertNotIn('dashboard_app_list', response.context)
 
-    @skipIf(django.VERSION[0] == 1 and django.VERSION[1] <= 8, 'Django <= 1.8 does not support template origins.')
+    @skipIf(django.VERSION < (1, 9), 'Django < 1.9 does not support template origins.')
     def test_app_groups_in_index(self):
         response = self.client.get(reverse('admin:index'))
 

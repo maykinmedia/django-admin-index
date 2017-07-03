@@ -1,5 +1,4 @@
 import django
-
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -14,7 +13,7 @@ class AppGroupQuerySet(models.QuerySet):
         # Convert to convienent dict
         model_dicts = {}
 
-        if django.VERSION[0] == 1 and django.VERSION[1] <= 8:
+        if django.VERSION < (1, 9):
             from .compat.django18 import get_app_list
             original_app_list = get_app_list(site, request)
         else:

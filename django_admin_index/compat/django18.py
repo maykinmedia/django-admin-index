@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.utils.text import capfirst
-from django.core.urlresolvers import NoReverseMatch, reverse
 from django.apps import apps
+from django.core.urlresolvers import NoReverseMatch, reverse
+from django.utils.text import capfirst
 
 
 def _build_app_dict(site, request, label=None):

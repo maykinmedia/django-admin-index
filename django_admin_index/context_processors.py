@@ -1,12 +1,12 @@
 import django
-if django.VERSION[0] == 1 and django.VERSION[1] >= 11:
-    from django.urls import reverse
-else:
-    from django.core.urlresolvers import reverse
-
 
 from . import settings
 from .models import AppGroup
+
+if django.VERSION >= (1, 11):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
 
 
 def dashboard(request):
