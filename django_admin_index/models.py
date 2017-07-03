@@ -82,7 +82,7 @@ class ContentTypeProxy(ContentType):
         ordering = ('app_label', 'model')
 
     def __str__(self):
-        return '{}.{}'.format(self.app_label, capfirst(super(ContentTypeProxy, self).__str__()))
+        return '{}.{}'.format(self.app_label, capfirst(self.model))
 
 
 @python_2_unicode_compatible
