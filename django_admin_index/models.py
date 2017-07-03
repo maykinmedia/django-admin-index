@@ -1,3 +1,5 @@
+import django
+
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -11,7 +13,13 @@ class AppGroupQuerySet(models.QuerySet):
     def as_list(self, request, include_remaining=True):
         # Convert to convienent dict
         model_dicts = {}
-        original_app_list = site.get_app_list(request)
+
+        if django.VERSION[0] == 1 and django.VERSION[1] <= 8:
+            from .compat.django18 import get_app_list
+            original_app_list = get_app_list(site, request)
+        else:
+            original_app_list = site.get_app_list(request)
+
         for app in original_app_list:
             for model in app['models']:
                 key = '{}.{}'.format(app['app_label'], model['object_name'].lower())

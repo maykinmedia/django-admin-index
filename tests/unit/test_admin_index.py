@@ -2,12 +2,19 @@
 
 from __future__ import absolute_import, unicode_literals
 
+from unittest import skipIf
+
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
-from django.test import RequestFactory, TestCase, override_settings
-from django.urls import reverse
-from django_admin_index.apps import check_admin_index_app
 
+import django
+if django.VERSION[0] == 1 and django.VERSION[1] >= 11:
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
+
+from django.test import RequestFactory, TestCase, override_settings
+from django_admin_index.apps import check_admin_index_app
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
 
@@ -29,11 +36,13 @@ class AdminIndexTests(TestCase):
         options = {
             'username': 'maykin',
             'email': 'info@maykinmedia.nl',
-            'password': 'top_secret'
+            'password': 'top_secret',
+            'is_staff': False,
+            'is_superuser': False,
         }
         options.update(kwargs)
 
-        return User.objects.create_user(**options)
+        return User.objects._create_user(**options)
 
     def test_as_list_structure(self):
         request = self.factory.get(reverse('admin:index'))
@@ -45,7 +54,12 @@ class AdminIndexTests(TestCase):
         app = result[0]
         app_model = app['models'][0]
 
-        original_app_list = site.get_app_list(request)
+        if django.VERSION[0] == 1 and django.VERSION[1] <= 8:
+            from django_admin_index.compat.django18 import get_app_list
+            original_app_list = get_app_list(site, request)
+        else:
+            original_app_list = site.get_app_list(request)
+
         original_app = [oa for oa in original_app_list if oa['app_label'] == 'auth'][0]
         original_app_model = [oam for oam in original_app['models'] if oam['object_name'] == 'User'][0]
 
@@ -165,24 +179,29 @@ class AdminIndexTests(TestCase):
 
 class AdminIndexIntegrationTests(TestCase):
     def setUp(self):
-        self.superuser = User.objects.create_user(
-            username='superuser', password='top_secret', is_staff=True, is_superuser=True)
+        self.superuser = User.objects._create_user(
+            username='superuser', email='user@example.com', password='top_secret', is_staff=True, is_superuser=True)
         self.assertTrue(self.client.login(username=self.superuser.username, password='top_secret'))
 
         self.auth_app_list_url = reverse('admin:app_list', kwargs={'app_label': 'auth'})
 
+    def test_app_groups_in_context(self):
+        response = self.client.get(reverse('admin:index'))
+
+        self.assertIn('dashboard_app_list', response.context)
+        self.assertGreater(len(response.context['dashboard_app_list']), 0)
+
+    def test_no_app_groups_in_context_outside_index(self):
+        response = self.client.get(reverse('admin:auth_user_changelist'))
+
+        self.assertNotIn('dashboard_app_list', response.context)
+
+    @skipIf(django.VERSION[0] == 1 and django.VERSION[1] <= 8, 'Django <= 1.8 does not support template origins.')
     def test_app_groups_in_index(self):
         response = self.client.get(reverse('admin:index'))
 
         template_path = response.templates[0].origin.name.replace('\\', '/')
         self.assertTrue(template_path.endswith('django_admin_index/templates/admin/index.html'), template_path)
-        self.assertIn('dashboard_app_list', response.context)
-        self.assertGreater(len(response.context['dashboard_app_list']), 0)
-
-    def test_no_app_groups_outside_index(self):
-        response = self.client.get(reverse('admin:auth_user_changelist'))
-
-        self.assertNotIn('dashboard_app_list', response.context)
 
     def test_no_app_list_links_index(self):
         response = self.client.get(reverse('admin:index'))

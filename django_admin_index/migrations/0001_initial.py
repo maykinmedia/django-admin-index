@@ -52,7 +52,6 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
                 'proxy': True,
                 'ordering': ('app_label', 'model'),
             },
