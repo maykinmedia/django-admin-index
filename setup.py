@@ -121,28 +121,16 @@ else:
 # -*- %%% -*-
 
 
-class TestWrapper(setuptools.command.test.test):
-    user_options = [('test-args=', 'a', 'Arguments to pass to test runner')]
+class pytest(setuptools.command.test.test):
+    user_options = [('pytest-args=', 'a', 'Arguments to pass to py.test')]
 
     def initialize_options(self):
         setuptools.command.test.test.initialize_options(self)
-        self.test_args = []
+        self.pytest_args = []
 
     def run_tests(self):
-        test_dir = os.path.dirname(__file__)
-        sys.path.insert(0, test_dir)
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.proj.settings'
-
-        import django
-        from django.test.utils import get_runner
-        from django.conf import settings
-
-        django.setup()  # only 1.7 and up are supported
-
-        TestRunner = get_runner(settings)
-        test_runner = TestRunner(verbosity=2, interactive=True, failfast=False)
-        failures = test_runner.run_tests(self.test_args)
-        sys.exit(failures)
+        import pytest
+        sys.exit(pytest.main(self.pytest_args))
 
 
 setuptools.setup(
@@ -160,7 +148,7 @@ setuptools.setup(
     classifiers=classifiers,
     install_requires=reqs('default.txt'),
     tests_require=reqs('test.txt'),
-    cmdclass={'test': TestWrapper},
+    cmdclass={'test': pytest},
     zip_safe=False,
     include_package_data=True,
 )
