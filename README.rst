@@ -74,13 +74,15 @@ Configuration
 
 There are 2 settings you can add to your ``settings.py``:
 
-``ADMIN_INDEX_SHOW_REMAINING_APPS`` *(default=``False``)*
-Show all models that are not added a to an `Application group` in a group
-called "Miscellaneous" for **staff** users.
+- ``ADMIN_INDEX_SHOW_REMAINING_APPS`` *(default=``False``)*
 
-``ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS`` *(default=``True``)*
-Show all models that are not added a to an `Application group` in a group
-called "Miscellaneous" for **super users** users.
+  Show all models that are not added a to an `Application group` in a group
+  called "Miscellaneous" for **staff** users.
+
+- ``ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS`` *(default=``True``)*
+
+  Show all models that are not added a to an `Application group` in a group
+  called "Miscellaneous" for **super users** users.
 
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
