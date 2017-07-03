@@ -12,13 +12,13 @@ Admin Index for Django
 About
 =====
 
-This extension enables you to change the Django admin index page without too
-much hassle or visual changes.
+This extension enables you to group, order and customize the Django admin
+index page without too much hassle or visual changes.
 
 There are 2 concepts: `Application groups` and `Application links`. You can
-create an application group and add any model to it. Whether the models are
-shown to the user, depends on the regular Django permissions and whether it's
-registered in the admin.
+create an application group and add any model to it in the Django admin, under
+``Admin index``. Whether the models are shown to the user, depends on the
+regular Django permissions and whether it's registered in the admin.
 
 An application link is simply a URL with a name that you can add to an
 application group. It shows as a regular Django model.
@@ -74,12 +74,12 @@ Configuration
 
 There are 2 settings you can add to your ``settings.py``:
 
-- ``ADMIN_INDEX_SHOW_REMAINING_APPS`` *(default=``False``)*
+- ``ADMIN_INDEX_SHOW_REMAINING_APPS`` (defaults to ``False``)
 
   Show all models that are not added a to an `Application group` in a group
   called "Miscellaneous" for **staff** users.
 
-- ``ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS`` *(default=``True``)*
+- ``ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS`` (defaults to ``True``)
 
   Show all models that are not added a to an `Application group` in a group
   called "Miscellaneous" for **super users** users.
