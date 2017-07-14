@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 0.9.0
+:Version: 0.9.1
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -49,24 +49,41 @@ To use this with your project you need to follow these steps:
 
       $ pip install django_admin_index
 
-#. Add ``django_admin_index`` to ``INSTALLED_APPS`` in your
-   Django project's ``settings.py``, before ``django.contrib.admin``::
+#. Add ``django_admin_index`` and ``ordered_model`` to ``INSTALLED_APPS`` in
+   your Django project's ``settings.py``. Make sure that
+   ``django_admin_index`` comes before ``django.contrib.admin``::
 
     INSTALLED_APPS = (
         'django_admin_index',
+        'ordered_model',
         ...,
         'django.contrib.admin',
     )
 
    Note that there is no dash in the module name, only underscores.
 
+#. Add ``django_admin_index.context_processors.dashboard`` to the context
+   processors in your Django project's ``settings.py``::
+
+    TEMPLATES = [
+        {
+            ...
+            'OPTIONS': {
+                'context_processors': [
+                    ...
+                    'django_admin_index.context_processors.dashboard'
+                ],
+            },
+        },
+    ]
+
 #. Create the database tables by performing a database migrations:
 
    .. code-block:: console
 
-      $ python manage.py migrate django_admin_index
+      $ python manage.py migrate admin_index
 
-#. Go to the Django admin of your site and look for the "Admin Index"
+#. Go to the Django admin of your site and look for the "Application groups"
    section.
 
 Configuration
