@@ -2,7 +2,6 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import django
 from django.test import TestCase, override_settings
 
 from django_admin_index.apps import check_admin_index_app, check_admin_index_context_processor
