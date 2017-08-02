@@ -11,6 +11,9 @@ from ordered_model.models import OrderedModel
 
 
 class AppGroupQuerySet(models.QuerySet):
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
     def as_list(self, request, include_remaining=True):
         # Convert to convienent dict
         model_dicts = {}
@@ -75,6 +78,11 @@ class AppGroupQuerySet(models.QuerySet):
         return result
 
 
+class AppLinkQuerySet(models.QuerySet):
+    def get_by_natural_key(self, app_group, link):
+        return self.get(app_group=app_group, link=link)
+
+
 @python_2_unicode_compatible
 class ContentTypeProxy(ContentType):
     class Meta:
@@ -97,6 +105,9 @@ class AppGroup(OrderedModel):
         verbose_name = _('application group')
         verbose_name_plural = _('application groups')
 
+    def natural_key(self):
+        return (self.slug, )
+
     def __str__(self):
         return self.name
 
@@ -107,9 +118,17 @@ class AppLink(OrderedModel):
     name = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
 
+    objects = AppLinkQuerySet.as_manager()
+
     class Meta(OrderedModel.Meta):
         verbose_name = _('application link')
         verbose_name_plural = _('application links')
+        unique_together = (
+            ('app_group', 'link'),
+        )
+
+    def natural_key(self):
+        return (self.app_group, self.link)
 
     def __str__(self):
         return self.name

@@ -10,7 +10,7 @@ import re
 
 from collections import namedtuple
 
-__version__ = '0.9.0'
+__version__ = '0.9.1'
 __author__ = 'Joeri Bekker'
 __contact__ = 'joeri@maykinmedia.nl'
 __homepage__ = 'https://github.com/maykinmedia/django-admin-index'
