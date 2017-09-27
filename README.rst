@@ -43,7 +43,7 @@ Usage
 
 To use this with your project you need to follow these steps:
 
-#. Install the django_celery_monitor library:
+#. Install the django_admin_index library:
 
    .. code-block:: console
 
@@ -77,7 +77,7 @@ To use this with your project you need to follow these steps:
         },
     ]
 
-#. Create the database tables by performing a database migrations:
+#. Create the database tables by performing a database migration:
 
    .. code-block:: console
 
