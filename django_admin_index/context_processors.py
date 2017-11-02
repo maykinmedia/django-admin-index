@@ -12,9 +12,9 @@ else:
 
 
 def dashboard(request):
-    if hasattr(request, 'user') and hasattr(request, 'path') and request.path == reverse('admin:index'):
+    if hasattr(request, 'user') and hasattr(request, 'path') and request.path == reverse('admin:index'):  # noqa
         show_remaining_apps = settings.SHOW_REMAINING_APPS or \
-            (settings.SHOW_REMAINING_APPS_TO_SUPERUSERS and request.user.is_superuser)
+            (settings.SHOW_REMAINING_APPS_TO_SUPERUSERS and request.user.is_superuser)  # noqa
 
         app_list = AppGroup.objects.as_list(request, show_remaining_apps)
 
