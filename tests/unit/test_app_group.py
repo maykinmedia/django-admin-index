@@ -7,7 +7,7 @@ from unittest import skipIf
 import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
-from django.test import RequestFactory, TestCase, override_settings
+from django.test import RequestFactory, TestCase
 
 from django_admin_index.compat.django18 import get_app_list
 from django_admin_index.context_processors import dashboard
