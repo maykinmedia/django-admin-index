@@ -111,6 +111,10 @@ test-all: clean-pyc
 test:
 	$(PYTHON) setup.py test
 
+coverage:
+	coverage run --source django_admin_index ./setup.py test
+	coverage report -m
+
 build:
 	$(PYTHON) setup.py sdist bdist_wheel
 
