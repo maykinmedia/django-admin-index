@@ -9,6 +9,8 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.models import OrderedModel
 
+from . import settings
+
 
 class AppGroupQuerySet(models.QuerySet):
     def get_by_natural_key(self, slug):
@@ -26,7 +28,7 @@ class AppGroupQuerySet(models.QuerySet):
 
         for app in original_app_list:
             for model in app['models']:
-                key = '{}.{}'.format(app['app_label'], model['object_name'].lower())
+                key = '{}.{}'.format(app['app_label'], model['object_name'].lower())  # noqa
                 model_dict = model.copy()
                 model_dict.update({
                     'app_label': app['app_label'],
@@ -37,7 +39,7 @@ class AppGroupQuerySet(models.QuerySet):
 
         added = []
 
-        # Create new list based on our groups, using the model_dicts constructed above.
+        # Create new list based on our groups, using the model_dicts constructed above.  # noqa
         result = []
         app_list = self.prefetch_related('models', 'applink_set')
         for app in app_list:
@@ -63,7 +65,16 @@ class AppGroupQuerySet(models.QuerySet):
                     'models': sorted(models, key=lambda m: m['name'])
                 })
 
-        if include_remaining:
+        if settings.AUTO_CREATE_APP_GROUP:
+            other = set(model_dicts.keys()).difference(set(added))
+            for model in other:
+                names = model.split('.')
+                app_group, created = AppGroup.objects.get_or_create(
+                    slug=names[0], name=names[0].title())
+                contenttype = ContentTypeProxy.objects.get(
+                    app_label=names[0], model=names[1])
+                app_group.models.add(contenttype)
+        elif include_remaining:
             other = set(model_dicts.keys()).difference(set(added))
             if other:
                 result.append({

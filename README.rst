@@ -2,12 +2,12 @@
 Admin Index for Django
 ======================
 
-:Version: 0.9.1
+:Version: 0.10.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
 
-|build-status| |coverage|
+|build-status| |coverage| |better-code| |lintly| |codeclimate|
 
 About
 =====
@@ -101,6 +101,10 @@ There are 2 settings you can add to your ``settings.py``:
   Show all models that are not added a to an `Application group` in a group
   called "Miscellaneous" for **super users** users.
 
+- ``ADMIN_INDEX_AUTO_CREATE_APP_GROUP`` (defaults to ``False``)
+
+  Automaticly creates an "app group", based on the app_label, for all the models that would be in the "Miscellaneous" group
+
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
     :alt: Build status
@@ -108,3 +112,14 @@ There are 2 settings you can add to your ``settings.py``:
 
 .. |coverage| image:: https://codecov.io/github/maykinmedia/django-admin-index/coverage.svg?branch=master
     :target: https://codecov.io/github/maykinmedia/django-admin-index?branch=master
+
+.. |better-code| image:: https://bettercodehub.com/edge/badge/maykinmedia/django-admin-index?branch=master
+    :target: https://bettercodehub.com/
+
+.. |lintly| image:: https://lintly.com/gh/maykinmedia/django-admin-index/badge.svg
+    :target: https://lintly.com/gh/maykinmedia/django-admin-index/
+    :alt: Lintly
+
+.. |codeclimate| image:: https://api.codeclimate.com/v1/badges/d7a4ad7bc263991672e4/maintainability
+   :target: https://codeclimate.com/github/maykinmedia/django-admin-index/maintainability
+   :alt: Maintainability
