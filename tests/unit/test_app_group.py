@@ -9,11 +9,12 @@ from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
 from django.test import RequestFactory, TestCase
 
+from mock import Mock, patch
+
+from django_admin_index import settings
 from django_admin_index.compat.django18 import get_app_list
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
-from django_admin_index import settings
-from mock import Mock, patch
 
 if django.VERSION >= (1, 11):
     from django.urls import reverse
