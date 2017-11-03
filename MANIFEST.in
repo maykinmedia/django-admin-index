@@ -1,4 +1,3 @@
-include .bumpversion.cfg
 include .coveragerc
 include .editorconfig
 include .isort.cfg

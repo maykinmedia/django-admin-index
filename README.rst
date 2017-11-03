@@ -2,12 +2,12 @@
 Admin Index for Django
 ======================
 
-:Version: 0.10.0
+:Version: 0.9.1
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
 
-|build-status| |coverage| |better-code| |lintly| |codeclimate|
+|build-status| |coverage| |lintly| |license| |pyversion| |djversion|
 
 About
 =====
@@ -103,7 +103,9 @@ There are 2 settings you can add to your ``settings.py``:
 
 - ``ADMIN_INDEX_AUTO_CREATE_APP_GROUP`` (defaults to ``False``)
 
-  Automaticly creates an "app group", based on the app_label, for all the models that would be in the "Miscellaneous" group
+  Automaticly creates an `Application group`, based on the `app_label`, for
+  all the models that would be in the "Miscellaneous" group. If ``True``, your
+  Django admin will initially look as it normally would.
 
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
@@ -113,13 +115,18 @@ There are 2 settings you can add to your ``settings.py``:
 .. |coverage| image:: https://codecov.io/github/maykinmedia/django-admin-index/coverage.svg?branch=master
     :target: https://codecov.io/github/maykinmedia/django-admin-index?branch=master
 
-.. |better-code| image:: https://bettercodehub.com/edge/badge/maykinmedia/django-admin-index?branch=master
-    :target: https://bettercodehub.com/
-
 .. |lintly| image:: https://lintly.com/gh/maykinmedia/django-admin-index/badge.svg
     :target: https://lintly.com/gh/maykinmedia/django-admin-index/
     :alt: Lintly
 
-.. |codeclimate| image:: https://api.codeclimate.com/v1/badges/d7a4ad7bc263991672e4/maintainability
-   :target: https://codeclimate.com/github/maykinmedia/django-admin-index/maintainability
-   :alt: Maintainability
+.. |license| image:: https://img.shields.io/pypi/l/django-admin-index.svg
+    :alt: BSD License
+    :target: https://opensource.org/licenses/BSD-3-Clause
+
+.. |pyversion| image:: https://img.shields.io/pypi/pyversions/django-admin-index.svg
+    :alt: Supported Python versions
+    :target: http://pypi.python.org/pypi/django-admin-index/
+
+.. |djversion| image:: https://img.shields.io/badge/django-1.8%2C%201.9%2C%201.10%2C%201.11-blue.svg
+    :alt: Supported Django versions
+    :target: http://pypi.python.org/pypi/django-admin-index/
