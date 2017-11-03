@@ -8,7 +8,6 @@ import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
 from django.test import RequestFactory, TestCase
-
 from mock import Mock, patch
 
 from django_admin_index import settings
