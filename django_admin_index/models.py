@@ -86,8 +86,27 @@ class AppGroupQuerySet(models.QuerySet):
         return result
 
 
+class ContentTypeProxyManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(ContentTypeProxyManager, self).get_queryset()
+
+        if settings.SHOW_REGISTERED_MODELS_ONLY:
+            queries = [models.Q(
+                app_label=model._meta.app_label,
+                model=model._meta.model_name
+            ) for model in site._registry]
+
+            query = queries.pop()
+            for item in queries:
+                query |= item
+            queryset = queryset.filter(query)
+        return queryset
+
+
 @python_2_unicode_compatible
 class ContentTypeProxy(ContentType):
+    objects = ContentTypeProxyManager()
+
     class Meta:
         proxy = True
         ordering = ('app_label', 'model')
