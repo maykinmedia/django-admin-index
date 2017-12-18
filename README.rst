@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 0.9.1
+:Version: 1.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -127,6 +127,6 @@ There are 2 settings you can add to your ``settings.py``:
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |djversion| image:: https://img.shields.io/badge/django-1.8%2C%201.9%2C%201.10%2C%201.11-blue.svg
+.. |djversion| image:: https://img.shields.io/badge/django-1.8%2C%201.9%2C%201.10%2C%201.11%2C%202.0-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
