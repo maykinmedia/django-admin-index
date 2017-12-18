@@ -2,10 +2,13 @@
 Change history
 ==============
 
-0.9.2
-=====
+1.0
+===
 
-*Unreleased*
+*December 18, 2017*
+
+* Added Django 2.0 support.
+
 
 0.9.1
 =====
@@ -15,6 +18,7 @@ Change history
 * Added natural keys for all models.
 * Added ``ADMIN_INDEX_AUTO_CREATE_APP_GROUP`` setting to create groups
   automatically, if the model was not yet in a group.
+
 
 0.9.0
 =====
