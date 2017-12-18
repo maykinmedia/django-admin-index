@@ -2,8 +2,12 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.apps import apps
-from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.text import capfirst
+
+try:
+    from django.urls import NoReverseMatch, reverse
+except ImportError:
+    from django.core.urlresolvers import NoReverseMatch, reverse
 
 
 def _build_app_dict(site, request, label=None):
