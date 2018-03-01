@@ -70,7 +70,7 @@ class AppGroupQuerySet(models.QuerySet):
             for model in other:
                 names = model.split('.')
                 app_group, created = AppGroup.objects.get_or_create(
-                    slug=names[0], name=names[0].title())
+                    slug=names[0], defaults={'name': names[0].title()})
                 contenttype = ContentTypeProxy.objects.get(
                     app_label=names[0], model=names[1])
                 app_group.models.add(contenttype)

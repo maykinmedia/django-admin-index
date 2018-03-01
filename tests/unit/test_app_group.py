@@ -137,6 +137,18 @@ class AdminIndexAppGroupTests(TestCase):
             self.assertEqual(app_model[key], original_app[key])
         settings.AUTO_CREATE_APP_GROUP = False
 
+    def test_only_match_auto_create_group_on_slug(self):
+        settings.AUTO_CREATE_APP_GROUP = True
+        app_group = AppGroup.objects.create(name='My group', slug='auth')
+        self.assertEqual(app_group.models.count(), 0)
+        request = self.factory.get(reverse('admin:index'))
+        request.user = self.superuser
+
+        result = AppGroup.objects.as_list(request, False)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(app_group.models.count(), 1)
+        settings.AUTO_CREATE_APP_GROUP = False
+
     def test_as_list_structure_compat_django18(self):
         request = self.factory.get(reverse('admin:index'))
         request.user = self.superuser
