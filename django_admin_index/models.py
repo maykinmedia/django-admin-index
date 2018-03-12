@@ -32,6 +32,7 @@ class AppGroupQuerySet(models.QuerySet):
                 model_dict = model.copy()
                 model_dict.update({
                     'app_label': app['app_label'],
+                    'app_name': app['name'],
                     'app_url': app['app_url'],
                     'has_module_perms': app['has_module_perms'],
                 })
@@ -65,26 +66,22 @@ class AppGroupQuerySet(models.QuerySet):
                     'models': sorted(models, key=lambda m: m['name'])
                 })
 
+        other = [model_dicts[k] for k in model_dicts if k not in added]
+
         if settings.AUTO_CREATE_APP_GROUP:
-            other = set(model_dicts.keys()).difference(set(added))
             for model in other:
-                names = model.split('.')
                 app_group, created = AppGroup.objects.get_or_create(
-                    slug=names[0], defaults={'name': names[0].title()})
+                    slug=model['app_label'], defaults={'name': model['app_name']})
                 contenttype = ContentTypeProxy.objects.get(
-                    app_label=names[0], model=names[1])
+                    app_label=model['app_label'], model=model['object_name'].lower())
                 app_group.models.add(contenttype)
-        elif include_remaining:
-            other = set(model_dicts.keys()).difference(set(added))
-            if other:
-                result.append({
-                    'name': _('Miscellaneous'),
-                    'app_label': 'misc',
-                    'models': sorted(
-                        [model_dict for key, model_dict in model_dicts.items() if key in other],  # noqa
-                        key=lambda m: m['name'],
-                    )
-                })
+
+        elif other and include_remaining:
+            result.append({
+                'name': _('Miscellaneous'),
+                'app_label': 'misc',
+                'models': sorted(other, key=lambda m: m['name'])
+            })
 
         return result
 
