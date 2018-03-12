@@ -2,6 +2,17 @@
 Change history
 ==============
 
+
+1.0.1
+=====
+
+*March 12, 2018*
+
+* Fixed a bug with the ``AppGroup`` creation that occurs when the same slug
+  with and a different ``app_name`` would be created.
+* Using the AppConfig verbose name instead of the model name.
+
+
 1.0
 ===
 

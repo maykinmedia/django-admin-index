@@ -6,4 +6,5 @@ Authors
 Contributors
 ============
 
-* Jorik Kraaikamp
+* Jorik Kraaikamp (@JostCrow)
+* Baptiste Darthenay (@batisteo)
