@@ -28,10 +28,10 @@ class AdminIndexIntegrationTests(TestCase):
         self.assertIn('dashboard_app_list', response.context)
         self.assertGreater(len(response.context['dashboard_app_list']), 0)
 
-    def test_no_app_groups_in_context_outside_index(self):
+    def test_app_groups_in_context_outside_index(self):
         response = self.client.get(reverse('admin:auth_user_changelist'))
 
-        self.assertNotIn('dashboard_app_list', response.context)
+        self.assertIn('dashboard_app_list', response.context)
 
     @skipIf(django.VERSION < (1, 9), 'Django < 1.9 does not support template origins.')
     def test_app_groups_in_index(self):

@@ -11,6 +11,11 @@ from ordered_model.models import OrderedModel
 
 from . import settings
 
+if django.VERSION >= (1, 11):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
+
 
 class AppGroupQuerySet(models.QuerySet):
     def get_by_natural_key(self, slug):
@@ -35,6 +40,7 @@ class AppGroupQuerySet(models.QuerySet):
                     'app_name': app['name'],
                     'app_url': app['app_url'],
                     'has_module_perms': app['has_module_perms'],
+                    'active': model_dict['admin_url'] == request.path,
                 })
                 model_dicts[key] = model_dict
 
@@ -43,28 +49,37 @@ class AppGroupQuerySet(models.QuerySet):
         # Create new list based on our groups, using the model_dicts constructed above.  # noqa
         result = []
         app_list = self.prefetch_related('models', 'applink_set')
+        active_app = request.path == reverse('admin:index')
         for app in app_list:
             models = []
+            active = False
             for model in app.models.all():
                 key = '{}.{}'.format(model.app_label, model.model)
                 o = model_dicts.get(key)
                 if o:
                     models.append(o)
                     added.append(key)
+                    if o['active']:
+                        active = True
 
             for app_link in app.applink_set.all():
                 models.append({
                     'name': app_link.name,
                     'app_label': app.slug,
                     'admin_url': app_link.link,
+                    'active': app_link.link == request.path,
                 })
+                active = app_link.link == request.path,
 
             if models:
                 result.append({
                     'name': app.name,
                     'app_label': app.slug,
-                    'models': sorted(models, key=lambda m: m['name'])
+                    'models': sorted(models, key=lambda m: m['name']),
+                    'active': active,
                 })
+                if active:
+                    active_app = True
 
         other = [model_dicts[k] for k in model_dicts if k not in added]
 
@@ -75,12 +90,12 @@ class AppGroupQuerySet(models.QuerySet):
                 contenttype = ContentTypeProxy.objects.get(
                     app_label=model['app_label'], model=model['object_name'].lower())
                 app_group.models.add(contenttype)
-
         elif other and include_remaining:
             result.append({
                 'name': _('Miscellaneous'),
                 'app_label': 'misc',
-                'models': sorted(other, key=lambda m: m['name'])
+                'models': sorted(other, key=lambda m: m['name']),
+                'active': not active_app,
             })
 
         return result

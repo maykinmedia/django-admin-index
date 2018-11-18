@@ -1,0 +1,20 @@
+.environment {
+    padding: 10px 20px;
+    display: inline;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #228B22;
+
+    .environment--development {
+        background-color: #ff00ff;
+    }
+
+    .environment--staging {
+        background-color: #0000ff;
+    }
+
+    .environment--test {
+        background-color: #ff0000;
+    }
+}

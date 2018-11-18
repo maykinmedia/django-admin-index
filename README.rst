@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 1.0.1
+:Version: 1.1.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -106,6 +106,15 @@ There are 2 settings you can add to your ``settings.py``:
   Automaticly creates an `Application group`, based on the `app_label`, for
   all the models that would be in the "Miscellaneous" group. If ``True``, your
   Django admin will initially look as it normally would.
+
+- ``ENVIRONMENT`` (defaults to ``production``)
+
+  Adds a version tag after the brand name.
+  We have colors for:
+  - development (purple)
+  - test (red)
+  - staging (blue)
+  - default green.
 
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
