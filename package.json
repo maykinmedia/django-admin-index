@@ -1,0 +1,27 @@
+{
+  "name": "django-admin-index",
+  "version": "1.0.0",
+  "description": "====================== Admin Index for Django ======================",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "scss": "parcel build scss/admin-index.scss --out-dir django_admin_index/static/admin/css/",
+    "watch": "parcel watch scss/admin-index.scss --out-dir django_admin_index/static/admin/css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maykinmedia/django-admin-index.git"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/maykinmedia/django-admin-index/issues"
+  },
+  "homepage": "https://github.com/maykinmedia/django-admin-index#readme",
+  "devDependencies": {
+    "parcel": "^1.10.3",
+    "sass": "^1.15.1"
+  }
+}

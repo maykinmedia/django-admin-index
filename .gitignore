@@ -31,3 +31,5 @@ coverage.xml
 env/
 .vscode/
 .eggs/
+node_modules/
+django_admin_index/static/admin/css/admin-index.js
