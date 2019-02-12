@@ -40,7 +40,7 @@ class AppGroupQuerySet(models.QuerySet):
                     'app_name': app['name'],
                     'app_url': app['app_url'],
                     'has_module_perms': app['has_module_perms'],
-                    'active': model_dict['admin_url'] == request.path,
+                    'active': request.path.startswith(model_dict['admin_url']),
                 })
                 model_dicts[key] = model_dict
 
@@ -67,9 +67,9 @@ class AppGroupQuerySet(models.QuerySet):
                     'name': app_link.name,
                     'app_label': app.slug,
                     'admin_url': app_link.link,
-                    'active': app_link.link == request.path,
+                    'active': request.path.startswith(app_link.link),
                 })
-                active = app_link.link == request.path,
+                active = request.path.startswith(app_link.link)
 
             if models:
                 result.append({
