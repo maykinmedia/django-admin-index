@@ -55,7 +55,7 @@
     </div>
     <!-- END Header -->
 
-    {% if dashboard_app_list %}
+    {% if dashboard_app_list and request.user.is_authenticated and request.user.is_staff %}
     <div class="dropdown-menu">
         {% url 'admin:index' as home %}
         <a href="{{ home }}" class="dropdown-menu__item {% if request.path == home %}dropdown-menu__item--active{% endif %}">
