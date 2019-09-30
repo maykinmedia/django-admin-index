@@ -1,1 +1,1 @@
-django-ordered-model>=1.0,<3.0
+django-ordered-model>=3.0,<4.0

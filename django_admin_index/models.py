@@ -7,7 +7,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
-from ordered_model.models import OrderedModel
+from ordered_model.models import OrderedModel, OrderedModelQuerySet
 
 from . import settings
 
@@ -17,7 +17,7 @@ else:
     from django.core.urlresolvers import reverse
 
 
-class AppGroupQuerySet(models.QuerySet):
+class AppGroupQuerySet(OrderedModelQuerySet):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
 
