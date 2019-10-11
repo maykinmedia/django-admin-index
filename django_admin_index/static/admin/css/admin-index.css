@@ -64,24 +64,6 @@
   text-decoration: underline;
 }
 
-.environment {
-  padding: 10px 20px;
-  display: inline;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #ffffff;
-  background-color: #228B22;
-}
-.environment .environment--development {
-  background-color: #ff00ff;
-}
-.environment .environment--staging {
-  background-color: #0000ff;
-}
-.environment .environment--test {
-  background-color: #ff0000;
-}
-
 #header {
   position: sticky;
   top: 0;
