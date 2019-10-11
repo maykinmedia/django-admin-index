@@ -11,7 +11,6 @@ from django.test import RequestFactory, TestCase
 from mock import Mock, patch
 
 from django_admin_index import settings
-from django_admin_index.compat.django18 import get_app_list
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
 
@@ -107,36 +106,6 @@ class AdminIndexAppGroupTests(TestCase):
 
         settings.AUTO_CREATE_APP_GROUP = False
 
-    def test_as_list_structure_compat_django18_default_options(self):
-        settings.AUTO_CREATE_APP_GROUP = True
-        request = self.factory.get(reverse('admin:index'))
-        request.user = self.superuser
-
-        result = AppGroup.objects.as_list(request, False)
-        self.assertEqual(len(result), 1)
-
-        app = result[0]
-        app_model = app['models'][0]
-
-        original_app_list = get_app_list(site, request)
-        original_app = [oa for oa in original_app_list if oa['app_label'] == 'auth'][0]
-        original_app_model = [oam for oam in original_app['models'] if oam['object_name'] == 'User'][0]
-
-        # The newly created app has no matches in the original app list.
-        self.assertEqual(app['name'], self.app_group.name)
-        self.assertEqual(app['app_label'], self.app_group.slug)
-
-        # Attributes that are in the original structure as well.
-        self.assertDictEqual(app_model['perms'], original_app_model['perms'])
-        for key in ['name', 'object_name', 'admin_url', 'add_url']:
-            self.assertEqual(app_model[key], original_app_model[key])
-
-        # Attributes copied from the original app to the model, just for reference as to where the app originally
-        # belonged to.
-        for key in ['app_label', 'app_url', 'has_module_perms']:
-            self.assertEqual(app_model[key], original_app[key])
-        settings.AUTO_CREATE_APP_GROUP = False
-
     def test_only_match_auto_create_group_on_slug(self):
         settings.AUTO_CREATE_APP_GROUP = True
         app_group = AppGroup.objects.create(name='My group', slug='auth')
@@ -148,42 +117,6 @@ class AdminIndexAppGroupTests(TestCase):
         self.assertEqual(len(result), 1)
         self.assertEqual(app_group.models.count(), 1)
         settings.AUTO_CREATE_APP_GROUP = False
-
-    def test_as_list_structure_compat_django18(self):
-        request = self.factory.get(reverse('admin:index'))
-        request.user = self.superuser
-
-        result = AppGroup.objects.as_list(request, False)
-        self.assertEqual(len(result), 1)
-
-        app = result[0]
-        app_model = app['models'][0]
-
-        original_app_list = get_app_list(site, request)
-        original_app = [oa for oa in original_app_list if oa['app_label'] == 'auth'][0]
-        original_app_model = [oam for oam in original_app['models'] if oam['object_name'] == 'User'][0]
-
-        # The newly created app has no matches in the original app list.
-        self.assertEqual(app['name'], self.app_group.name)
-        self.assertEqual(app['app_label'], self.app_group.slug)
-
-        # Attributes that are in the original structure as well.
-        self.assertDictEqual(app_model['perms'], original_app_model['perms'])
-        for key in ['name', 'object_name', 'admin_url', 'add_url']:
-            self.assertEqual(app_model[key], original_app_model[key])
-
-        # Attributes copied from the original app to the model, just for reference as to where the app originally
-        # belonged to.
-        for key in ['app_label', 'app_url', 'has_module_perms']:
-            self.assertEqual(app_model[key], original_app[key])
-
-    @patch('django_admin_index.models.django', Mock(VERSION=(1, 8, 18, 'mock', 0)))
-    def test_as_list_structure_with_django18(self):
-        request = self.factory.get(reverse('admin:index'))
-        request.user = self.superuser
-
-        result = AppGroup.objects.as_list(request, False)
-        self.assertEqual(len(result), 1)
 
     def test_as_list_without_include_remaining(self):
         request = self.factory.get(reverse('admin:index'))
