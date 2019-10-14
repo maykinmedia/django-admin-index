@@ -3,14 +3,13 @@ from __future__ import absolute_import, unicode_literals
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.urls import reverse
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.models import OrderedModel
 
 from . import settings
-
-from django.urls import reverse
 
 
 class AppGroupQuerySet(models.QuerySet):
