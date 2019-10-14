@@ -89,7 +89,7 @@ To use this with your project you need to follow these steps:
 Configuration
 =============
 
-There are 2 settings you can add to your ``settings.py``:
+There are 3 settings you can add to your ``settings.py``:
 
 - ``ADMIN_INDEX_SHOW_REMAINING_APPS`` (defaults to ``False``)
 
@@ -127,6 +127,6 @@ There are 2 settings you can add to your ``settings.py``:
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |djversion| image:: https://img.shields.io/badge/django-1.8%2C%201.9%2C%201.10%2C%201.11%2C%202.0-blue.svg
+.. |djversion| image:: https://img.shields.io/badge/django-1.11%2C%202.0%2C%202.1%2C%202.2-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
