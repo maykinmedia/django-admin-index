@@ -7,5 +7,3 @@ SHOW_REMAINING_APPS = getattr(django_settings, 'ADMIN_INDEX_SHOW_REMAINING_APPS'
 SHOW_REMAINING_APPS_TO_SUPERUSERS = getattr(django_settings, 'ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS', True)
 
 AUTO_CREATE_APP_GROUP = getattr(django_settings, 'ADMIN_INDEX_AUTO_CREATE_APP_GROUP', False)
-
-ENVIRONMENT = getattr(django_settings, 'ENVIRONMENT', 'production')

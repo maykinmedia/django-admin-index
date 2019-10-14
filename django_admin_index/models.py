@@ -1,20 +1,15 @@
 from __future__ import absolute_import, unicode_literals
 
-import django
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.urls import reverse
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.models import OrderedModel
 
 from . import settings
-
-if django.VERSION >= (1, 11):
-    from django.urls import reverse
-else:
-    from django.core.urlresolvers import reverse
 
 
 class AppGroupQuerySet(models.QuerySet):
@@ -25,11 +20,7 @@ class AppGroupQuerySet(models.QuerySet):
         # Convert to convienent dict
         model_dicts = {}
 
-        if django.VERSION < (1, 9):
-            from .compat.django18 import get_app_list
-            original_app_list = get_app_list(site, request)
-        else:
-            original_app_list = site.get_app_list(request)
+        original_app_list = site.get_app_list(request)
 
         for app in original_app_list:
             for model in app['models']:

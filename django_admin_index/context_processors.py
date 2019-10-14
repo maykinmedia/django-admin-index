@@ -13,7 +13,6 @@ def dashboard(request):
 
         return {
             'dashboard_app_list': app_list,
-            'environment': settings.ENVIRONMENT,
         }
 
     return {}
