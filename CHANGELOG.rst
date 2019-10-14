@@ -2,6 +2,15 @@
 Change history
 ==============
 
+1.1.0
+=====
+
+*October 14, 2019*
+
+* Added navigation menu based on ``AppGroup`` configuration.
+* Removed Django < 1.11 support.
+* Updated test requirements.
+
 
 1.0.1
 =====
