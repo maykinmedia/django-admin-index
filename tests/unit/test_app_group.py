@@ -7,9 +7,9 @@ from unittest import skipIf
 import django
 from django.contrib.admin import site
 from django.contrib.auth.models import AnonymousUser, Permission, User
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory, TestCase, override_settings
 
-from django_admin_index import settings
+from django_admin_index.conf import settings
 from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, ContentTypeProxy
 
@@ -27,6 +27,10 @@ class AdminIndexAppGroupTests(TestCase):
         self.ct_user = ContentTypeProxy.objects.get(app_label='auth', model='user')
         # ...and this content type to the new group.
         self.app_group.models.add(self.ct_user)
+
+        # ...find the content type for model Group (it needs to be registered in the admin) and don't do anything
+        # with it
+        self.ct_group = ContentTypeProxy.objects.get(app_label='auth', model='group')
 
         self.factory = RequestFactory()
 
@@ -171,7 +175,9 @@ class AdminIndexAppGroupTests(TestCase):
         self.assertIn('dashboard_app_list', context)
         self.assertEqual(len(context['dashboard_app_list']), 0)
 
-    def test_context_staff_user(self):
+    def test_context_staff_user_with_show_false(self):
+        self.assertFalse(settings.SHOW_REMAINING_APPS)
+
         request = self.factory.get(reverse('admin:index'))
         user = self._create_user(is_staff=True)
         user.user_permissions.add(*Permission.objects.all())
@@ -181,18 +187,20 @@ class AdminIndexAppGroupTests(TestCase):
         self.assertIn('dashboard_app_list', context)
         self.assertEqual(len(context['dashboard_app_list']), 1)
 
-    # @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS=True)
-    # def test_context_staffuser_with_show_true(self):
-    #     request = self.factory.get(reverse('admin:index'))
-    #     user = self._create_user(is_staff=True)
-    #     user.user_permissions.add(*Permission.objects.all())
-    #     request.user = user
-    #
-    #     context = dashboard(request)
-    #     self.assertIn('dashboard_app_list', context)
-    #     self.assertEqual(len(context['dashboard_app_list']), 2)
+    @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS=True)
+    def test_context_staffuser_with_show_true(self):
+        request = self.factory.get(reverse('admin:index'))
+        user = self._create_user(is_staff=True)
+        user.user_permissions.add(*Permission.objects.all())
+        request.user = user
 
-    def test_context_superuser(self):
+        context = dashboard(request)
+        self.assertIn('dashboard_app_list', context)
+        self.assertEqual(len(context['dashboard_app_list']), 2)
+
+    def test_context_superuser_with_show_true(self):
+        self.assertTrue(settings.SHOW_REMAINING_APPS_TO_SUPERUSERS)
+
         request = self.factory.get(reverse('admin:index'))
         request.user = self.superuser
 
@@ -200,11 +208,11 @@ class AdminIndexAppGroupTests(TestCase):
         self.assertIn('dashboard_app_list', context)
         self.assertEqual(len(context['dashboard_app_list']), 2)
 
-    # @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS=False)
-    # def test_context_superuser_with_show_false(self):
-    #     request = self.factory.get(reverse('admin:index'))
-    #     request.user = self.superuser
-    #
-    #     context = dashboard(request)
-    #     self.assertIn('dashboard_app_list', context)
-    #     self.assertEqual(len(context['dashboard_app_list']), 1)
+    @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS=False)
+    def test_context_superuser_with_show_false(self):
+        request = self.factory.get(reverse('admin:index'))
+        request.user = self.superuser
+
+        context = dashboard(request)
+        self.assertIn('dashboard_app_list', context)
+        self.assertEqual(len(context['dashboard_app_list']), 1)

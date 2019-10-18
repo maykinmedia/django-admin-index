@@ -9,7 +9,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.models import OrderedModel
 
-from . import settings
+from .conf import settings
 
 
 class AppGroupQuerySet(models.QuerySet):
@@ -78,10 +78,11 @@ class AppGroupQuerySet(models.QuerySet):
             for model in other:
                 app_group, created = AppGroup.objects.get_or_create(
                     slug=model['app_label'], defaults={'name': model['app_name']})
-                contenttype = ContentTypeProxy.objects.get(
-                    app_label=model['app_label'], model=model['object_name'].lower())
-                app_group.models.add(contenttype)
-        elif other and include_remaining:
+                if created:
+                    contenttype = ContentTypeProxy.objects.get(
+                        app_label=model['app_label'], model=model['object_name'].lower())
+                    app_group.models.add(contenttype)
+        elif (other and include_remaining) or not result:
             result.append({
                 'name': _('Miscellaneous'),
                 'app_label': 'misc',
