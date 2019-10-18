@@ -5,7 +5,7 @@ from __future__ import absolute_import, unicode_literals
 from unittest import skipIf
 
 import django
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import Permission, User
 from django.test import TestCase, override_settings
 
 from django_admin_index.conf import settings

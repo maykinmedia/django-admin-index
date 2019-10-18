@@ -75,14 +75,21 @@ class AppGroupQuerySet(models.QuerySet):
         other = [model_dicts[k] for k in model_dicts if k not in added]
 
         if settings.AUTO_CREATE_APP_GROUP:
+            new_apps = False
             for model in other:
                 app_group, created = AppGroup.objects.get_or_create(
                     slug=model['app_label'], defaults={'name': model['app_name']})
                 if created:
+                    new_apps = True
                     contenttype = ContentTypeProxy.objects.get(
                         app_label=model['app_label'], model=model['object_name'].lower())
                     app_group.models.add(contenttype)
-        elif (other and include_remaining) or not result:
+
+            # If apps are created, rerender the list.
+            if new_apps:
+                return self.as_list(request, include_remaining)
+
+        elif other and include_remaining:
             result.append({
                 'name': _('Miscellaneous'),
                 'app_label': 'misc',
