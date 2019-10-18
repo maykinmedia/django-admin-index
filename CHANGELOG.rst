@@ -2,12 +2,26 @@
 Change history
 ==============
 
+1.2.0
+=====
+
+*October 18, 2019*
+
+* Fixed ``AUTO_CREATE_APP_GROUP`` setting to show auto generated groups on the
+  very first time you render the admin.
+* Fixed an issue where staff users didn't see anything if no ``AppGroups`` were
+  created and showing remaining apps was turned off (thanks @sergeimaertens).
+* Fixed admin templates to work with the view permission introduced in
+  Django 2.1.
+* Updated npm package requirements (only needed for development).
+
+
 1.1.0
 =====
 
 *October 14, 2019*
 
-* Added navigation menu based on ``AppGroup`` configuration.
+* Added navigation menu based on ``AppGroup`` configuration (thanks @JostCrow).
 * Removed Django < 1.11 support.
 * Updated test requirements.
 

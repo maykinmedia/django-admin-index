@@ -2,12 +2,12 @@
 Admin Index for Django
 ======================
 
-:Version: 1.1.0
+:Version: 1.2.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
 
-|build-status| |coverage| |lintly| |license| |pyversion| |djversion|
+|build-status| |coverage| |license| |pyversion| |djversion|
 
 About
 =====
@@ -121,10 +121,6 @@ There are 3 settings you can add to your ``settings.py``:
 
 .. |coverage| image:: https://codecov.io/github/maykinmedia/django-admin-index/coverage.svg?branch=master
     :target: https://codecov.io/github/maykinmedia/django-admin-index?branch=master
-
-.. |lintly| image:: https://lintly.com/gh/maykinmedia/django-admin-index/badge.svg
-    :target: https://lintly.com/gh/maykinmedia/django-admin-index/
-    :alt: Lintly
 
 .. |license| image:: https://img.shields.io/pypi/l/django-admin-index.svg
     :alt: BSD License
