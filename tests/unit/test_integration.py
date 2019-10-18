@@ -5,8 +5,10 @@ from __future__ import absolute_import, unicode_literals
 from unittest import skipIf
 
 import django
-from django.contrib.auth.models import User
-from django.test import TestCase
+from django.contrib.auth.models import Permission, User
+from django.test import TestCase, override_settings
+
+from django_admin_index.conf import settings
 
 if django.VERSION >= (1, 11):
     from django.urls import reverse
@@ -80,3 +82,22 @@ class AdminIndexIntegrationTests(TestCase):
         html = response.content.decode('utf-8')
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
+
+    @override_settings(SHOW_REMAINING_APPS_TO_SUPERUSERS=False)
+    def test_show_apps_when_superuser_and_setting_disabled_and_no_app_groups(self):
+        response = self.client.get(reverse('admin:index'))
+        self.assertGreater(len(response.context['dashboard_app_list']), 0)
+
+    def test_show_apps_when_staff_user_and_setting_disabled_and_no_app_groups(self):
+        self.assertFalse(settings.SHOW_REMAINING_APPS)
+
+        staff_user = User.objects._create_user(
+            username='staff_user', email='staffuser@example.com', password='top_secret', is_staff=True,
+            is_superuser=False)
+        for perm in Permission.objects.all():
+            staff_user.user_permissions.add(perm)
+
+        self.assertTrue(self.client.login(username=staff_user.username, password='top_secret'))
+
+        response = self.client.get(reverse('admin:index'))
+        self.assertGreater(len(response.context['dashboard_app_list']), 0)

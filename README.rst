@@ -96,16 +96,23 @@ There are 3 settings you can add to your ``settings.py``:
   Show all models that are not added a to an `Application group` in a group
   called "Miscellaneous" for **staff** users.
 
+  NOTE: If no `Application groups` are defined, it will show all models
+  regardless of this setting.
+
 - ``ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS`` (defaults to ``True``)
 
   Show all models that are not added a to an `Application group` in a group
   called "Miscellaneous" for **super users** users.
 
+  NOTE: If no `Application groups` are defined, it will show all models
+  regardless of this setting.
+
 - ``ADMIN_INDEX_AUTO_CREATE_APP_GROUP`` (defaults to ``False``)
 
   Automaticly creates an `Application group`, based on the `app_label`, for
   all the models that would be in the "Miscellaneous" group. If ``True``, your
-  Django admin will initially look as it normally would.
+  Django admin will initially look as it normally would. It will not update
+  existing `Application groups`.
 
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
