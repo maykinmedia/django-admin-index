@@ -2,6 +2,17 @@
 Change history
 ==============
 
+1.2.1
+=====
+
+*November 29, 2019*
+
+* Added ``ADMIN_INDEX_SHOW_MENU`` setting to show (default) or hide the extra
+  menu.
+* Added ``ADMIN_INDEX_HIDE_APP_INDEX_PAGES`` setting to show or hide (default)
+  the application index page link in the breadcrumbs and on the main index
+  page.
+
 1.2.0
 =====
 

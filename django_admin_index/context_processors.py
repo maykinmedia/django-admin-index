@@ -20,6 +20,7 @@ def dashboard(request):
 
         return {
             'dashboard_app_list': app_list,
+            'admin_index_settings': settings.as_dict()
         }
 
     return {}

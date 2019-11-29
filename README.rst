@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 1.2.0
+:Version: 1.2.1
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -113,6 +113,28 @@ There are 3 settings you can add to your ``settings.py``:
   all the models that would be in the "Miscellaneous" group. If ``True``, your
   Django admin will initially look as it normally would. It will not update
   existing `Application groups`.
+
+- ``ADMIN_INDEX_SHOW_MENU`` (defaults to: ``True``)
+
+  Show the admin index as a menu above the breadcrumbs. Submenu's are filled
+  with the registered models.
+
+* ``ADMIN_INDEX_HIDE_APP_INDEX_PAGES`` (defaults to: ``True``)
+
+  Removes the links to the app index pages from the main index and the
+  breadcrumbs.
+
+
+Extra
+=====
+
+You can also squeeze additional content in the breadcrumbs, just after
+``Home``. Simply overwrite the block ``breadcrumbs_pre_changelist`` in the
+admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
+
+    {% block breadcrumbs_pre_changelist %}
+    &rsaquo; Meaningful breadcrumb element
+    {% endblock %}
 
 
 .. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
