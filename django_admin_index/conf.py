@@ -36,9 +36,7 @@ class Settings:
 
         :return: A `dict` with settings.
         """
-        dct = {k: getattr(self, k) for k in dir(self) if k.upper() == k}
-        print(dct)
-        return dct
+        return {k: getattr(self, k) for k in dir(self) if k.upper() == k}
 
 
 settings = Settings()
