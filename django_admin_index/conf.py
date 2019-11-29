@@ -22,5 +22,23 @@ class Settings:
     def AUTO_CREATE_APP_GROUP(self):
         return getattr(django_settings, 'ADMIN_INDEX_AUTO_CREATE_APP_GROUP', False)
 
+    @property
+    def SHOW_MENU(self):
+        return getattr(django_settings, 'ADMIN_INDEX_SHOW_MENU', True)
+
+    @property
+    def HIDE_APP_INDEX_PAGES(self):
+        return getattr(django_settings, 'ADMIN_INDEX_HIDE_APP_INDEX_PAGES', True)
+
+    def as_dict(self):
+        """
+        Returns a `dict` with all settings.
+
+        :return: A `dict` with settings.
+        """
+        dct = {k: getattr(self, k) for k in dir(self) if k.upper() == k}
+        print(dct)
+        return dct
+
 
 settings = Settings()
