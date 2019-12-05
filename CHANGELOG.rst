@@ -2,6 +2,15 @@
 Change history
 ==============
 
+1.2.2
+=====
+
+*December 5, 2019*
+
+* Removed accidental print statement.
+* Added undocumented change in 1.2.1 changelog regarding the template block
+  ``breadcrumbs_pre_changelist``.
+
 1.2.1
 =====
 
@@ -12,6 +21,8 @@ Change history
 * Added ``ADMIN_INDEX_HIDE_APP_INDEX_PAGES`` setting to show or hide (default)
   the application index page link in the breadcrumbs and on the main index
   page.
+* Added template block ``breadcrumbs_pre_changelist`` which can be overriden
+  to add a custom breadcrumb between home and the list view.
 
 1.2.0
 =====
