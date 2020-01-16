@@ -4,7 +4,6 @@ from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.models import OrderedModel
@@ -105,7 +104,6 @@ class AppLinkQuerySet(models.QuerySet):
         return self.get(app_group=app_group, link=link)
 
 
-@python_2_unicode_compatible
 class ContentTypeProxy(ContentType):
     class Meta:
         proxy = True
@@ -115,7 +113,6 @@ class ContentTypeProxy(ContentType):
         return '{}.{}'.format(self.app_label, capfirst(self.model))
 
 
-@python_2_unicode_compatible
 class AppGroup(OrderedModel):
     name = models.CharField(_('name'), max_length=200)
     slug = models.SlugField(_('slug'), unique=True)
@@ -134,7 +131,6 @@ class AppGroup(OrderedModel):
         return self.name
 
 
-@python_2_unicode_compatible
 class AppLink(OrderedModel):
     app_group = models.ForeignKey(AppGroup, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
