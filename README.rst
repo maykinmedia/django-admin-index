@@ -43,12 +43,6 @@ Usage
 
 To use this with your project you need to follow these steps:
 
-#. Install the django_admin_index library:
-
-   .. code-block:: console
-
-      $ pip install django_admin_index
-
 #. Add ``django_admin_index`` and ``ordered_model`` to ``INSTALLED_APPS`` in
    your Django project's ``settings.py``. Make sure that
    ``django_admin_index`` comes before ``django.contrib.admin``::
@@ -127,6 +121,21 @@ There are 3 settings you can add to your ``settings.py``:
 
 Extra
 =====
+
+Sticky header
+-------------
+
+The header (typically "Django administration") including the menu (added by this
+library) and the breadcrumbs, all become sticky (ie. they stay visible when you scroll
+down on large pages). If you don't want this, you can add some CSS lines, like::
+
+    #header { position: initial; }
+    .dropdown-menu { position: initial; }
+    .breadcrumbs { position: initial; }
+
+
+Breadcrumbs
+-----------
 
 You can also squeeze additional content in the breadcrumbs, just after
 ``Home``. Simply overwrite the block ``breadcrumbs_pre_changelist`` in the
