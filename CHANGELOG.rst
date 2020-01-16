@@ -2,6 +2,13 @@
 Change history
 ==============
 
+1.2.3
+=====
+
+*January 16, 2020*
+
+* Fixed incorrect menu positioning (white line showing).
+
 1.2.2
 =====
 
