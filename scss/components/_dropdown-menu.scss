@@ -1,10 +1,12 @@
 .dropdown-menu {
+    /* Show the header at all times */
     position: sticky;
-    top: 60px;
+    top: 49px;
+    z-index: 1000000;
+
     display: block;
     background-color: #417690;
-    padding: 0px 40px;
-    z-index: 1000000;
+    padding: 0 40px;
     cursor: pointer;
 
     .dropdown-menu__item,

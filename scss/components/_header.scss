@@ -1,5 +1,9 @@
 #header {
+    /* Show the header at all times */
     position: sticky;
     top: 0;
     z-index: 100000;
+    /* Make the header hight absolute so we don't depend on fuzzy sized elements inside
+       the header */
+    height: 29px;
 }
