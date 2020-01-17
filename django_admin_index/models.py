@@ -6,12 +6,12 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
-from ordered_model.models import OrderedModel
+from ordered_model.models import OrderedModel, OrderedModelQuerySet
 
 from .conf import settings
 
 
-class AppGroupQuerySet(models.QuerySet):
+class AppGroupQuerySet(OrderedModelQuerySet):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
 
@@ -111,7 +111,7 @@ class AppGroupQuerySet(models.QuerySet):
         return result
 
 
-class AppLinkQuerySet(models.QuerySet):
+class AppLinkQuerySet(OrderedModelQuerySet):
     def get_by_natural_key(self, app_group, link):
         return self.get(app_group=app_group, link=link)
 
