@@ -2,6 +2,14 @@
 Change history
 ==============
 
+
+1.3.0
+=====
+
+* Removed Django 1.11 support
+* Removed Python 2.7 support
+* Added support for Python 3.8 (for eligable Django versions)
+
 1.2.3
 =====
 

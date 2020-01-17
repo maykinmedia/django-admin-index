@@ -9,27 +9,27 @@ from __future__ import absolute_import, unicode_literals
 import re
 from collections import namedtuple
 
-__version__ = '1.2.3'
-__author__ = 'Joeri Bekker'
-__contact__ = 'joeri@maykinmedia.nl'
-__homepage__ = 'https://github.com/maykinmedia/django-admin-index'
-__docformat__ = 'restructuredtext'
+__version__ = "1.2.3"
+__author__ = "Joeri Bekker"
+__contact__ = "joeri@maykinmedia.nl"
+__homepage__ = "https://github.com/maykinmedia/django-admin-index"
+__docformat__ = "restructuredtext"
 
 # -eof meta-
 
-version_info_t = namedtuple('version_info_t', (
-    'major', 'minor', 'patch', 'releaselevel', 'serial',
-))
+version_info_t = namedtuple(
+    "version_info_t", ("major", "minor", "patch", "releaselevel", "serial",)
+)
 
 # bumpversion can only search for {current_version}
 # so we have to parse the version here.
-_temp = re.match(
-    r'(\d+)\.(\d+).(\d+)(.+)?', __version__).groups()
+_temp = re.match(r"(\d+)\.(\d+).(\d+)(.+)?", __version__).groups()
 VERSION = version_info = version_info_t(
-    int(_temp[0]), int(_temp[1]), int(_temp[2]), _temp[3] or '', '')
-del(_temp)
-del(re)
+    int(_temp[0]), int(_temp[1]), int(_temp[2]), _temp[3] or "", ""
+)
+del _temp
+del re
 
 __all__ = []
 
-default_app_config = 'django_admin_index.apps.AdminIndexConfig'
+default_app_config = "django_admin_index.apps.AdminIndexConfig"

@@ -32,7 +32,7 @@ Installation
 You can install django_admin_index either via the Python Package Index (PyPI)
 or from source.
 
-To install using `pip`,:
+To install using ``pip``:
 
 .. code-block:: console
 
@@ -161,6 +161,6 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |djversion| image:: https://img.shields.io/badge/django-1.11%2C%202.0%2C%202.1%2C%202.2-blue.svg
+.. |djversion| image:: https://img.shields.io/badge/django-2.0%2C%202.1%2C%202.2%2C%203.0-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
