@@ -4,7 +4,11 @@ from __future__ import absolute_import, unicode_literals
 
 from django.test import TestCase, override_settings
 
-from django_admin_index.apps import check_admin_index_app, check_admin_index_context_processor
+from django_admin_index.apps import (
+    check_admin_index_app,
+    check_admin_index_context_processor,
+    check_request_context_processor,
+)
 from django_admin_index.models import AppGroup, AppLink, ContentTypeProxy
 
 
@@ -54,11 +58,22 @@ class AdminIndexTests(TestCase):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 1)
 
-    def test_check_admin_index_context_process_success(self):
+    @override_settings(
+        TEMPLATES=[
+            {
+                "OPTIONS": {
+                    "context_processors": [
+                        "django_admin_index.context_processors.dashboard"
+                    ]
+                }
+            }
+        ]
+    )
+    def test_check_admin_index_context_process_present(self):
         result = check_admin_index_context_processor([])
-        self.assertEqual(len(result), 0)
+        self.assertEqual(len(result), 1)
 
     @override_settings(TEMPLATES=[{"OPTIONS": {"context_processors": []}}])
-    def test_check_admin_index_context_process_missing(self):
-        result = check_admin_index_context_processor([])
+    def test_check_request_context_process_missing(self):
+        result = check_request_context_processor([])
         self.assertEqual(len(result), 1)

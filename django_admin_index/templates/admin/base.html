@@ -16,7 +16,7 @@
 {% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
-{% load i18n %}
+{% load i18n django_admin_index %}
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
   data-admin-utc-offset="{% now "Z" %}">
@@ -60,6 +60,9 @@
     <!-- END Header -->
 
     {# Start menu #}
+    {% dashboard_app_list as dashboard_app_list %}
+    {% admin_index_settings as admin_index_settings %}
+
     {% if admin_index_settings.SHOW_MENU and dashboard_app_list and request.user.is_authenticated and request.user.is_staff %}
     <div class="dropdown-menu">
         {% url 'admin:index' as home %}

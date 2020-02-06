@@ -58,21 +58,6 @@ To use this with your project you need to follow these steps:
 
    Note that there is no dash in the module name, only underscores.
 
-#. Add ``django_admin_index.context_processors.dashboard`` to the context
-   processors in your Django project's ``settings.py``::
-
-    TEMPLATES = [
-        {
-            ...
-            'OPTIONS': {
-                'context_processors': [
-                    ...
-                    'django_admin_index.context_processors.dashboard'
-                ],
-            },
-        },
-    ]
-
 #. Create the database tables by performing a database migration:
 
    .. code-block:: console

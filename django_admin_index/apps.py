@@ -17,6 +17,7 @@ class AdminIndexConfig(AppConfig):
     def ready(self):
         register(check_admin_index_app, Tags.compatibility)
         register(check_admin_index_context_processor, Tags.compatibility)
+        register(check_request_context_processor, Tags.compatibility)
 
 
 def check_admin_index_app(app_configs, **kwargs):
@@ -48,8 +49,29 @@ def check_admin_index_context_processor(app_configs, **kwargs):
     from django.conf import settings
 
     issues = []
-    found = False
     context_procesor = "{}.context_processors.dashboard".format(AdminIndexConfig.name)
+
+    for engine in settings.TEMPLATES:
+        if "OPTIONS" in engine and "context_processors" in engine["OPTIONS"]:
+            if context_procesor in engine["OPTIONS"]["context_processors"]:
+                issues.append(
+                    Warning(
+                        "Please remove '{}' from your TEMPLATES.OPTIONS.context_processors as it's deprecated.".format(
+                            context_procesor
+                        )
+                    )
+                )
+                return issues
+
+    return issues
+
+
+def check_request_context_processor(app_configs, **kwargs):
+    from django.conf import settings
+
+    issues = []
+    found = False
+    context_procesor = "django.template.context_processors.request"
 
     for engine in settings.TEMPLATES:
         if "OPTIONS" in engine and "context_processors" in engine["OPTIONS"]:
