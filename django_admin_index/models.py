@@ -27,13 +27,23 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                     app["app_label"], model["object_name"].lower()
                 )  # noqa
                 model_dict = model.copy()
+
+                # If the user lacks create/read/update permissions, these
+                # variables are None in the model_dict
+                if model_dict.get('admin_url'):
+                    active = request.path.startswith(model_dict['admin_url'])
+                elif model_dict.get('add_url'):
+                    active = request.path.startswith(model_dict['add_url'])
+                else:
+                    active = False
+
                 model_dict.update(
                     {
                         "app_label": app["app_label"],
                         "app_name": app["name"],
                         "app_url": app["app_url"],
                         "has_module_perms": app["has_module_perms"],
-                        "active": request.path.startswith(model_dict["admin_url"]),
+                        "active": active,
                     }
                 )
                 model_dicts[key] = model_dict
