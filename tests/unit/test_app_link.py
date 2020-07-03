@@ -153,3 +153,87 @@ class AdminIndexAppLinkTests(TestCase):
     #     context = dashboard(request)
     #     self.assertIn('dashboard_app_list', context)
     #     self.assertEqual(len(context['dashboard_app_list']), 1)
+
+    def test_dashboard_active_link_only_delete_permission(self):
+        self.app_link.link = "/admin/auth"
+        self.app_link.save()
+
+        user = self._create_user(username="test", is_staff=True)
+        permission = Permission.objects.get(name="Can delete user")
+        user.user_permissions.add(permission)
+
+        request = self.factory.get(reverse("admin:index"))
+        request.user = user
+
+        result = AppGroup.objects.as_list(request, False)
+
+        self.assertEqual(len(result), 1)
+
+        app = result[0]
+        app_model = app["models"][0]
+
+        self.assertEqual(
+            app_model,
+            {
+                "active": False,
+                "name": self.app_link.name,
+                "app_label": self.app_group.slug,
+                "admin_url": self.app_link.link,
+            },
+        )
+
+    def test_dashboard_active_link_only_add_permission(self):
+        self.app_link.link = "/admin/auth"
+        self.app_link.save()
+
+        user = self._create_user(username="test", is_staff=True)
+        permission = Permission.objects.get(name="Can add user")
+        user.user_permissions.add(permission)
+
+        request = self.factory.get(reverse("admin:auth_user_add"))
+        request.user = user
+
+        result = AppGroup.objects.as_list(request, False)
+
+        self.assertEqual(len(result), 1)
+
+        app = result[0]
+        app_model = app["models"][0]
+
+        self.assertEqual(
+            app_model,
+            {
+                "active": True,
+                "name": self.app_link.name,
+                "app_label": self.app_group.slug,
+                "admin_url": self.app_link.link,
+            },
+        )
+
+    def test_dashboard_active_link_only_change_permission(self):
+        self.app_link.link = "/admin/auth"
+        self.app_link.save()
+
+        user = self._create_user(username="test", is_staff=True)
+        permission = Permission.objects.get(name="Can change user")
+        user.user_permissions.add(permission)
+
+        request = self.factory.get(reverse("admin:auth_user_changelist"))
+        request.user = user
+
+        result = AppGroup.objects.as_list(request, False)
+
+        self.assertEqual(len(result), 1)
+
+        app = result[0]
+        app_model = app["models"][0]
+
+        self.assertEqual(
+            app_model,
+            {
+                "active": True,
+                "name": self.app_link.name,
+                "app_label": self.app_group.slug,
+                "admin_url": self.app_link.link,
+            },
+        )
