@@ -22,6 +22,6 @@
   "homepage": "https://github.com/maykinmedia/django-admin-index#readme",
   "devDependencies": {
     "parcel": "^1.12.4",
-    "sass": "^1.15.1"
+    "sass": "^1.26.10"
   }
 }
