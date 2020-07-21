@@ -2,6 +2,15 @@
 Change history
 ==============
 
+1.3.1
+=====
+
+*July 21, 2020*
+
+* Added active dashboard link tests for different perms.
+* Added shadow to dropdown.
+* Fixed active menu item for groups without change/read permission.
+* Updated npm package requirements (only needed for development).
 
 1.3.0
 =====

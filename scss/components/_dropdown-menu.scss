@@ -32,14 +32,13 @@
     }
 
     .dropdown-menu__drop {
-        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
         position: absolute;
         left: 0;
         top: 100%;
         display: none;
         background-color: #417690;
         min-width: 150px;
-        padding: 0.2em;
     }
 
     .dropdown-menu__link,
