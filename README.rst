@@ -26,6 +26,8 @@ application group. It shows as a regular Django model.
 One final change in the Django admin is the removal of the App lists, that
 link to a list of models within an App. This concept became obsolete.
 
+|screenshot-1| |screenshot-2| |screenshot-3|
+
 Installation
 ============
 
@@ -164,3 +166,16 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
 .. |djversion| image:: https://img.shields.io/badge/django-2.0%2C%202.1%2C%202.2%2C%203.0-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
+
+
+.. |screenshot-1| image:: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/dashboard_with_menu_thumb.png
+    :alt: Ordered dashboard with dropdown menu.
+    :target: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/dashboard_with_menu.png
+
+.. |screenshot-2| image:: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/application_groups_thumb.png
+    :alt: Manage Application groups.
+    :target: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/application_groups.png
+
+.. |screenshot-3| image:: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/change_user_management_group_thumb.png
+    :alt: Configure application groups and add Application links.
+    :target: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/change_user_management_group.png
