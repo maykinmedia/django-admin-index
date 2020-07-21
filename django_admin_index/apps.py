@@ -1,6 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.apps import AppConfig
+from django.apps import AppConfig, apps
 from django.core.checks import Tags, Warning, register
 from django.utils.translation import ugettext_lazy as _
 
@@ -23,11 +23,12 @@ def check_admin_index_app(app_configs, **kwargs):
     from django.conf import settings
 
     issues = []
+    app_config_names = [app_config.name for app_config in apps.get_app_configs()]
 
     try:
-        if settings.INSTALLED_APPS.index(
+        if app_config_names.index(
             AdminIndexConfig.name
-        ) > settings.INSTALLED_APPS.index("django.contrib.admin"):
+        ) > app_config_names.index("django.contrib.admin"):
             issues.append(
                 Warning(
                     "You should put '{}' before 'django.contrib.admin' in your INSTALLED_APPS.".format(
