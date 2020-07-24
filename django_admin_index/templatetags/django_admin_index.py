@@ -1,4 +1,3 @@
-
 from django.contrib.admin import site
 from django.core.exceptions import ImproperlyConfigured
 from django.template import Library

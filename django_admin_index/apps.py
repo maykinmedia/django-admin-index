@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.apps import AppConfig, apps
-from django.core.checks import Tags, Warning, register, Error
+from django.core.checks import Error, Tags, Warning, register
 from django.utils.translation import ugettext_lazy as _
 
 __all__ = ["AdminIndexConfig"]

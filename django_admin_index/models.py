@@ -30,10 +30,10 @@ class AppGroupQuerySet(OrderedModelQuerySet):
 
                 # If the user lacks create/read/update permissions, these
                 # variables are None in the model_dict
-                if model_dict.get('admin_url'):
-                    active = request.path.startswith(model_dict['admin_url'])
-                elif model_dict.get('add_url'):
-                    active = request.path.startswith(model_dict['add_url'])
+                if model_dict.get("admin_url"):
+                    active = request.path.startswith(model_dict["admin_url"])
+                elif model_dict.get("add_url"):
+                    active = request.path.startswith(model_dict["add_url"])
                 else:
                     active = False
 
