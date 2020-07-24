@@ -126,3 +126,21 @@ class AdminIndexIntegrationTests(TestCase):
 
         response = self.client.get(reverse("admin:index"))
         self.assertGreater(len(response.context["dashboard_app_list"]), 0)
+
+    def test_apps_with_only_add_perm(self):
+        staff_user = User.objects._create_user(
+            username="staff_user",
+            email="staffuser@example.com",
+            password="top_secret",
+            is_staff=True,
+            is_superuser=False,
+        )
+        perm = Permission.objects.get(codename='add_group')
+        staff_user.user_permissions.add(perm)
+
+        self.assertTrue(
+            self.client.login(username=staff_user.username, password="top_secret")
+        )
+
+        response = self.client.get(reverse("admin:index"))
+        self.assertNotContains(response, "href=\"None\"")

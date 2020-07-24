@@ -74,9 +74,11 @@
                 <span>{{ app.name }}</span>
                 <span class="dropdown-menu__drop">
                     {% for model in app.models %}
-                        <div class="dropdown-menu__drop-item">
-                            <a href="{{ model.admin_url }}" class="dropdown-menu__link {% if model.active %}dropdown-menu__link--active{% endif %}">{{model.name}}</a>
-                        </div>
+                        {% if model.admin_url %}
+                            <div class="dropdown-menu__drop-item">
+                                <a href="{{ model.admin_url }}" class="dropdown-menu__link {% if model.active %}dropdown-menu__link--active{% endif %}">{{ model.name }}</a>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </span>
             </div>
