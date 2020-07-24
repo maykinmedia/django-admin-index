@@ -4,10 +4,10 @@ from __future__ import absolute_import, unicode_literals
 
 import django
 from django.contrib.auth.models import AnonymousUser, Permission, User
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory, TestCase, override_settings
 
-from django_admin_index.context_processors import dashboard
 from django_admin_index.models import AppGroup, AppLink
+from django_admin_index.templatetags.django_admin_index import dashboard_app_list
 
 if django.VERSION >= (1, 11):
     from django.urls import reverse
@@ -102,19 +102,17 @@ class AdminIndexAppLinkTests(TestCase):
         request = self.factory.get(reverse("admin:index"))
         request.user = AnonymousUser()
 
-        context = dashboard(request)
-        self.assertIn("dashboard_app_list", context)
+        app_list = dashboard_app_list({"request": request})
         # The AppLink is shown to everyone. There are no permissions set.
-        self.assertEqual(len(context["dashboard_app_list"]), 1)
+        self.assertEqual(len(app_list), 1)
 
     def test_context_user(self):
         request = self.factory.get(reverse("admin:index"))
         request.user = self._create_user()
 
-        context = dashboard(request)
-        self.assertIn("dashboard_app_list", context)
+        app_list = dashboard_app_list({"request": request})
         # The AppLink is shown to everyone. There are no permissions set.
-        self.assertEqual(len(context["dashboard_app_list"]), 1)
+        self.assertEqual(len(app_list), 1)
 
     def test_context_staff_user(self):
         request = self.factory.get(reverse("admin:index"))
@@ -122,37 +120,33 @@ class AdminIndexAppLinkTests(TestCase):
         user.user_permissions.add(*Permission.objects.all())
         request.user = user
 
-        context = dashboard(request)
-        self.assertIn("dashboard_app_list", context)
-        self.assertEqual(len(context["dashboard_app_list"]), 1)
+        app_list = dashboard_app_list({"request": request})
+        self.assertEqual(len(app_list), 1)
 
-    # @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS=True)
-    # def test_context_staffuser_with_show_true(self):
-    #     request = self.factory.get(reverse('admin:index'))
-    #     user = self._create_user(is_staff=True)
-    #     user.user_permissions.add(*Permission.objects.all())
-    #     request.user = user
-    #
-    #     context = dashboard(request)
-    #     self.assertIn('dashboard_app_list', context)
-    #     self.assertEqual(len(context['dashboard_app_list']), 2)
+    @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS=True)
+    def test_context_staffuser_with_show_true(self):
+        request = self.factory.get(reverse("admin:index"))
+        user = self._create_user(is_staff=True)
+        user.user_permissions.add(*Permission.objects.all())
+        request.user = user
+
+        app_list = dashboard_app_list({"request": request})
+        self.assertEqual(len(app_list), 2)
 
     def test_context_superuser(self):
         request = self.factory.get(reverse("admin:index"))
         request.user = self.superuser
 
-        context = dashboard(request)
-        self.assertIn("dashboard_app_list", context)
-        self.assertEqual(len(context["dashboard_app_list"]), 2)
+        app_list = dashboard_app_list({"request": request})
+        self.assertEqual(len(app_list), 2)
 
-    # @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS=False)
-    # def test_context_superuser_with_show_false(self):
-    #     request = self.factory.get(reverse('admin:index'))
-    #     request.user = self.superuser
-    #
-    #     context = dashboard(request)
-    #     self.assertIn('dashboard_app_list', context)
-    #     self.assertEqual(len(context['dashboard_app_list']), 1)
+    @override_settings(ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS=False)
+    def test_context_superuser_with_show_false(self):
+        request = self.factory.get(reverse("admin:index"))
+        request.user = self.superuser
+
+        app_list = dashboard_app_list({"request": request})
+        self.assertEqual(len(app_list), 1)
 
     def test_dashboard_active_link_only_delete_permission(self):
         self.app_link.link = "/admin/auth"
@@ -237,3 +231,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "admin_url": self.app_link.link,
             },
         )
+
+    def test_natural_key(self):
+        obj = AppLink.objects.get_by_natural_key(self.app_group, self.app_link.link)
+        self.assertEqual(obj.natural_key(), (self.app_group, self.app_link.link))

@@ -36,7 +36,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "django_admin_index",
     "ordered_model",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -71,7 +70,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "django_admin_index.context_processors.dashboard",
             ],
         },
     },

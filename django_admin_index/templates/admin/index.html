@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n static %}
+{% load i18n static django_admin_index %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
 
@@ -11,6 +11,9 @@
 
 {% block content %}
 <div id="content-main">
+
+{% dashboard_app_list as dashboard_app_list %}
+{% admin_index_settings as admin_index_settings %}
 
 {% if dashboard_app_list %}
     {% for app in dashboard_app_list %}
