@@ -113,6 +113,22 @@ class AdminIndexAppGroupTests(TestCase):
             set(m["object_name"] for m in app_misc["models"]), {"Group", "AppGroup",}
         )
 
+    def test_as_list_active_menu_item(self):
+        request = self.factory.get(reverse("admin:auth_user_changelist"))
+        request.user = self.superuser
+
+        result = AppGroup.objects.as_list(request, False)
+        self.assertEqual(result[0]["models"][0]["name"], "Users")
+        self.assertTrue(result[0]["models"][0]["active"])
+
+    def test_as_list_inactive_menu_item(self):
+        request = self.factory.get(reverse("admin:index"))
+        request.user = self.superuser
+
+        result = AppGroup.objects.as_list(request, False)
+        self.assertEqual(result[0]["models"][0]["name"], "Users")
+        self.assertFalse(result[0]["models"][0]["active"])
+
     def test_context_anonymous(self):
         request = self.factory.get(reverse("admin:index"))
         request.user = AnonymousUser()
@@ -164,3 +180,7 @@ class AdminIndexAppGroupTests(TestCase):
 
         app_list = dashboard_app_list({"request": request})
         self.assertEqual(len(app_list), 1)
+
+    def test_natural_key(self):
+        obj = AppGroup.objects.get_by_natural_key(self.app_group.slug)
+        self.assertEqual(obj.natural_key(), (self.app_group.slug,))

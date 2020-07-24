@@ -231,3 +231,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "admin_url": self.app_link.link,
             },
         )
+
+    def test_natural_key(self):
+        obj = AppLink.objects.get_by_natural_key(self.app_group, self.app_link.link)
+        self.assertEqual(obj.natural_key(), (self.app_group, self.app_link.link))

@@ -61,7 +61,7 @@ def check_admin_index_context_processor(app_configs, **kwargs):
                         )
                     )
                 )
-                return issues
+                break
 
     return issues
 

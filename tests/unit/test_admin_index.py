@@ -79,6 +79,16 @@ class AdminIndexTests(TestCase):
         result = check_admin_index_context_processor([])
         self.assertEqual(len(result), 1)
 
+    @override_settings(TEMPLATES=[{}])
+    def test_check_admin_index_context_process_no_options(self):
+        result = check_admin_index_context_processor([])
+        self.assertEqual(len(result), 0)
+
+    @override_settings(TEMPLATES=[{"OPTIONS": {}}])
+    def test_check_admin_index_context_process_no_context_processors(self):
+        result = check_admin_index_context_processor([])
+        self.assertEqual(len(result), 0)
+
     @override_settings(TEMPLATES=[{"OPTIONS": {"context_processors": []}}])
     def test_check_request_context_process_missing(self):
         result = check_request_context_processor([])
@@ -96,3 +106,13 @@ class AdminIndexTests(TestCase):
     def test_check_request_context_process_present(self):
         result = check_request_context_processor([])
         self.assertEqual(len(result), 0)
+
+    @override_settings(TEMPLATES=[{}])
+    def test_check_request_context_process_no_options(self):
+        result = check_request_context_processor([])
+        self.assertEqual(len(result), 1)
+
+    @override_settings(TEMPLATES=[{"OPTIONS": {}}])
+    def test_check_request_context_process_no_context_processors(self):
+        result = check_request_context_processor([])
+        self.assertEqual(len(result), 1)
