@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.apps import AppConfig, apps
-from django.core.checks import Tags, Warning, register
+from django.core.checks import Tags, Warning, register, Error
 from django.utils.translation import ugettext_lazy as _
 
 __all__ = ["AdminIndexConfig"]
@@ -27,9 +27,9 @@ def check_admin_index_app(app_configs, **kwargs):
     app_config_names = [app_config.name for app_config in apps.get_app_configs()]
 
     try:
-        if app_config_names.index(
-            AdminIndexConfig.name
-        ) > app_config_names.index("django.contrib.admin"):
+        if app_config_names.index(AdminIndexConfig.name) > app_config_names.index(
+            "django.contrib.admin"
+        ):
             issues.append(
                 Warning(
                     "You should put '{}' before 'django.contrib.admin' in your INSTALLED_APPS.".format(
@@ -55,8 +55,8 @@ def check_admin_index_context_processor(app_configs, **kwargs):
         if "OPTIONS" in engine and "context_processors" in engine["OPTIONS"]:
             if context_procesor in engine["OPTIONS"]["context_processors"]:
                 issues.append(
-                    Warning(
-                        "Please remove '{}' from your TEMPLATES.OPTIONS.context_processors as it's deprecated.".format(
+                    Error(
+                        "You should remove '{}' from your TEMPLATES.OPTIONS.context_processors.".format(
                             context_procesor
                         )
                     )
