@@ -38,7 +38,9 @@ class AdminIndexTests(TestCase):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 0)
 
-    @override_settings(INSTALLED_APPS=["django_admin_index", "django.contrib.admin.apps.AdminConfig"])
+    @override_settings(
+        INSTALLED_APPS=["django_admin_index", "django.contrib.admin.apps.AdminConfig"]
+    )
     def test_check_admin_index_app_with_custom_admin_success(self):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 0)
@@ -48,7 +50,9 @@ class AdminIndexTests(TestCase):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 1)
 
-    @override_settings(INSTALLED_APPS=["django.contrib.admin.apps.AdminConfig", "django_admin_index"])
+    @override_settings(
+        INSTALLED_APPS=["django.contrib.admin.apps.AdminConfig", "django_admin_index"]
+    )
     def test_check_admin_index_app_after_admin_app_with_custom_admin(self):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 1)
@@ -57,6 +61,11 @@ class AdminIndexTests(TestCase):
     def test_check_admin_index_app_missing(self):
         result = check_admin_index_app([])
         self.assertEqual(len(result), 1)
+
+    @override_settings(TEMPLATES=[{"OPTIONS": {"context_processors": []}}])
+    def test_check_admin_index_context_process_present(self):
+        result = check_admin_index_context_processor([])
+        self.assertEqual(len(result), 0)
 
     @override_settings(
         TEMPLATES=[
@@ -77,3 +86,16 @@ class AdminIndexTests(TestCase):
     def test_check_request_context_process_missing(self):
         result = check_request_context_processor([])
         self.assertEqual(len(result), 1)
+
+    @override_settings(
+        TEMPLATES=[
+            {
+                "OPTIONS": {
+                    "context_processors": ["django.template.context_processors.request"]
+                }
+            }
+        ]
+    )
+    def test_check_request_context_process_present(self):
+        result = check_request_context_processor([])
+        self.assertEqual(len(result), 0)
