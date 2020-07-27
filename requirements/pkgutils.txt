@@ -1,11 +1,4 @@
-setuptools>=20.6.7
-isort>=4.2.15
-wheel>=0.29.0
-flake8>=2.5.4
-flakeplus>=1.1
+isort>=5.1.4
+black>=19.10b0
 tox>=2.3.1
-sphinx2rst>=1.0
-pydocstyle==2.0.0
-docutils==0.13.1
-readme-renderer==17.2
-check-manifest==0.35
+bumpversion>=0.6.0
