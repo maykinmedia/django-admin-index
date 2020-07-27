@@ -2,6 +2,16 @@
 Change history
 ==============
 
+1.4.0
+=====
+
+* Fixed #31 -- Prevent excessive queries by changing the context processor to 
+  template tags (thanks @svenvandescheur).
+* Fixes #41 -- Added missing migration.
+* Fixed #34 -- Don't show item if the menu item URL is undefined.
+* Fixed #33 -- Don't show a warning if the Django Admin AppConfig is overriden.
+* Fixed #29 -- Added screenshots to README.
+
 1.3.1
 =====
 
