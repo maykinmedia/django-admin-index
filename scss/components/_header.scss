@@ -7,3 +7,10 @@
        the header */
     height: 29px;
 }
+
+@media (max-width: 1024px) {
+  /* Header */
+  #header {
+    height: auto;
+  }
+}
