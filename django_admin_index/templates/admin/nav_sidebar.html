@@ -1,0 +1,7 @@
+{% load i18n django_admin_index %}
+{% dashboard_app_list as dashboard_app_list %}
+{% admin_index_settings as admin_index_settings %}
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="{% translate 'Toggle navigation' %}"></button>
+<nav class="sticky" id="nav-sidebar">
+  {% include 'admin/app_list.html' with app_list=dashboard_app_list show_changelinks=False %}
+</nav>
