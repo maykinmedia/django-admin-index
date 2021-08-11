@@ -3,6 +3,9 @@ from __future__ import absolute_import, unicode_literals
 from django.conf import settings as django_settings
 
 
+def default_dropdown_condition_function(parameter) -> bool:
+    return True
+
 class Settings:
     @property
     def SHOW_REMAINING_APPS(self):
@@ -41,7 +44,8 @@ class Settings:
         return {k: getattr(self, k) for k in dir(self) if k.upper() == k}
 
     @property
-    def IS_2FA_ACTIVATED(self):
-        return getattr(django_settings, "ADMIN_IS_2FA_ACTIVATED", False)
+    def DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION(self):
+        return getattr(django_settings, "ADMIN_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION",
+                       default_dropdown_condition_function)
 
 settings = Settings()

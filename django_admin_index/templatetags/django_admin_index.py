@@ -32,3 +32,8 @@ def dashboard_app_list(context):
 @register.simple_tag()
 def admin_index_settings():
     return settings.as_dict()
+
+
+@register.simple_tag
+def display_dropdown_menu(request):
+    return settings.DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION(request)
