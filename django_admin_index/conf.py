@@ -40,5 +40,8 @@ class Settings:
         """
         return {k: getattr(self, k) for k in dir(self) if k.upper() == k}
 
+    @property
+    def IS_2FA_ACTIVATED(self):
+        return getattr(django_settings, "ADMIN_IS_2FA_ACTIVATED", False)
 
 settings = Settings()
