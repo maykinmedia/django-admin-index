@@ -1,6 +1,7 @@
 from django.contrib.admin import site
 from django.core.exceptions import ImproperlyConfigured
 from django.template import Library
+from django.utils.module_loading import import_string
 
 from ..conf import settings
 from ..models import AppGroup
@@ -36,4 +37,5 @@ def admin_index_settings():
 
 @register.simple_tag
 def display_dropdown_menu(request):
-    return settings.DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION(request)
+    func = import_string(settings.DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION)
+    return func(request)
