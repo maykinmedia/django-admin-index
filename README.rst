@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 1.4.0
+:Version: 1.5.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -105,6 +105,12 @@ There are 3 settings you can add to your ``settings.py``:
   Removes the links to the app index pages from the main index and the
   breadcrumbs.
 
+* ``ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION`` (defaults to
+  ``django_admin_index.utils.should_display_dropdown_menu``)
+
+  A python dotted path that can be imported to check when the dropdown menu should be
+  displayed in the admin. The default implementation displays this menu if the user is
+  a staff user and ``ADMIN_INDEX_SHOW_MENU`` is enabled.
 
 Extra
 =====

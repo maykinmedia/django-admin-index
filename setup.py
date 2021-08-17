@@ -40,11 +40,10 @@ classes = """
     License :: OSI Approved :: BSD License
     Programming Language :: Python
     Programming Language :: Python :: 3
-    Programming Language :: Python :: 3.4
-    Programming Language :: Python :: 3.5
     Programming Language :: Python :: 3.6
     Programming Language :: Python :: 3.7
     Programming Language :: Python :: 3.8
+    Programming Language :: Python :: 3.9
     Programming Language :: Python :: Implementation :: CPython
     Programming Language :: Python :: Implementation :: PyPy
     Framework :: Django
@@ -52,6 +51,8 @@ classes = """
     Framework :: Django :: 2.1
     Framework :: Django :: 2.2
     Framework :: Django :: 3.0
+    Framework :: Django :: 3.1
+    Framework :: Django :: 3.2
     Operating System :: OS Independent
     Topic :: Communications
     Topic :: System :: Distributed Computing

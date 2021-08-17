@@ -9,7 +9,7 @@ from __future__ import absolute_import, unicode_literals
 import re
 from collections import namedtuple
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"
 __author__ = "Joeri Bekker"
 __contact__ = "joeri@maykinmedia.nl"
 __homepage__ = "https://github.com/maykinmedia/django-admin-index"
