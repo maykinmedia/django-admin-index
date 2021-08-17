@@ -2,6 +2,14 @@
 Change history
 ==============
 
+1.5.0
+=====
+
+* Updated package metadata
+* Added setting ``ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION`` to provide
+  more control on when to display/hide the dropdown menu. The default implementation
+  is backwards compatible.
+
 1.4.0
 =====
 
