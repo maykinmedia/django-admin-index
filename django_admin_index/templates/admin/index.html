@@ -7,6 +7,10 @@
 
 {% block bodyclass %}{{ block.super }} dashboard{% endblock %}
 
+{% block nav-global %}
+    {% include "includes/app_list.html" %}
+{% endblock nav-global %}
+
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
