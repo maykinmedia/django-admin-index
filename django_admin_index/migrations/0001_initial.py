@@ -72,7 +72,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="ContentTypeProxy",
             fields=[],
-            options={"proxy": True, "ordering": ("app_label", "model"),},
+            options={
+                "proxy": True,
+                "ordering": ("app_label", "model"),
+            },
             bases=("contenttypes.contenttype",),
             managers=[
                 ("objects", django.contrib.contenttypes.models.ContentTypeManager()),

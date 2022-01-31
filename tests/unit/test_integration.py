@@ -135,7 +135,7 @@ class AdminIndexIntegrationTests(TestCase):
             is_staff=True,
             is_superuser=False,
         )
-        perm = Permission.objects.get(codename='add_group')
+        perm = Permission.objects.get(codename="add_group")
         staff_user.user_permissions.add(perm)
 
         self.assertTrue(
@@ -143,4 +143,4 @@ class AdminIndexIntegrationTests(TestCase):
         )
 
         response = self.client.get(reverse("admin:index"))
-        self.assertNotContains(response, "href=\"None\"")
+        self.assertNotContains(response, 'href="None"')

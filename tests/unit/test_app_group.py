@@ -104,13 +104,20 @@ class AdminIndexAppGroupTests(TestCase):
         app_my_group = [a for a in result if a["app_label"] == self.app_group.slug][0]
         self.assertEqual(len(app_my_group["models"]), 1)
         self.assertSetEqual(
-            set(m["object_name"] for m in app_my_group["models"]), {"User",}
+            set(m["object_name"] for m in app_my_group["models"]),
+            {
+                "User",
+            },
         )
 
         app_misc = [a for a in result if a["app_label"] == "misc"][0]
         self.assertEqual(len(app_misc["models"]), 2)
         self.assertSetEqual(
-            set(m["object_name"] for m in app_misc["models"]), {"Group", "AppGroup",}
+            set(m["object_name"] for m in app_misc["models"]),
+            {
+                "Group",
+                "AppGroup",
+            },
         )
 
     def test_as_list_active_menu_item(self):

@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterUniqueTogether(
-            name="applink", unique_together=set([("app_group", "link")]),
+            name="applink",
+            unique_together=set([("app_group", "link")]),
         ),
     ]
