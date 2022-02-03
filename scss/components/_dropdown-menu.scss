@@ -4,7 +4,7 @@
     top: 42px;
     display: block;
     cursor: pointer;
-    margin: 8px 0 0 -8px;
+    margin-top: 8px;
     z-index: 50;
 
     .dropdown-menu__item,
@@ -15,6 +15,7 @@
         padding: 10px;
         position: relative;
         z-index: 50;
+        background-color: #4383a3;
 
         &.dropdown-menu__item--active {
             background-color: #79aec8;

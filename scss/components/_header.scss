@@ -4,4 +4,11 @@
     grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
     z-index: 50;
+    position: fixed;
+
+    width: calc(100% - 50px);
+
+    @media (max-width: 768px) {
+        width: calc(100% - 20px);
+    }
 }
