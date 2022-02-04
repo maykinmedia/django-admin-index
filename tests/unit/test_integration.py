@@ -52,12 +52,18 @@ class AdminIndexIntegrationTests(TestCase):
             template_path,
         )
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_index(self):
         response = self.client.get(reverse("admin:index"))
         html = response.content.decode("utf-8")
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_change_form(self):
         response = self.client.get(
             reverse("admin:auth_user_change", args=(self.superuser.pk,))
@@ -66,12 +72,18 @@ class AdminIndexIntegrationTests(TestCase):
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_change_list(self):
         response = self.client.get(reverse("admin:auth_user_changelist"))
         html = response.content.decode("utf-8")
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_delete_confirmation(self):
         response = self.client.get(
             reverse("admin:auth_user_delete", args=(self.superuser.pk,))
@@ -80,6 +92,9 @@ class AdminIndexIntegrationTests(TestCase):
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_delete_selected_confirmation(self):
         response = self.client.post(
             reverse("admin:auth_user_changelist"),
@@ -94,6 +109,9 @@ class AdminIndexIntegrationTests(TestCase):
 
         self.assertNotIn('{}"'.format(self.auth_app_list_url), html)
 
+    @skipIf(
+        django.VERSION > (3, 0), "Django > 3.0 includes a sidebar with app list link."
+    )
     def test_no_app_list_links_object_history(self):
         response = self.client.get(
             reverse("admin:auth_user_history", args=(self.superuser.pk,))

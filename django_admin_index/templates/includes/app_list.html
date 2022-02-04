@@ -1,10 +1,8 @@
 {% load i18n django_admin_index static %}
 
-
 {% dashboard_app_list as dashboard_app_list %}
-{% admin_index_settings as admin_index_settings %}
-
 {% display_dropdown_menu request as should_display_dropdown %}
+
 {% if dashboard_app_list and should_display_dropdown %}
     <div class="dropdown-menu">
         <link rel="stylesheet" type="text/css" href="{% static "admin/css/admin-index.css" %}">
