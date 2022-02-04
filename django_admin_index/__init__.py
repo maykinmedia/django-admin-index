@@ -18,7 +18,14 @@ __docformat__ = "restructuredtext"
 # -eof meta-
 
 version_info_t = namedtuple(
-    "version_info_t", ("major", "minor", "patch", "releaselevel", "serial",)
+    "version_info_t",
+    (
+        "major",
+        "minor",
+        "patch",
+        "releaselevel",
+        "serial",
+    ),
 )
 
 # bumpversion can only search for {current_version}

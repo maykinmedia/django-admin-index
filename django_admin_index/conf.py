@@ -42,8 +42,11 @@ class Settings:
 
     @property
     def DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION(self):
-        return getattr(django_settings, "ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION",
-                       "django_admin_index.utils.should_display_dropdown_menu")
+        return getattr(
+            django_settings,
+            "ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION",
+            "django_admin_index.utils.should_display_dropdown_menu",
+        )
 
 
 settings = Settings()

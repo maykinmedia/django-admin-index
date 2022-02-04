@@ -4,8 +4,11 @@ from __future__ import absolute_import, unicode_literals
 
 from django.test import TestCase, override_settings
 
-from django_admin_index.apps import (check_admin_index_app, check_admin_index_context_processor,
-                                     check_request_context_processor)
+from django_admin_index.apps import (
+    check_admin_index_app,
+    check_admin_index_context_processor,
+    check_request_context_processor,
+)
 from django_admin_index.models import AppGroup, AppLink, ContentTypeProxy
 
 

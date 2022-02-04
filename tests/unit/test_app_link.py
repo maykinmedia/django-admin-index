@@ -88,14 +88,21 @@ class AdminIndexAppLinkTests(TestCase):
         app_my_group = [a for a in result if a["app_label"] == self.app_group.slug][0]
         self.assertEqual(len(app_my_group["models"]), 1)
         self.assertSetEqual(
-            set(m["name"] for m in app_my_group["models"]), {"Support",}
+            set(m["name"] for m in app_my_group["models"]),
+            {
+                "Support",
+            },
         )
 
         app_misc = [a for a in result if a["app_label"] == "misc"][0]
         self.assertEqual(len(app_misc["models"]), 3)
         self.assertSetEqual(
             set(m["object_name"] for m in app_misc["models"]),
-            {"User", "Group", "AppGroup",},
+            {
+                "User",
+                "Group",
+                "AppGroup",
+            },
         )
 
     def test_context_anonymous(self):

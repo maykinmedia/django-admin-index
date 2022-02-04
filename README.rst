@@ -154,7 +154,7 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |djversion| image:: https://img.shields.io/badge/django-2.0%2C%202.1%2C%202.2%2C%203.0-blue.svg
+.. |djversion| image:: https://img.shields.io/badge/django-2.2%2C%203.0%2C%203.2%2C%204.0-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
