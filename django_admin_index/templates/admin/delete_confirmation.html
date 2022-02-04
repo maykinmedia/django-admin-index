@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls static %}
+{% load i18n admin_urls static django_admin_index %}
 
 {% block extrahead %}
     {# NOTE: Switched these 2 variables around to allow overrides #}
@@ -10,7 +10,10 @@
 
 {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation{% endblock %}
 
+{% block nav-global %}{% include "includes/app_list.html" %}{% endblock nav-global %}
+
 {% block breadcrumbs %}
+{% admin_index_settings as admin_index_settings %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 {# NOTE: Remove app groups if needed #}

@@ -1,7 +1,10 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls %}
+{% load i18n admin_urls django_admin_index %}
+
+{% block nav-global %}{% include "includes/app_list.html" %}{% endblock nav-global %}
 
 {% block breadcrumbs %}
+{% admin_index_settings as admin_index_settings %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 {# NOTE: Remove app groups if needed #}

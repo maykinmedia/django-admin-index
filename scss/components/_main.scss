@@ -1,0 +1,36 @@
+#main,
+#content // < Django 3.2
+{
+    padding-top: 104px;
+
+    #nav-sidebar {
+        position: initial;
+    }
+}
+
+.content // > Django 3.2
+{
+    #content {
+        padding-top: 0;
+    }
+}
+
+body[class*="change-"] {
+    #main,
+    #content // < Django 3.2
+    {
+        padding-top: 144px;
+
+        #nav-sidebar {
+            position: initial;
+        }
+    }
+
+    .content // > Django 3.2
+    {
+        #content {
+            padding-top: 0;
+        }
+    }
+}
+

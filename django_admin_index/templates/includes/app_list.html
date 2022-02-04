@@ -1,0 +1,30 @@
+{% load i18n django_admin_index static %}
+
+{% dashboard_app_list as dashboard_app_list %}
+{% display_dropdown_menu request as should_display_dropdown %}
+
+{% if dashboard_app_list and should_display_dropdown %}
+    <div class="dropdown-menu">
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/admin-index.css" %}">
+        {% url 'admin:index' as home %}
+        <a href="{{ home }}"
+           class="dropdown-menu__item {% if request.path == home %}dropdown-menu__item--active{% endif %}">
+            {% trans "Dashboard" %}
+        </a>
+        {% for app in dashboard_app_list %}
+            <div class="dropdown-menu__item {% if app.active %}dropdown-menu__item--active{% endif %}">
+                <span>{{ app.name }}</span>
+                <span class="dropdown-menu__drop">
+                        {% for model in app.models %}
+                            {% if model.admin_url %}
+                                <div class="dropdown-menu__drop-item">
+                                    <a href="{{ model.admin_url }}"
+                                       class="dropdown-menu__link {% if model.active %}dropdown-menu__link--active{% endif %}">{{ model.name }}</a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
