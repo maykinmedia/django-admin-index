@@ -2,6 +2,15 @@
 Change history
 ==============
 
+1.6.0
+=====
+
+*February 14, 2022*
+
+* Added support for Django 3.0, 3.2 and 4.0, on supported Python versions (#47)
+* Removed merge conflicts from CSS-file (#46)
+* Moved to Github actions (#61)
+
 1.5.0
 =====
 

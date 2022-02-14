@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 1.5.0
+:Version: 1.6.0
 :Download: https://pypi.python.org/pypi/django_admin_index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -139,9 +139,10 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
     {% endblock %}
 
 
-.. |build-status| image:: https://secure.travis-ci.org/maykinmedia/django-admin-index.svg?branch=master
+
+.. |build-status| image:: https://github.com/maykinmedia/django-admin-index/actions/workflows/ci.yml/badge.svg
     :alt: Build status
-    :target: https://travis-ci.org/maykinmedia/django-admin-index
+    :target: https://github.com/maykinmedia/django-admin-index/actions/workflows/ci.yml
 
 .. |coverage| image:: https://codecov.io/github/maykinmedia/django-admin-index/coverage.svg?branch=master
     :target: https://codecov.io/github/maykinmedia/django-admin-index?branch=master
