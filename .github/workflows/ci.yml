@@ -43,3 +43,6 @@ jobs:
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
+
+      - name: Publish coverage report
+        uses: codecov/codecov-action@v2
