@@ -43,3 +43,7 @@ jobs:
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
+
+      - name: Publish coverage report
+        uses: codecov/codecov-action@v2
+        if: matrix.python == '3.8' && matrix.django == '3.2'
