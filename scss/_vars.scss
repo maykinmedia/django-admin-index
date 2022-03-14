@@ -30,3 +30,9 @@ $djai-dropdown-fg: var(--djai-dropdown-fg, #{$color-header-link-color});
 // own situation.
 $default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
 $djai-nav-sidebar-offset: var(--djai-nav-sidebar-offset, #{$default-nav-sidebar-offset});
+
+/*
+  Responsive styling. Breakpoints are taken from Django 3.2 admin/css/responsive.css
+*/
+$djai-breakpoint--mobile: 767px;
+$djai-breakpoint--tablet: 1024px;

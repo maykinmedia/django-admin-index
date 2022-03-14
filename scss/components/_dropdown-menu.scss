@@ -19,10 +19,13 @@ $djai-block: 'djai-dropdown-menu';
 .#{$djai-block} {
   // position it properly in the header as a separate row
   @at-root #header {
-    flex-wrap: wrap;
-    // remove the padding at the bottom so our dropdown items line up
-    padding-bottom: 0;
+    @media (min-width: $djai-breakpoint--tablet) {
+      flex-wrap: wrap;
+      // remove the padding at the bottom so our dropdown items line up
+      padding-bottom: 0;
+    }
   }
+
   flex-basis: 100%;
 
   // own layout
@@ -114,4 +117,11 @@ $djai-block: 'djai-dropdown-menu';
     padding: 10px;
   }
 
+}
+
+// mobile styling
+@media (max-width: $djai-breakpoint--mobile) {
+  .#{$djai-block} {
+    display: none;
+  }
 }
