@@ -13,6 +13,8 @@ class AdminIndexConfig(AppConfig):
     name = "django_admin_index"
     label = "admin_index"
     verbose_name = _("Admin Index")
+    # swap to BigAutoField once we drop 2.2 support & then generate migrations
+    default_auto_field = "django.db.models.AutoField"
 
     def ready(self):
         register(check_admin_index_app, Tags.compatibility)
@@ -21,8 +23,6 @@ class AdminIndexConfig(AppConfig):
 
 
 def check_admin_index_app(app_configs, **kwargs):
-    from django.conf import settings
-
     issues = []
     app_config_names = [app_config.name for app_config in apps.get_app_configs()]
 
