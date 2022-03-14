@@ -73,19 +73,21 @@ of the container and let the parent wrap.
   cursor: pointer;
 }
 .djai-dropdown-menu .djai-dropdown-menu__item, .djai-dropdown-menu .djai-dropdown-menu__item:link, .djai-dropdown-menu .djai-dropdown-menu__item:visited {
-  color: var(--primary-fg, #fff);
+  color: var(--djai-tab-fg, var(--primary-fg, #fff));
 }
 .djai-dropdown-menu .djai-dropdown-menu__item--active {
   background-color: var(--djai-tab-bg--active, var(--primary, #79aec8));
 }
 .djai-dropdown-menu .djai-dropdown-menu__item--active, .djai-dropdown-menu .djai-dropdown-menu__item--active:link, .djai-dropdown-menu .djai-dropdown-menu__item--active:visited {
   text-decoration: none;
+  color: var(--djai-tab-fg--active, var(--primary-fg, #fff));
 }
 .djai-dropdown-menu .djai-dropdown-menu__item:hover {
   background-color: var(--djai-tab-bg--hover, var(--primary, #79aec8));
 }
 .djai-dropdown-menu .djai-dropdown-menu__item:hover, .djai-dropdown-menu .djai-dropdown-menu__item:hover:link, .djai-dropdown-menu .djai-dropdown-menu__item:hover:visited {
   text-decoration: none !important;
+  color: var(--djai-tab-fg--hover, var(--primary-fg, #fff));
 }
 .djai-dropdown-menu .djai-dropdown-menu__item:hover .djai-dropdown-menu__drop {
   display: block;

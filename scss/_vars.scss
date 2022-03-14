@@ -15,6 +15,9 @@ $djai-tablist-spacing-top: var(--djai-tablist-spacing-top, 10px);
 $djai-tab-bg: var(--djai-tab-bg, #4383a3);
 $djai-tab-bg--active: var(--djai-tab-bg--active, #{$color-primary});
 $djai-tab-bg--hover: var(--djai-tab-bg--hover, #{$color-primary});
+$djai-tab-fg: var(--djai-tab-fg, #{$color-primary-fg});
+$djai-tab-fg--active: var(--djai-tab-fg--active, #{$color-primary-fg});
+$djai-tab-fg--hover: var(--djai-tab-fg--hover, #{$color-primary-fg});
 
 $djai-dropdown-bg: var(--djai-dropdown-bg, #{$color-secondary});
 $djai-dropdown-bg--active: var(--djai-dropdown-bg--active, #{$color-primary});

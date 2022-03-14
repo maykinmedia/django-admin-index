@@ -37,7 +37,7 @@ $djai-block: 'djai-dropdown-menu';
     cursor: pointer;
 
     @include link-style {
-      color: $color-primary-fg;
+      color: $djai-tab-fg;
     }
 
     &--active {
@@ -45,6 +45,7 @@ $djai-block: 'djai-dropdown-menu';
 
       @include link-style {
         text-decoration: none;
+        color: $djai-tab-fg--active;
       }
     }
 
@@ -54,6 +55,7 @@ $djai-block: 'djai-dropdown-menu';
 
       @include link-style {
         text-decoration: none !important;
+        color: $djai-tab-fg--hover;
       }
 
       .#{$djai-block}__drop {
