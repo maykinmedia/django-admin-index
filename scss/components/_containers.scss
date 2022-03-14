@@ -1,0 +1,20 @@
+/*
+Override some containers to make the sticky header work with Django.
+ */
+#container {
+  // Django itself sets height: 100%, which causes the container to be less high than
+  // the content and that in turn causes the sticky header to fall off the page.
+  min-height: 100%;
+  height: auto;
+}
+
+#main {
+  // z-index is contextual, by specifying it explicitly here, we can have our header
+  // use z-index relative to this one without having to fiddle with #main child element
+  // z-indices.
+  z-index: 1;
+}
+
+#header {
+  z-index: 2; // overlay the #main container, which contains the sidebar on Django 3.2+
+}

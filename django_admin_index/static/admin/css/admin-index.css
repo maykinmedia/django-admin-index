@@ -1,3 +1,39 @@
+/*
+Override some containers to make the sticky header work with Django.
+ */
+#container {
+  min-height: 100%;
+  height: auto;
+}
+
+#main {
+  z-index: 1;
+}
+
+#header {
+  z-index: 2;
+}
+
+/*
+The header is the container for our admin-index menu dropdown, which we make
+visible at all times. For this, the header itself needs to receive a position fixes or
+sticky so that it stays in view when scrolling down vertically.
+
+If the header itself is sticky and the container for the dropdowns, we don't need to
+mess with height offsets relative to the header/branding - which may not be pixel-
+perfect because of font-rendering shenanigans.
+
+We also stick to Django's flexbox model for the header and don't force it into a CSS
+grid layout. (TODO: check on 2.2 what the CSS looks like).
+
+TODO: future enhancement -> control position of header/admin menu via CSS var, so users
+have the option to easily specify static/sticky positioning.
+ */
+#header {
+  position: sticky;
+  top: 0;
+}
+
 .breadcrumbs {
   /* Show the header at all times */
   position: fixed;
@@ -71,46 +107,6 @@
 .dropdown-menu .dropdown-menu__link:visited.dropdown-menu__link--active {
   background-color: #79aec8;
   text-decoration: none;
-}
-
-#header {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
-  z-index: 5000;
-  position: fixed;
-  width: calc(100% - 50px);
-}
-@media (max-width: 768px) {
-  #header {
-    width: calc(100% - 20px);
-  }
-}
-
-#main,
-#content {
-  padding-top: 104px;
-}
-#main #nav-sidebar,
-#content #nav-sidebar {
-  position: initial;
-}
-
-.content #content {
-  padding-top: 0;
-}
-
-body[class*=change-] #main,
-body[class*=change-] #content {
-  padding-top: 144px;
-}
-body[class*=change-] #main #nav-sidebar,
-body[class*=change-] #content #nav-sidebar {
-  position: initial;
-}
-body[class*=change-] .content #content {
-  padding-top: 0;
 }
 
 /*# sourceMappingURL=/admin-index.css.map */
