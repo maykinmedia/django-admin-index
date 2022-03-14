@@ -41,8 +41,7 @@
             {% if change %}{% if not is_popup %}
                 <ul class="object-tools">
                     {% block object-tools-items %}
-                        {# NOTE: This does not work in Django 1.11 and 2.0. The template part remains the same. #}
-                        {# {% change_form_object_tools %} #}
+                        {% change_form_object_tools %}
                         <li>
                             {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
                             <a href="{% add_preserved_filters history_url %}"
