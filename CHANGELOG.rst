@@ -2,6 +2,47 @@
 Change history
 ==============
 
+2.0.0
+=====
+
+*March ??, 2022*
+
+This release contains breaking changes in the admin markup and stylesheets, hence the
+major version bump.
+
+Breaking changes
+----------------
+
+* Dropped support for non-LTS Django versions (1.11, 3.0). Only Django 2.2, 3.2 and 4.0
+  are officially supported and tested.
+* Fixed #69 -- Properly namespaced the ``includes/app_list.html`` template to
+  ``django_admin_index/includes/app_list.html``
+* Refactored the styling (#71)
+
+    * All django-admin-index classnames now have a ``djai-`` prefix to prevent
+      collissions (e.g. bootstrap has a ``dropdown-menu`` as well)
+    * Colour definitions now leverage the Django 3.2 CSS variables, see
+      ``scss/_vars.scss``. For Django < 3.2 these don't exist, but the fallback values
+      are defined. This makes it easier to theme django-admin-index in your project by
+      just overriding the CSS variables instead of the entire relevant selector.
+    * The markup of the ``django_admin_index/includes/app_list.html`` has been slightly
+      modified, some class names are moved around.
+    * The breadcrumbs are no longer sticky/fixed by default, override this in your own
+      styling if desired. Possibly in the future this may be controllable with a CSS var.
+
+* Reduced amount of overridden ``django.contrib.admin`` template code - people
+  overriding the django-admin-index templates may want to revisit these.
+
+Other improvements
+------------------
+
+* Added optional support for Django Debug Toolbar
+* Added template overrides for ``registration/password_reset_form.html`` and
+  ``registration/password_reset_done.html``
+* Updated isort config to be black-compatible
+* Updated test project (used for local testing and CI) to Django 2.2 and Django 3.2+
+* Included ``AppConfig.default_auto_field`` for Django 3.2+
+
 1.6.0
 =====
 
