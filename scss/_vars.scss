@@ -4,7 +4,6 @@
 
 $color-primary: var(--primary, #79aec8);
 $color-secondary: var(--secondary, #417690);
-$color-accent: var(--accent, #f5dd5d);
 $color-primary-fg: var(--primary-fg, #fff);
 
 $color-header-link-color: var(--header-link-color, #{$color-primary-fg});
@@ -21,51 +20,3 @@ $djai-dropdown-bg: var(--djai-dropdown-bg, #{$color-secondary});
 $djai-dropdown-bg--active: var(--djai-dropdown-bg--active, #{$color-primary});
 $djai-dropdown-bg--hover: var(--djai-dropdown-bg--hover, #{$color-primary});
 $djai-dropdown-fg: var(--djai-dropdown-fg, #{$color-header-link-color});
-
-
-// TODO: check if we use these
-
-
-$color-body-fg: var(--body-fg, #333);
-$color-body-bg: var(--body-bg, #fff);
-$color-body-quiet-color: var(--body-quiet-color, #666);
-$color-body-loud-color: var(--body-loud-color, #000);
-
-$color-header-color: var(--header-color, #ffc);
-$color-header-branding-color: var(--header-branding-color, var(--accent));
-$color-header-bg: var(--header-bg, var(--secondary));
-
-$color-breadcrumbs-fg: var(--breadcrumbs-fg, #c4dce8);
-$color-breadcrumbs-link-fg: var(--breadcrumbs-link-fg, var(--body-bg));
-$color-breadcrumbs-bg: var(--breadcrumbs-bg, var(--primary));
-
-$color-link-fg: var(--link-fg, #447e9b);
-$color-link-hover-color: var(--link-hover-color, #036);
-$color-link-selected-fg: var(--link-selected-fg, #5b80b2);
-
-$color-hairline-color: var(--hairline-color, #e8e8e8);
-$color-border-color: var(--border-color, #ccc);
-
-$color-error-fg: var(--error-fg, #ba2121);
-
-$color-message-success-bg: var(--message-success-bg, #dfd);
-$color-message-warning-bg: var(--message-warning-bg, #ffc);
-$color-message-error-bg: var(--message-error-bg, #ffefef);
-
-$color-darkened-bg: var(--darkened-bg, #f8f8f8); /* A bit darker than --body-bg */
-$color-selected-bg: var(--selected-bg, #e4e4e4); /* E.g. selected table cells */
-$color-selected-row: var(--selected-row, #ffc);
-
-$color-button-fg: var(--button-fg, #fff);
-$color-button-bg: var(--button-bg, var(--primary));
-$color-button-hover-bg: var(--button-hover-bg, #609ab6);
-$color-default-button-bg: var(--default-button-bg, var(--secondary));
-$color-default-button-hover-bg: var(--default-button-hover-bg, #205067);
-$color-close-button-bg: var(--close-button-bg, #888); /* Previously #bbb, contrast 1.92 */
-$color-close-button-hover-bg: var(--close-button-hover-bg, #747474);
-$color-delete-button-bg: var(--delete-button-bg, #ba2121);
-$color-delete-button-hover-bg: var(--delete-button-hover-bg, #a41515);
-
-$color-object-tools-fg: var(--object-tools-fg, var(--button-fg));
-$color-object-tools-bg: var(--object-tools-bg, var(--close-button-bg));
-$color-object-tools-hover-bg: var(--object-tools-hover-bg, var(--close-button-hover-bg));

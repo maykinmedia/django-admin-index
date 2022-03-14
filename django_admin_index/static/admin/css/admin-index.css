@@ -42,9 +42,6 @@ user tools. However, we set the flex-basis to 100% to make it take up the full w
 of the container and let the parent wrap.
  */
 /* admin-index specific variables */
-/* A bit darker than --body-bg */
-/* E.g. selected table cells */
-/* Previously #bbb, contrast 1.92 */
 .djai-dropdown-menu {
   flex-basis: 100%;
   display: block;
