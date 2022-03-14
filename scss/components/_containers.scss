@@ -1,6 +1,8 @@
 /*
 Override some containers to make the sticky header work with Django.
  */
+@import '../vars';
+
 #container {
   // Django itself sets height: 100%, which causes the container to be less high than
   // the content and that in turn causes the sticky header to fall off the page.
@@ -17,4 +19,8 @@ Override some containers to make the sticky header work with Django.
 
 #header {
   z-index: 2; // overlay the #main container, which contains the sidebar on Django 3.2+
+}
+
+#nav-sidebar {
+  top: $djai-nav-sidebar-offset;
 }

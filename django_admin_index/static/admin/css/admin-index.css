@@ -1,6 +1,7 @@
 /*
 Override some containers to make the sticky header work with Django.
  */
+/* admin-index specific variables */
 #container {
   min-height: 100%;
   height: auto;
@@ -12,6 +13,10 @@ Override some containers to make the sticky header work with Django.
 
 #header {
   z-index: 2;
+}
+
+#nav-sidebar {
+  top: var(--djai-nav-sidebar-offset, 84px);
 }
 
 /*
