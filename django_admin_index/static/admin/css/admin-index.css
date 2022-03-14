@@ -1,4 +1,12 @@
 /*
+Django 2.2 specific fixes
+ */
+#content {
+  position: relative;
+  z-index: 1;
+}
+
+/*
 Override some containers to make the sticky header work with Django.
  */
 /* admin-index specific variables */
