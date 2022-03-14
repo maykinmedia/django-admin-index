@@ -72,6 +72,10 @@ $djai-block: 'djai-dropdown-menu';
     min-width: 150px;
     z-index: 1;
 
+    // ensure that very long lists have scrollable content
+    max-height: 75vh;
+    overflow-y: auto;
+
     // theme
     background-color: $djai-dropdown-bg;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
