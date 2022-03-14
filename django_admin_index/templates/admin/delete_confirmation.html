@@ -10,7 +10,7 @@
 
 {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation{% endblock %}
 
-{% block nav-global %}{% include "includes/app_list.html" %}{% endblock nav-global %}
+{% block nav-global %}{% include "django_admin_index/includes/app_list.html" %}{% endblock nav-global %}
 
 {% block breadcrumbs %}
 {% admin_index_settings as admin_index_settings %}

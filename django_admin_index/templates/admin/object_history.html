@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls django_admin_index %}
 
-{% block nav-global %}{% include "includes/app_list.html" %}{% endblock nav-global %}
+{% block nav-global %}{% include "django_admin_index/includes/app_list.html" %}{% endblock nav-global %}
 
 {% block breadcrumbs %}
 {% admin_index_settings as admin_index_settings %}
