@@ -1,8 +1,12 @@
-from __future__ import absolute_import, unicode_literals
-
+from django.apps import apps
 from django.contrib import admin
-from django.urls import re_path
+from django.urls import include, path
 
 urlpatterns = [
-    re_path(r"^admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
 ]
+
+if apps.is_installed("debug_toolbar"):
+    urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]

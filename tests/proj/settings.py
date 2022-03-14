@@ -9,8 +9,6 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-from __future__ import absolute_import, unicode_literals
-
 import os
 import sys
 
@@ -53,9 +51,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-# For Django 1.9 and older, MIDDLEWARE_CLASSES is used instead of MIDDLEWARE
-# See: https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-MIDDLEWARE_CLASSES
-MIDDLEWARE_CLASSES = MIDDLEWARE
 
 ROOT_URLCONF = "tests.proj.urls"
 
@@ -139,3 +134,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = "/static/"
+
+try:
+    import debug_toolbar  # noqa
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+    INTERNAL_IPS = ["127.0.0.1"]
