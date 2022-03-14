@@ -17,4 +17,6 @@ have the option to easily specify static/sticky positioning.
 #header {
   position: sticky;
   top: 0;
+  // the dropdown menu is a child and overflows
+  overflow: visible;
 }

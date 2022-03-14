@@ -32,6 +32,7 @@ have the option to easily specify static/sticky positioning.
 #header {
   position: sticky;
   top: 0;
+  overflow: visible;
 }
 
 .breadcrumbs {
@@ -55,7 +56,6 @@ of the container and let the parent wrap.
 /* Previously #bbb, contrast 1.92 */
 .djai-dropdown-menu {
   flex-basis: 100%;
-  position: relative;
   display: block;
   margin-top: var(--djai-dropdown-menu-spacing-top, 10px);
 }
@@ -64,24 +64,29 @@ of the container and let the parent wrap.
   padding-bottom: 0;
 }
 
-.djai-dropdown-menu__item, .djai-dropdown-menu__item:link, .djai-dropdown-menu__item:visited {
-  cursor: pointer;
-  color: #fff;
+.djai-dropdown-menu .djai-dropdown-menu__item {
   display: inline-block;
-  padding: 10px;
   position: relative;
-  z-index: 50;
-  background-color: #4383a3;
+  padding: 10px;
+  background-color: var(--djai-tab-bg, #4383a3);
+  cursor: pointer;
 }
-.djai-dropdown-menu__item.djai-dropdown-menu__item--active, .djai-dropdown-menu__item:link.djai-dropdown-menu__item--active, .djai-dropdown-menu__item:visited.djai-dropdown-menu__item--active {
-  background-color: #79aec8;
+.djai-dropdown-menu .djai-dropdown-menu__item, .djai-dropdown-menu .djai-dropdown-menu__item:link, .djai-dropdown-menu .djai-dropdown-menu__item:visited {
+  color: var(--primary-fg, #fff);
+}
+.djai-dropdown-menu .djai-dropdown-menu__item--active {
+  background-color: var(--djai-tab-bg--active, var(--primary, #79aec8));
+}
+.djai-dropdown-menu .djai-dropdown-menu__item--active, .djai-dropdown-menu .djai-dropdown-menu__item--active:link, .djai-dropdown-menu .djai-dropdown-menu__item--active:visited {
   text-decoration: none;
 }
-.djai-dropdown-menu__item:hover, .djai-dropdown-menu__item:link:hover, .djai-dropdown-menu__item:visited:hover {
-  background-color: #79aec8;
+.djai-dropdown-menu .djai-dropdown-menu__item:hover {
+  background-color: var(--djai-tab-bg--hover, var(--primary, #79aec8));
+}
+.djai-dropdown-menu .djai-dropdown-menu__item:hover, .djai-dropdown-menu .djai-dropdown-menu__item:hover:link, .djai-dropdown-menu .djai-dropdown-menu__item:hover:visited {
   text-decoration: none !important;
 }
-.djai-dropdown-menu__item:hover__drop, .djai-dropdown-menu__item:link:hover__drop, .djai-dropdown-menu__item:visited:hover__drop {
+.djai-dropdown-menu .djai-dropdown-menu__item:hover .djai-dropdown-menu__drop {
   display: block;
 }
 .djai-dropdown-menu__drop {

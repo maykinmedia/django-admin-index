@@ -9,45 +9,58 @@ of the container and let the parent wrap.
 $djai-block: 'djai-dropdown-menu';
 
 
+@mixin link-style() {
+  &, &:link, &:visited {
+    @content;
+  }
+}
+
+
 .#{$djai-block} {
-    // position it properly in the header as a separate row
-    @at-root #header {
-        flex-wrap: wrap;
-        // remove the padding at the bottom so our dropdown items line up
-        padding-bottom: 0;
+  // position it properly in the header as a separate row
+  @at-root #header {
+    flex-wrap: wrap;
+    // remove the padding at the bottom so our dropdown items line up
+    padding-bottom: 0;
+  }
+  flex-basis: 100%;
+
+  // own layout
+  display: block;
+  margin-top: $djai-dropdown-menu-spacing-top;
+
+  & &__item {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    background-color: $djai-tab-bg;
+    cursor: pointer;
+
+    @include link-style {
+      color: $color-primary-fg;
     }
-    flex-basis: 100%;
 
-    // own layout
-    position: relative; // container for absolutely positioned child elements
-    display: block;
-    margin-top: $djai-dropdown-menu-spacing-top;
+    &--active {
+      background-color: $djai-tab-bg--active;
 
-    &__item,
-    &__item:link,
-    &__item:visited {
-        cursor: pointer;
-        color: #fff;
-        display: inline-block;
-        padding: 10px;
-        position: relative;
-        z-index: 50;
-        background-color: #4383a3;
-
-        &.#{$djai-block}__item--active {
-            background-color: #79aec8;
-            text-decoration: none;
-        }
-
-        &:hover {
-            background-color: #79aec8;
-            text-decoration: none !important;
-
-            &__drop {
-                display: block;
-            }
-        }
+      @include link-style {
+        text-decoration: none;
+      }
     }
+
+    // deliberately after the --active style so it overrides it
+    &:hover {
+      background-color: $djai-tab-bg--hover;
+
+      @include link-style {
+        text-decoration: none !important;
+      }
+
+      .#{$djai-block}__drop {
+        display: block;
+      }
+    }
+  }
 
     &__drop {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
