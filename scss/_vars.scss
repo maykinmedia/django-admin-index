@@ -7,6 +7,8 @@ $color-secondary: var(--secondary, #417690);
 $color-accent: var(--accent, #f5dd5d);
 $color-primary-fg: var(--primary-fg, #fff);
 
+$color-header-link-color: var(--header-link-color, #{$color-primary-fg});
+
 /* admin-index specific variables */
 // default of 10px is the padding-bottom default of the header
 $djai-tablist-spacing-top: var(--djai-tablist-spacing-top, 10px);
@@ -16,7 +18,9 @@ $djai-tab-bg--active: var(--djai-tab-bg--active, #{$color-primary});
 $djai-tab-bg--hover: var(--djai-tab-bg--hover, #{$color-primary});
 
 $djai-dropdown-bg: var(--djai-dropdown-bg, #{$color-secondary});
-
+$djai-dropdown-bg--active: var(--djai-dropdown-bg--active, #{$color-primary});
+$djai-dropdown-bg--hover: var(--djai-dropdown-bg--hover, #{$color-primary});
+$djai-dropdown-fg: var(--djai-dropdown-fg, #{$color-header-link-color});
 
 
 // TODO: check if we use these
@@ -30,7 +34,6 @@ $color-body-loud-color: var(--body-loud-color, #000);
 $color-header-color: var(--header-color, #ffc);
 $color-header-branding-color: var(--header-branding-color, var(--accent));
 $color-header-bg: var(--header-bg, var(--secondary));
-$color-header-link-color: var(--header-link-color, var(--primary-fg));
 
 $color-breadcrumbs-fg: var(--breadcrumbs-fg, #c4dce8);
 $color-breadcrumbs-link-fg: var(--breadcrumbs-link-fg, var(--body-bg));

@@ -35,15 +35,6 @@ have the option to easily specify static/sticky positioning.
   overflow: visible;
 }
 
-.breadcrumbs {
-  /* Show the header at all times */
-  position: fixed;
-  top: 84px;
-  z-index: 4000;
-  width: 100%;
-  padding: 12px 40px !important;
-}
-
 /*
 The dropdown menu is injected as a child into the header, which has a flexbox display
 style (direction: row). This causes the menu to be on the same row as the branding and
@@ -95,21 +86,29 @@ of the container and let the parent wrap.
   left: 0;
   top: 100%;
   min-width: 150px;
+  z-index: 1;
   background-color: var(--djai-dropdown-bg, var(--secondary, #417690));
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
-.djai-dropdown-menu__link, .djai-dropdown-menu__link:link, .djai-dropdown-menu__link:visited {
-  color: #fff;
+.djai-dropdown-menu .djai-dropdown-menu__drop-item {
+  background-color: transparent;
+}
+.djai-dropdown-menu .djai-dropdown-menu__drop-item--active {
+  background-color: var(--djai-dropdown-bg--active, var(--primary, #79aec8));
+}
+.djai-dropdown-menu .djai-dropdown-menu__drop-item:hover {
+  background-color: var(--djai-dropdown-bg--hover, var(--primary, #79aec8));
+}
+#header .djai-dropdown-menu .djai-dropdown-menu__drop-item a, #header .djai-dropdown-menu .djai-dropdown-menu__drop-item a:link, #header .djai-dropdown-menu .djai-dropdown-menu__drop-item a:visited {
+  color: var(--djai-dropdown-fg, var(--header-link-color, var(--primary-fg, #fff)));
+}
+#header .djai-dropdown-menu .djai-dropdown-menu__drop-item a:hover {
+  text-decoration: none;
+}
+
+.djai-dropdown-menu .djai-dropdown-menu__link {
   display: block;
   padding: 10px;
-}
-.djai-dropdown-menu__link:hover, .djai-dropdown-menu__link:link:hover, .djai-dropdown-menu__link:visited:hover {
-  background-color: #79aec8;
-  text-decoration: none !important;
-}
-.djai-dropdown-menu__link.djai-dropdown-menu__link--active, .djai-dropdown-menu__link:link.djai-dropdown-menu__link--active, .djai-dropdown-menu__link:visited.djai-dropdown-menu__link--active {
-  background-color: #79aec8;
-  text-decoration: none;
 }
 
 /*# sourceMappingURL=/admin-index.css.map */

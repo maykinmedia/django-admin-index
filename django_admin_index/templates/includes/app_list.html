@@ -17,9 +17,9 @@
                 <span class="djai-dropdown-menu__drop">
                     {% for model in app.models %}
                         {% if model.admin_url %}
-                            <div class="djai-dropdown-menu__drop-item">
+                            <div class="djai-dropdown-menu__drop-item {% if model.active %}djai-dropdown-menu__drop-item--active{% endif %}">
                                 <a href="{{ model.admin_url }}"
-                                   class="djai-dropdown-menu__link {% if model.active %}djai-dropdown-menu__link--active{% endif %}">{{ model.name }}</a>
+                                   class="djai-dropdown-menu__link">{{ model.name }}</a>
                             </div>
                         {% endif %}
                     {% endfor %}
