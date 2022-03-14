@@ -9,10 +9,13 @@ $color-primary-fg: var(--primary-fg, #fff);
 
 /* admin-index specific variables */
 // default of 10px is the padding-bottom default of the header
-$djai-dropdown-menu-spacing-top: var(--djai-dropdown-menu-spacing-top, 10px);
+$djai-tablist-spacing-top: var(--djai-tablist-spacing-top, 10px);
+
 $djai-tab-bg: var(--djai-tab-bg, #4383a3);
 $djai-tab-bg--active: var(--djai-tab-bg--active, #{$color-primary});
 $djai-tab-bg--hover: var(--djai-tab-bg--hover, #{$color-primary});
+
+$djai-dropdown-bg: var(--djai-dropdown-bg, #{$color-secondary});
 
 
 

@@ -27,7 +27,7 @@ $djai-block: 'djai-dropdown-menu';
 
   // own layout
   display: block;
-  margin-top: $djai-dropdown-menu-spacing-top;
+  margin-top: $djai-tablist-spacing-top;
 
   & &__item {
     display: inline-block;
@@ -62,16 +62,23 @@ $djai-block: 'djai-dropdown-menu';
     }
   }
 
-    &__drop {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-        position: absolute;
-        left: 0;
-        top: 100%;
-        display: none;
-        background-color: #417690;
-        min-width: 150px;
-        z-index: 50;
-    }
+  & &__drop {
+    display: none; // hidden by default, visible by hovering over the parent
+
+    // position it relative to the tab
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 150px;
+
+    // theme
+    background-color: $djai-dropdown-bg;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+
+
+
 
     &__link,
     &__link:link,
