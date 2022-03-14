@@ -1,15 +1,32 @@
-.dropdown-menu {
-    /* Show the header at all times */
-    position: fixed;
-    top: 42px;
-    display: block;
-    cursor: pointer;
-    margin-top: 8px;
-    z-index: 5000;
+/*
+The dropdown menu is injected as a child into the header, which has a flexbox display
+style (direction: row). This causes the menu to be on the same row as the branding and
+user tools. However, we set the flex-basis to 100% to make it take up the full width
+of the container and let the parent wrap.
+ */
+@import '../vars';
 
-    .dropdown-menu__item,
-    .dropdown-menu__item:link,
-    .dropdown-menu__item:visited {
+$djai-block: 'djai-dropdown-menu';
+
+
+.#{$djai-block} {
+    // position it properly in the header as a separate row
+    @at-root #header {
+        flex-wrap: wrap;
+        // remove the padding at the bottom so our dropdown items line up
+        padding-bottom: 0;
+    }
+    flex-basis: 100%;
+
+    // own layout
+    position: relative; // container for absolutely positioned child elements
+    display: block;
+    margin-top: $djai-dropdown-menu-spacing-top;
+
+    &__item,
+    &__item:link,
+    &__item:visited {
+        cursor: pointer;
         color: #fff;
         display: inline-block;
         padding: 10px;
@@ -17,7 +34,7 @@
         z-index: 50;
         background-color: #4383a3;
 
-        &.dropdown-menu__item--active {
+        &.#{$djai-block}__item--active {
             background-color: #79aec8;
             text-decoration: none;
         }
@@ -26,13 +43,13 @@
             background-color: #79aec8;
             text-decoration: none !important;
 
-            .dropdown-menu__drop {
+            &__drop {
                 display: block;
             }
         }
     }
 
-    .dropdown-menu__drop {
+    &__drop {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
         position: absolute;
         left: 0;
@@ -43,9 +60,9 @@
         z-index: 50;
     }
 
-    .dropdown-menu__link,
-    .dropdown-menu__link:link,
-    .dropdown-menu__link:visited {
+    &__link,
+    &__link:link,
+    &__link:visited {
         color: #fff;
         display: block;
         padding: 10px;
@@ -55,7 +72,7 @@
             text-decoration: none !important;
         }
 
-        &.dropdown-menu__link--active {
+        &.#{$djai-block}__link--active {
             background-color: #79aec8;
             text-decoration: none;
         }

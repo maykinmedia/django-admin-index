@@ -43,18 +43,29 @@ have the option to easily specify static/sticky positioning.
   padding: 12px 40px !important;
 }
 
-.dropdown-menu {
-  /* Show the header at all times */
-  position: fixed;
-  top: 42px;
+/*
+The dropdown menu is injected as a child into the header, which has a flexbox display
+style (direction: row). This causes the menu to be on the same row as the branding and
+user tools. However, we set the flex-basis to 100% to make it take up the full width
+of the container and let the parent wrap.
+ */
+/* admin-index specific variables */
+/* A bit darker than --body-bg */
+/* E.g. selected table cells */
+/* Previously #bbb, contrast 1.92 */
+.djai-dropdown-menu {
+  flex-basis: 100%;
+  position: relative;
   display: block;
-  cursor: pointer;
-  margin-top: 8px;
-  z-index: 5000;
+  margin-top: var(--djai-dropdown-menu-spacing-top, 10px);
 }
-.dropdown-menu .dropdown-menu__item,
-.dropdown-menu .dropdown-menu__item:link,
-.dropdown-menu .dropdown-menu__item:visited {
+#header {
+  flex-wrap: wrap;
+  padding-bottom: 0;
+}
+
+.djai-dropdown-menu__item, .djai-dropdown-menu__item:link, .djai-dropdown-menu__item:visited {
+  cursor: pointer;
   color: #fff;
   display: inline-block;
   padding: 10px;
@@ -62,24 +73,18 @@ have the option to easily specify static/sticky positioning.
   z-index: 50;
   background-color: #4383a3;
 }
-.dropdown-menu .dropdown-menu__item.dropdown-menu__item--active,
-.dropdown-menu .dropdown-menu__item:link.dropdown-menu__item--active,
-.dropdown-menu .dropdown-menu__item:visited.dropdown-menu__item--active {
+.djai-dropdown-menu__item.djai-dropdown-menu__item--active, .djai-dropdown-menu__item:link.djai-dropdown-menu__item--active, .djai-dropdown-menu__item:visited.djai-dropdown-menu__item--active {
   background-color: #79aec8;
   text-decoration: none;
 }
-.dropdown-menu .dropdown-menu__item:hover,
-.dropdown-menu .dropdown-menu__item:link:hover,
-.dropdown-menu .dropdown-menu__item:visited:hover {
+.djai-dropdown-menu__item:hover, .djai-dropdown-menu__item:link:hover, .djai-dropdown-menu__item:visited:hover {
   background-color: #79aec8;
   text-decoration: none !important;
 }
-.dropdown-menu .dropdown-menu__item:hover .dropdown-menu__drop,
-.dropdown-menu .dropdown-menu__item:link:hover .dropdown-menu__drop,
-.dropdown-menu .dropdown-menu__item:visited:hover .dropdown-menu__drop {
+.djai-dropdown-menu__item:hover__drop, .djai-dropdown-menu__item:link:hover__drop, .djai-dropdown-menu__item:visited:hover__drop {
   display: block;
 }
-.dropdown-menu .dropdown-menu__drop {
+.djai-dropdown-menu__drop {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   position: absolute;
   left: 0;
@@ -89,22 +94,16 @@ have the option to easily specify static/sticky positioning.
   min-width: 150px;
   z-index: 50;
 }
-.dropdown-menu .dropdown-menu__link,
-.dropdown-menu .dropdown-menu__link:link,
-.dropdown-menu .dropdown-menu__link:visited {
+.djai-dropdown-menu__link, .djai-dropdown-menu__link:link, .djai-dropdown-menu__link:visited {
   color: #fff;
   display: block;
   padding: 10px;
 }
-.dropdown-menu .dropdown-menu__link:hover,
-.dropdown-menu .dropdown-menu__link:link:hover,
-.dropdown-menu .dropdown-menu__link:visited:hover {
+.djai-dropdown-menu__link:hover, .djai-dropdown-menu__link:link:hover, .djai-dropdown-menu__link:visited:hover {
   background-color: #79aec8;
   text-decoration: none !important;
 }
-.dropdown-menu .dropdown-menu__link.dropdown-menu__link--active,
-.dropdown-menu .dropdown-menu__link:link.dropdown-menu__link--active,
-.dropdown-menu .dropdown-menu__link:visited.dropdown-menu__link--active {
+.djai-dropdown-menu__link.djai-dropdown-menu__link--active, .djai-dropdown-menu__link:link.djai-dropdown-menu__link--active, .djai-dropdown-menu__link:visited.djai-dropdown-menu__link--active {
   background-color: #79aec8;
   text-decoration: none;
 }

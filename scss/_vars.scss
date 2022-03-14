@@ -7,6 +7,10 @@ $color-secondary: var(--secondary, #417690);
 $color-accent: var(--accent, #f5dd5d);
 $color-primary-fg: var(--primary-fg, #fff);
 
+/* admin-index specific variables */
+// default of 10px is the padding-bottom default of the header
+$djai-dropdown-menu-spacing-top: var(--djai-dropdown-menu-spacing-top, 10px);
+
 
 
 // TODO: check if we use these
