@@ -1,6 +1,9 @@
 {% extends "admin/delete_confirmation.html" %}
 {% load i18n admin_urls static django_admin_index %}
 
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/admin-index.css" %}">{% endblock %}
+
 {% block extrahead %}
     {# NOTE: Switched these 2 variables around to allow overrides #}
     {{ media }}

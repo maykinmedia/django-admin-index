@@ -1,5 +1,8 @@
 {% extends "admin/change_form.html" %}
-{% load i18n admin_urls django_admin_index %}
+{% load i18n admin_urls static django_admin_index %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/admin-index.css" %}">{% endblock %}
 
 {% block nav-global %}{% include "django_admin_index/includes/app_list.html" %}{% endblock nav-global %}
 

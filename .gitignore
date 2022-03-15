@@ -33,3 +33,4 @@ env/
 .eggs/
 node_modules/
 django_admin_index/static/admin/css/admin-index.js
+django_admin_index/static/admin/css/admin-index.js.map

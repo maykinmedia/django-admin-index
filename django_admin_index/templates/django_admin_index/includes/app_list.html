@@ -5,7 +5,6 @@
 
 {% if dashboard_app_list and should_display_dropdown %}
     <div class="djai-dropdown-menu">
-        <link rel="stylesheet" type="text/css" href="{% static "admin/css/admin-index.css" %}">
         {% url 'admin:index' as home %}
         <a href="{{ home }}"
            class="djai-dropdown-menu__item {% if request.path == home %}djai-dropdown-menu__item--active{% endif %}">
