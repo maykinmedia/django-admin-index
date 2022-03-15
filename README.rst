@@ -115,16 +115,41 @@ There are 3 settings you can add to your ``settings.py``:
 Extra
 =====
 
+Theming
+-------
+
+By default, django-admin-index tabs/dropdowns are styled in the Django admin theme
+colours. On Django 3.2+ these are controlled through CSS variables in the
+``static/admin/css/base.css`` stylesheet. These CSS variables are used as defaults for
+django-admin-index' own CSS variables.
+
+See ``scss/_vars.scss`` for all the available CSS variables you can use to customize
+the color palette. A simple example:
+
+.. code-block:: css
+
+    :root {
+      --djai-tab-bg: #ff0080;
+      --djai-tab-bg--hover: #a91b60;
+    }
+
+Any rules not supported by CSS vars can be overridden with regular CSS. All elements
+have CSS class names following the BEM methodology, such as
+``.djai-dropdown-menu__item`` and
+``.djai-dropdown-menu__item.djai-dropdown-menu__item--active``.
+
+
 Sticky header
 -------------
 
 The header (typically "Django administration") including the menu (added by this
-library) and the breadcrumbs, all become sticky (ie. they stay visible when you scroll
-down on large pages). If you don't want this, you can add some CSS lines, like::
+library) become sticky (ie. they stay visible when you scroll down on large pages). If
+you don't want this, you can add some CSS lines, like::
+
+.. code-block:: css
 
     #header { position: initial; }
     .dropdown-menu { position: initial; }
-    .breadcrumbs { position: initial; }
 
 
 Breadcrumbs
@@ -132,7 +157,9 @@ Breadcrumbs
 
 You can also squeeze additional content in the breadcrumbs, just after
 ``Home``. Simply overwrite the block ``breadcrumbs_pre_changelist`` in the
-admin templates you desire (``change_list.html``, ``change_form.html``, etc.)::
+admin templates you desire (``change_list.html``, ``change_form.html``, etc.)
+
+.. code-block:: django
 
     {% block breadcrumbs_pre_changelist %}
     &rsaquo; Meaningful breadcrumb element

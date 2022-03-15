@@ -1,0 +1,38 @@
+// Define SASS variables which emit the CSS variables from Django 3.2 with a default
+// value for Django 2.2. Once support is dropped for Django 2.2, we can remove the
+// defaults as Django itself defines these variables in `admin/css/base.css`.
+
+$color-primary: var(--primary, #79aec8);
+$color-secondary: var(--secondary, #417690);
+$color-primary-fg: var(--primary-fg, #fff);
+
+$color-header-link-color: var(--header-link-color, #{$color-primary-fg});
+
+/* admin-index specific variables */
+// default of 10px is the padding-bottom default of the header
+$djai-tablist-spacing-top: var(--djai-tablist-spacing-top, 10px);
+
+$djai-tab-bg: var(--djai-tab-bg, #4383a3);
+$djai-tab-bg--active: var(--djai-tab-bg--active, #{$color-primary});
+$djai-tab-bg--hover: var(--djai-tab-bg--hover, #{$color-primary});
+$djai-tab-fg: var(--djai-tab-fg, #{$color-primary-fg});
+$djai-tab-fg--active: var(--djai-tab-fg--active, #{$color-primary-fg});
+$djai-tab-fg--hover: var(--djai-tab-fg--hover, #{$color-primary-fg});
+
+$djai-dropdown-bg: var(--djai-dropdown-bg, #{$color-secondary});
+$djai-dropdown-bg--active: var(--djai-dropdown-bg--active, #{$color-primary});
+$djai-dropdown-bg--hover: var(--djai-dropdown-bg--hover, #{$color-primary});
+$djai-dropdown-fg: var(--djai-dropdown-fg, #{$color-header-link-color});
+
+// compensate for the sticky header by offsetting the nav sidebar. Default values
+// come from a clean django-startproject on Django 3.2 with the standard admin CSS.
+// If you use different fonts/paddings... etc, you can override this variable for your
+// own situation.
+$default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
+$djai-nav-sidebar-offset: var(--djai-nav-sidebar-offset, #{$default-nav-sidebar-offset});
+
+/*
+  Responsive styling. Breakpoints are taken from Django 3.2 admin/css/responsive.css
+*/
+$djai-breakpoint--mobile: 767px;
+$djai-breakpoint--tablet: 1024px;

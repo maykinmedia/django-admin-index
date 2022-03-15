@@ -1,0 +1,9 @@
+/*
+Django 2.2 specific fixes
+ */
+#content {
+  // fix the filter bar on the right being layered over the header.
+  // header has z-index: 2 so within the stack context this layers on top now.
+  position: relative;
+  z-index: 1;
+}

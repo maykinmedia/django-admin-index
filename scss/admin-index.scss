@@ -1,4 +1,5 @@
-@import "components/breadcrumbs";
-@import "components/dropdown-menu";
+@import "django22";
+
+@import "components/containers";
 @import "components/header";
-@import "components/main";
+@import "components/dropdown-menu";

@@ -1,63 +1,138 @@
-.dropdown-menu {
-    /* Show the header at all times */
-    position: fixed;
-    top: 42px;
-    display: block;
+/*
+The dropdown menu is injected as a child into the header, which has a flexbox display
+style (direction: row). This causes the menu to be on the same row as the branding and
+user tools. However, we set the flex-basis to 100% to make it take up the full width
+of the container and let the parent wrap.
+ */
+@import '../vars';
+
+$djai-block: 'djai-dropdown-menu';
+
+
+@mixin link-style() {
+  &, &:link, &:visited {
+    @content;
+  }
+}
+
+
+.#{$djai-block} {
+  // position it properly in the header as a separate row
+  @at-root #header {
+    flex-wrap: wrap;
+    // remove the padding at the bottom so our dropdown items line up
+    padding-bottom: 0;
+  }
+
+  flex-basis: 100%;
+
+  // own layout
+  display: block;
+  margin-top: $djai-tablist-spacing-top;
+
+  & &__item {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    background-color: $djai-tab-bg;
     cursor: pointer;
-    margin-top: 8px;
-    z-index: 5000;
 
-    .dropdown-menu__item,
-    .dropdown-menu__item:link,
-    .dropdown-menu__item:visited {
-        color: #fff;
-        display: inline-block;
-        padding: 10px;
-        position: relative;
-        z-index: 50;
-        background-color: #4383a3;
-
-        &.dropdown-menu__item--active {
-            background-color: #79aec8;
-            text-decoration: none;
-        }
-
-        &:hover {
-            background-color: #79aec8;
-            text-decoration: none !important;
-
-            .dropdown-menu__drop {
-                display: block;
-            }
-        }
+    @include link-style {
+      color: $djai-tab-fg;
     }
 
-    .dropdown-menu__drop {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-        position: absolute;
-        left: 0;
-        top: 100%;
-        display: none;
-        background-color: #417690;
-        min-width: 150px;
-        z-index: 50;
+    &--active {
+      background-color: $djai-tab-bg--active;
+
+      @include link-style {
+        text-decoration: none;
+        color: $djai-tab-fg--active;
+      }
     }
 
-    .dropdown-menu__link,
-    .dropdown-menu__link:link,
-    .dropdown-menu__link:visited {
-        color: #fff;
+    // deliberately after the --active style so it overrides it
+    &:hover,
+    &:focus {
+      background-color: $djai-tab-bg--hover;
+
+      @include link-style {
+        text-decoration: none !important;
+        color: $djai-tab-fg--hover;
+      }
+
+      .#{$djai-block}__drop {
         display: block;
-        padding: 10px;
-
-        &:hover {
-            background-color: #79aec8;
-            text-decoration: none !important;
-        }
-
-        &.dropdown-menu__link--active {
-            background-color: #79aec8;
-            text-decoration: none;
-        }
+      }
     }
+  }
+
+  & &__drop {
+    display: none; // hidden by default, visible by hovering over the parent
+
+    // position it relative to the tab
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 150px;
+    z-index: 1;
+
+    // ensure that very long lists have scrollable content
+    max-height: 75vh;
+    overflow-y: auto;
+
+    // theme
+    background-color: $djai-dropdown-bg;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  & &__drop-item {
+
+    background-color: transparent;  // take the bg color of the dropdown block
+
+    &--active {
+      background-color: $djai-dropdown-bg--active;
+    }
+
+    // deliberately after the --active style so it overrides it
+    &:hover,
+    &:focus {
+      background-color: $djai-dropdown-bg--hover;
+    }
+
+    // force a more specific rule so our own color overrides are used
+    @at-root #header & a {
+      @include link-style {
+        color: $djai-dropdown-fg;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  & &__link {
+    display: block;
+    padding: 10px;
+  }
+
+}
+
+// mobile styling
+@media (max-width: $djai-breakpoint--mobile) {
+  // ensure that the dropdown menus are on top of the breadcrumbs instead of hidden
+  // behind them. The #header element has z-index 2.
+  .breadcrumbs {
+    position: relative;
+    z-index: 1;
+  }
+
+  .#{$djai-block} {
+    align-self: flex-start;  // don't center, but align left
+
+    & &__item {
+      margin-top: 3px;
+    }
+  }
 }
