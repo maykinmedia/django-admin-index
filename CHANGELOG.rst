@@ -29,7 +29,8 @@ Breaking changes
       modified, some class names are moved around.
     * The breadcrumbs are no longer sticky/fixed by default, override this in your own
       styling if desired. Possibly in the future this may be controllable with a CSS var.
-    * On mobile, the menu is now hidden.
+    * Made a mimimal working layout on mobile. Tabs wrap on the next line and the menus
+      are no longer hidden behind the breadcrumbs.
 
 * Reduced amount of overridden ``django.contrib.admin`` template code - people
   overriding the django-admin-index templates may want to revisit these.

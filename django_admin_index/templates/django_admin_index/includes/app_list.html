@@ -12,7 +12,7 @@
             {% trans "Dashboard" %}
         </a>
         {% for app in dashboard_app_list %}
-            <div class="djai-dropdown-menu__item {% if app.active %}djai-dropdown-menu__item--active{% endif %}">
+            <div class="djai-dropdown-menu__item {% if app.active %}djai-dropdown-menu__item--active{% endif %}" tabindex="0">
                 <span>{{ app.name }}</span>
                 <span class="djai-dropdown-menu__drop">
                     {% for model in app.models %}

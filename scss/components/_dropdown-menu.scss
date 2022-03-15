@@ -19,11 +19,9 @@ $djai-block: 'djai-dropdown-menu';
 .#{$djai-block} {
   // position it properly in the header as a separate row
   @at-root #header {
-    @media (min-width: $djai-breakpoint--tablet) {
-      flex-wrap: wrap;
-      // remove the padding at the bottom so our dropdown items line up
-      padding-bottom: 0;
-    }
+    flex-wrap: wrap;
+    // remove the padding at the bottom so our dropdown items line up
+    padding-bottom: 0;
   }
 
   flex-basis: 100%;
@@ -53,7 +51,8 @@ $djai-block: 'djai-dropdown-menu';
     }
 
     // deliberately after the --active style so it overrides it
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $djai-tab-bg--hover;
 
       @include link-style {
@@ -96,7 +95,8 @@ $djai-block: 'djai-dropdown-menu';
     }
 
     // deliberately after the --active style so it overrides it
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $djai-dropdown-bg--hover;
     }
 
@@ -121,7 +121,18 @@ $djai-block: 'djai-dropdown-menu';
 
 // mobile styling
 @media (max-width: $djai-breakpoint--mobile) {
+  // ensure that the dropdown menus are on top of the breadcrumbs instead of hidden
+  // behind them. The #header element has z-index 2.
+  .breadcrumbs {
+    position: relative;
+    z-index: 1;
+  }
+
   .#{$djai-block} {
-    display: none;
+    align-self: flex-start;  // don't center, but align left
+
+    & &__item {
+      margin-top: 3px;
+    }
   }
 }
