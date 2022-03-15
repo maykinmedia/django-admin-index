@@ -1,4 +1,0 @@
-isort>=5.1.4
-black>=19.10b0
-tox>=2.3.1
-bumpversion>=0.6.0
