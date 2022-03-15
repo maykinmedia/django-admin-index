@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 1.6.0
+:Version: 2.0.0
 :Download: https://pypi.python.org/pypi/django-admin-index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
@@ -146,7 +146,7 @@ Sticky header
 
 The header (typically "Django administration") including the menu (added by this
 library) become sticky (ie. they stay visible when you scroll down on large pages). If
-you don't want this, you can add some CSS lines, like::
+you don't want this, you can add some CSS lines, like:
 
 .. code-block:: css
 

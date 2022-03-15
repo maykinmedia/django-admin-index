@@ -5,7 +5,7 @@ Change history
 2.0.0
 =====
 
-*March ??, 2022*
+*March 15, 2022*
 
 This release contains breaking changes in the admin markup and stylesheets, hence the
 major version bump.
@@ -44,6 +44,8 @@ Other improvements
 * Updated isort config to be black-compatible
 * Updated test project (used for local testing and CI) to Django 2.2 and Django 3.2+
 * Included ``AppConfig.default_auto_field`` for Django 3.2+
+* Fixed stylesheet being loaded in the body instead of the head (#70)
+* Restructured packaging setup and repository layout (#73)
 
 1.6.0
 =====
