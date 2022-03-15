@@ -3,11 +3,11 @@ Admin Index for Django
 ======================
 
 :Version: 1.6.0
-:Download: https://pypi.python.org/pypi/django_admin_index
+:Download: https://pypi.python.org/pypi/django-admin-index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
 
-|build-status| |coverage| |license| |pyversion| |djversion|
+|build-status| |code-quality| |black| |coverage| |license| |python-versions| |django-versions| |pypi-version|
 
 About
 =====
@@ -38,7 +38,7 @@ To install using ``pip``:
 
 .. code-block:: console
 
-    $ pip install -U django_admin_index
+    $ pip install -U django-admin-index
 
 Usage
 =====
@@ -47,14 +47,16 @@ To use this with your project you need to follow these steps:
 
 #. Add ``django_admin_index`` and ``ordered_model`` to ``INSTALLED_APPS`` in
    your Django project's ``settings.py``. Make sure that
-   ``django_admin_index`` comes before ``django.contrib.admin``::
+   ``django_admin_index`` comes before ``django.contrib.admin``:
 
-    INSTALLED_APPS = (
-        'django_admin_index',
-        'ordered_model',
-        ...,
-        'django.contrib.admin',
-    )
+   .. code-block:: python
+
+      INSTALLED_APPS = (
+          "django_admin_index",
+          "ordered_model",
+          ...,
+          "django.contrib.admin",
+      )
 
    Note that there is no dash in the module name, only underscores.
 
@@ -149,7 +151,7 @@ you don't want this, you can add some CSS lines, like::
 .. code-block:: css
 
     #header { position: initial; }
-    .dropdown-menu { position: initial; }
+    .djai-dropdown-menu { position: initial; }
 
 
 Breadcrumbs
@@ -171,6 +173,13 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)
     :alt: Build status
     :target: https://github.com/maykinmedia/django-admin-index/actions/workflows/ci.yml
 
+.. |code-quality| image:: https://github.com/maykinmedia/django-admin-index/workflows/Code%20quality%20checks/badge.svg
+     :alt: Code quality checks
+     :target: https://github.com/maykinmedia/django-admin-index/actions?query=workflow%3A%22Code+quality+checks%22
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+
 .. |coverage| image:: https://codecov.io/github/maykinmedia/django-admin-index/coverage.svg?branch=master
     :target: https://codecov.io/github/maykinmedia/django-admin-index?branch=master
 
@@ -178,14 +187,16 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)
     :alt: BSD License
     :target: https://opensource.org/licenses/BSD-3-Clause
 
-.. |pyversion| image:: https://img.shields.io/pypi/pyversions/django-admin-index.svg
+.. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-admin-index.svg
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |djversion| image:: https://img.shields.io/badge/django-2.2%2C%203.0%2C%203.2%2C%204.0-blue.svg
+.. |django-versions| image:: https://img.shields.io/badge/django-2.2%2C%203.0%2C%203.2%2C%204.0-blue.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
+.. |pypi-version| image:: https://img.shields.io/pypi/v/django-admin-index.svg
+    :target: https://pypi.org/project/django-admin-index/
 
 .. |screenshot-1| image:: https://github.com/maykinmedia/django-admin-index/raw/master/docs/_assets/dashboard_with_menu_thumb.png
     :alt: Ordered dashboard with dropdown menu.
