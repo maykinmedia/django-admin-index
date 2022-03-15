@@ -168,6 +168,57 @@ admin templates you desire (``change_list.html``, ``change_form.html``, etc.)
     {% endblock %}
 
 
+Contributors
+============
+
+Contributors and maintainers can install the project locally with all test dependencies
+in a virtualenv:
+
+.. code-block:: bash
+
+    (env) $ pip install -e .[tests,pep8,coverage,release]
+
+Running the test suite
+----------------------
+
+To run the tests for a single environment (currently installed in your virtualenv), use
+``pytest``:
+
+.. code-block:: bash
+
+    (env) $ pytest
+
+To run the complete build matrix, use ``tox``:
+
+.. code-block:: bash
+
+    (env) $ tox
+
+Developing the frontend
+-----------------------
+
+To develop the stylesheets, you can use the included test project:
+
+.. code-block:: bash
+
+    (env) $ python manage.py runserver
+
+You also want to install the frontend tooling and run the SCSS compilation to CSS in
+watch mode:
+
+.. code-block:: bash
+
+    npm install  # one time to get the dependencies installed
+    npm run watch
+
+Once the result is satisfactory, you can make a production build of the stylesheets:
+
+.. code-block:: bash
+
+    npm run scss
+
+Then, commit the changes and make a pull request.
+
 
 .. |build-status| image:: https://github.com/maykinmedia/django-admin-index/actions/workflows/ci.yml/badge.svg
     :alt: Build status
