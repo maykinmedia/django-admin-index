@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.apps import AppConfig, apps
 from django.core.checks import Error, Tags, Warning, register
 from django.utils.translation import gettext_lazy as _

@@ -1,22 +1,12 @@
-include .coveragerc
-include .editorconfig
-include .isort.cfg
+include *.rst
+include *.typed
 include LICENSE
-include README.rst
-include MANIFEST.in
-include Makefile
-include setup.cfg
-include setup.py
-include manage.py
-include tox.ini
-recursive-include requirements *.txt
-recursive-include tests *.py
 recursive-include django_admin_index *.html
+recursive-include django_admin_index *.txt
+recursive-include django_admin_index *.po
 recursive-include django_admin_index/static *.css
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]
-recursive-exclude * .*.sw*
-recursive-exclude django_admin_index *.map
-exclude *.json
-exclude *.rst
+recursive-include django_admin_index/static *.css.map
 recursive-include scss *.scss
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .*.sw*

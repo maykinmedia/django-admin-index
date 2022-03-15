@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models

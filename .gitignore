@@ -21,6 +21,7 @@ Documentation/
 .pydevproject
 .idea/
 .coverage
+reports/
 .ve*
 cover/
 .vagrant/
