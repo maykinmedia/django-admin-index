@@ -22,5 +22,5 @@ Override some containers to make the sticky header work with Django.
 }
 
 #nav-sidebar {
-  top: $djai-nav-sidebar-offset;
+  top: var(--djai-nav-sidebar-offset);
 }

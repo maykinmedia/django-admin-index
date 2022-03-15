@@ -28,36 +28,36 @@ $djai-block: 'djai-dropdown-menu';
 
   // own layout
   display: block;
-  margin-top: $djai-tablist-spacing-top;
+  margin-top: var(--djai-tablist-spacing-top);
 
   & &__item {
     display: inline-block;
     position: relative;
     padding: 10px;
-    background-color: $djai-tab-bg;
+    background-color: var(--djai-tab-bg);
     cursor: pointer;
 
     @include link-style {
-      color: $djai-tab-fg;
+      color: var(--djai-tab-fg);
     }
 
     &--active {
-      background-color: $djai-tab-bg--active;
+      background-color: var(--djai-tab-bg--active);
 
       @include link-style {
         text-decoration: none;
-        color: $djai-tab-fg--active;
+        color: var(--djai-tab-fg--active);
       }
     }
 
     // deliberately after the --active style so it overrides it
     &:hover,
     &:focus {
-      background-color: $djai-tab-bg--hover;
+      background-color: var(--djai-tab-bg--hover);
 
       @include link-style {
         text-decoration: none !important;
-        color: $djai-tab-fg--hover;
+        color: var(--djai-tab-fg--hover);
       }
 
       .#{$djai-block}__drop {
@@ -81,7 +81,7 @@ $djai-block: 'djai-dropdown-menu';
     overflow-y: auto;
 
     // theme
-    background-color: $djai-dropdown-bg;
+    background-color: var(--djai-dropdown-bg);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   }
@@ -91,19 +91,19 @@ $djai-block: 'djai-dropdown-menu';
     background-color: transparent;  // take the bg color of the dropdown block
 
     &--active {
-      background-color: $djai-dropdown-bg--active;
+      background-color: var(--djai-dropdown-bg--active);
     }
 
     // deliberately after the --active style so it overrides it
     &:hover,
     &:focus {
-      background-color: $djai-dropdown-bg--hover;
+      background-color: var(--djai-dropdown-bg--hover);
     }
 
     // force a more specific rule so our own color overrides are used
     @at-root #header & a {
       @include link-style {
-        color: $djai-dropdown-fg;
+        color: var(--djai-dropdown-fg);
       }
 
       &:hover {
