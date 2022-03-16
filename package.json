@@ -2,13 +2,12 @@
   "name": "django-admin-index",
   "version": "2.0.0",
   "description": "====================== Admin Index for Django ======================",
-  "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "scss": "parcel build scss/admin-index.scss --out-dir django_admin_index/static/admin/css/",
-    "watch": "parcel watch scss/admin-index.scss --out-dir django_admin_index/static/admin/css/"
+    "scss": "parcel build scss/admin-index.scss --dist-dir django_admin_index/static/admin/css/",
+    "watch": "parcel watch scss/admin-index.scss --dist-dir django_admin_index/static/admin/css/"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,8 @@
   },
   "homepage": "https://github.com/maykinmedia/django-admin-index#readme",
   "devDependencies": {
-    "parcel": "^1.12.4",
+    "@parcel/transformer-sass": "^2.3.2",
+    "parcel": "^2.3.2",
     "sass": "^1.26.10"
   }
 }
