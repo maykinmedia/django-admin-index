@@ -27,6 +27,7 @@ cover/
 .vagrant/
 *.sqlite3
 .cache/
+.parcel-cache/
 htmlcov/
 coverage.xml
 env/
