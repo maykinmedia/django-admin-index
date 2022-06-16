@@ -21,6 +21,11 @@ Override some containers to make the sticky header work with Django.
   z-index: 2; // overlay the #main container, which contains the sidebar on Django 3.2+
 }
 
+// Fix the calendar and time widgets 
+.calendarbox, .clockbox {
+  z-index: 1;
+}
+
 #nav-sidebar {
   top: var(--djai-nav-sidebar-offset);
 }
