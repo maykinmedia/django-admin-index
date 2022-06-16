@@ -2,6 +2,14 @@
 Change history
 ==============
 
+2.0.1 (2022-06-16)
+==================
+
+Bugfix release for the calendar/timebox modals.
+
+* Fixed z-index for calendar popup
+* Fixed z-index for timebox popup
+
 2.0.0
 =====
 
