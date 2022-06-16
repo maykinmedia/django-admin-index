@@ -23,7 +23,7 @@ Override some containers to make the sticky header work with Django.
 
 // Fix the calendar and time widgets 
 .calendarbox, .clockbox {
-  z-index: 2;
+  z-index: 1;
 }
 
 #nav-sidebar {
