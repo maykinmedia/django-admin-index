@@ -3,5 +3,3 @@
 # :license:   BSD (3 Clause), see LICENSE for more details.
 __version__ = "2.0.2"
 __author__ = "Joeri Bekker"
-
-default_app_config = "django_admin_index.apps.AdminIndexConfig"
