@@ -72,7 +72,7 @@ To use this with your project you need to follow these steps:
 Configuration
 =============
 
-There are 3 settings you can add to your ``settings.py``:
+There are optional settings you can add to your ``settings.py``:
 
 - ``ADMIN_INDEX_SHOW_REMAINING_APPS`` (defaults to ``False``)
 
