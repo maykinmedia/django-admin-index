@@ -2,6 +2,30 @@
 Change history
 ==============
 
+3.0.0 (2023-05-03)
+==================
+
+Periodic version compatibility release.
+
+The major version is bumped due to dropping support for Django 2.2 - the library itself
+does not have any breaking changes and upgrading from 2.0.x should be smooth.
+
+**Changes**
+
+* Fixed some outdated information in the README
+* Fixed ``ordered_model.W003`` warning 'OrderedModelBase subclass has a ModelManager
+  that does not inherit from OrderedModelManager' when using newer ordered-model versions
+* Formatted code with latest black and isort versions
+* Include admin-index in the password reset pages
+* Dropped Django 2.2 support
+* Bumped parcel and browserslist versions
+* Confirmed support for Python 3.11
+* Confirmed support for Django 4.1 and 4.2
+* Updated PK fields to use ``BigAutoField`` by default at the library level, following
+  Django's default.
+* Add CI check for sass compilation
+* Removed unused makefile
+
 2.0.2 (2022-06-16)
 ==================
 
