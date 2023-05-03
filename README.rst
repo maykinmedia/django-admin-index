@@ -2,7 +2,7 @@
 Admin Index for Django
 ======================
 
-:Version: 2.0.2
+:Version: 3.0.0
 :Download: https://pypi.python.org/pypi/django-admin-index
 :Source: https://github.com/maykinmedia/django-admin-index
 :Keywords: django, admin, dashboard
