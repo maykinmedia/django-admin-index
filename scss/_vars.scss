@@ -13,7 +13,7 @@ $djai-breakpoint--tablet: 1024px;
 // come from a clean django-startproject on Django 3.2 with the standard admin CSS.
 // If you use different fonts/paddings... etc, you can override this variable for your
 // own situation.
-$default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
+$_default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
 
 /*
   Define the CSS variable default values. These can be overridden by custom stylesheets,
@@ -39,7 +39,7 @@ $default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + brand
 
   // default of 10px is the padding-bottom default of the header
   --djai-tablist-spacing-top: 10px;
-  --djai-nav-sidebar-offset: #{$default-nav-sidebar-offset};
+  --djai-nav-sidebar-offset: #{$_default-nav-sidebar-offset};
 }
 
 // TODO: dark theme variables

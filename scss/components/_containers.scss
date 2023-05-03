@@ -1,8 +1,6 @@
 /*
 Override some containers to make the sticky header work with Django.
  */
-@import '../vars';
-
 #container {
   // Django itself sets height: 100%, which causes the container to be less high than
   // the content and that in turn causes the sticky header to fall off the page.

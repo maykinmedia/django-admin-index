@@ -4,7 +4,7 @@ style (direction: row). This causes the menu to be on the same row as the brandi
 user tools. However, we set the flex-basis to 100% to make it take up the full width
 of the container and let the parent wrap.
  */
-@import '../vars';
+@use '../vars';
 
 $djai-block: 'djai-dropdown-menu';
 
@@ -120,7 +120,7 @@ $djai-block: 'djai-dropdown-menu';
 }
 
 // mobile styling
-@media (max-width: $djai-breakpoint--mobile) {
+@media (max-width: vars.$djai-breakpoint--mobile) {
   // ensure that the dropdown menus are on top of the breadcrumbs instead of hidden
   // behind them. The #header element has z-index 2.
   .breadcrumbs {

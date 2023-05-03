@@ -1,22 +1,16 @@
 /*
 The header is the container for our admin-index menu dropdown, which we make
-visible at all times. For this, the header itself needs to receive a position fixes or
+visible at all times. For this, the header itself needs to receive a position fixed or
 sticky so that it stays in view when scrolling down vertically.
 
 If the header itself is sticky and the container for the dropdowns, we don't need to
 mess with height offsets relative to the header/branding - which may not be pixel-
 perfect because of font-rendering shenanigans.
-
-We also stick to Django's flexbox model for the header and don't force it into a CSS
-grid layout. (TODO: check on 2.2 what the CSS looks like).
-
-TODO: future enhancement -> control position of header/admin menu via CSS var, so users
-have the option to easily specify static/sticky positioning.
- */
+*/
 
 #header {
   position: sticky;
-  top: 0;
+  top: var(--djai-header-offset, 0);
   // the dropdown menu is a child and overflows
   overflow: visible;
 }
