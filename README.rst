@@ -242,7 +242,7 @@ Then, commit the changes and make a pull request.
     :alt: Supported Python versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
-.. |django-versions| image:: https://img.shields.io/badge/django-2.2%2C%203.0%2C%203.2%2C%204.0-blue.svg
+.. |django-versions| image:: https://img.shields.io/pypi/djversions/django-admin-index.svg
     :alt: Supported Django versions
     :target: http://pypi.python.org/pypi/django-admin-index/
 
