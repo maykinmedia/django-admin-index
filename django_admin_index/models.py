@@ -1,13 +1,15 @@
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import F
 from django.urls import reverse
 from django.utils.text import capfirst
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language, gettext_lazy as _
 
 from ordered_model.models import OrderedModel, OrderedModelManager, OrderedModelQuerySet
 
 from .conf import settings
+from .translations import TranslationsMixin
 
 
 class AppGroupQuerySet(OrderedModelQuerySet):
@@ -49,9 +51,13 @@ class AppGroupQuerySet(OrderedModelQuerySet):
 
         added = []
 
+        language_code = get_language()
+
         # Create new list based on our groups, using the model_dicts constructed above.  # noqa
         result = []
-        app_list = self.prefetch_related("models", "applink_set")
+        app_list = self.annotate(
+            localized_name=F(f"translations__{language_code}")
+        ).prefetch_related("models", "applink_set")
         active_app = request.path == reverse("admin:index")
         for app in app_list:
             models = []
@@ -65,10 +71,12 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                     if o["active"]:
                         active = True
 
-            for app_link in app.applink_set.all():
+            for app_link in app.applink_set.annotate(
+                localized_name=F(f"translations__{language_code}")
+            ):
                 models.append(
                     {
-                        "name": app_link.name,
+                        "name": app_link.localized_name or app_link.name,
                         "app_label": app.slug,
                         "admin_url": app_link.link,
                         "active": request.path.startswith(app_link.link),
@@ -79,7 +87,7 @@ class AppGroupQuerySet(OrderedModelQuerySet):
             if models:
                 result.append(
                     {
-                        "name": app.name,
+                        "name": app.localized_name or app.name,
                         "app_label": app.slug,
                         "models": sorted(models, key=lambda m: m["name"]),
                         "active": active,
@@ -142,7 +150,7 @@ class ContentTypeProxy(ContentType):
         return "{}.{}".format(self.app_label, capfirst(self.model))
 
 
-class AppGroup(OrderedModel):
+class AppGroup(OrderedModel, TranslationsMixin):
     name = models.CharField(_("name"), max_length=200)
     slug = models.SlugField(_("slug"), unique=True)
     models = models.ManyToManyField(ContentTypeProxy, blank=True)
@@ -160,7 +168,7 @@ class AppGroup(OrderedModel):
         return self.name
 
 
-class AppLink(OrderedModel):
+class AppLink(OrderedModel, TranslationsMixin):
     app_group = models.ForeignKey(AppGroup, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
