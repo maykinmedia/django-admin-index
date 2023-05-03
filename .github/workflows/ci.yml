@@ -29,19 +29,16 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install tox tox-gh-actions codecov
+        run: pip install tox tox-gh-actions
 
       - name: Run tests
-        run: |
-          export TOXENV=py${PYTHON_VERSION/./}-django${DJANGO/./}
-          tox
-          codecov -e TOXENV,DJANGO --file reports/coverage-${TOXENV}.xml
+        run: tox
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
 
       - name: Publish coverage report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
   publish:
     name: Publish package to PyPI
