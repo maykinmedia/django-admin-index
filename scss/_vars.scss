@@ -1,13 +1,3 @@
-// Define SASS variables which emit the CSS variables from Django 3.2 with a default
-// value for Django 2.2. Once support is dropped for Django 2.2, we can remove the
-// defaults as Django itself defines these variables in `admin/css/base.css`.
-
-$color-primary: var(--primary, #79aec8);
-$color-secondary: var(--secondary, #417690);
-$color-primary-fg: var(--primary-fg, #fff);
-
-$color-header-link-color: var(--header-link-color, #{$color-primary-fg});
-
 /*
   Responsive styling. Breakpoints are taken from Django 3.2 admin/css/responsive.css.
 
@@ -23,30 +13,33 @@ $djai-breakpoint--tablet: 1024px;
 // come from a clean django-startproject on Django 3.2 with the standard admin CSS.
 // If you use different fonts/paddings... etc, you can override this variable for your
 // own situation.
-$default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
+$_default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + branding height + dropdown-menu
 
 /*
   Define the CSS variable default values. These can be overridden by custom stylesheets,
   provided they are loaded AFTER the admin-index.css stylesheet is loaded OR they use
   a more specific selector than the :root pseudo-selector.
-  We defer to a number of SASS variables still because the base CSS variable is only
-  guaranteed to be defined in Django 3.2+.
+
+  We mostly refer to the built-in CSS variables from Django 3.2+ (see the reference in
+  admin/css/base.css).
 */
 
 :root {
   --djai-tab-bg: #4383a3;
-  --djai-tab-bg--active: #{$color-primary};
-  --djai-tab-bg--hover: #{$color-primary};
-  --djai-tab-fg: #{$color-primary-fg};
-  --djai-tab-fg--active: #{$color-primary-fg};
-  --djai-tab-fg--hover: #{$color-primary-fg};
+  --djai-tab-bg--active: var(--primary);
+  --djai-tab-bg--hover: var(--primary);
+  --djai-tab-fg: var(--primary-fg);
+  --djai-tab-fg--active: var(--primary-fg);
+  --djai-tab-fg--hover: var(--primary-fg);
 
-  --djai-dropdown-bg: #{$color-secondary};
-  --djai-dropdown-bg--active: #{$color-primary};
-  --djai-dropdown-bg--hover: #{$color-primary};
-  --djai-dropdown-fg: #{$color-header-link-color};
+  --djai-dropdown-bg: var(--secondary);
+  --djai-dropdown-bg--active: var(--primary);
+  --djai-dropdown-bg--hover: var(--primary);
+  --djai-dropdown-fg: var(--header-link-color);
 
   // default of 10px is the padding-bottom default of the header
   --djai-tablist-spacing-top: 10px;
-  --djai-nav-sidebar-offset: #{$default-nav-sidebar-offset};
+  --djai-nav-sidebar-offset: #{$_default-nav-sidebar-offset};
 }
+
+// TODO: dark theme variables

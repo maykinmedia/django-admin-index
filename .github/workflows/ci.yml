@@ -15,10 +15,8 @@ jobs:
     strategy:
       matrix:
         python: ['3.7', '3.8', '3.9', '3.10']
-        django: ['2.2', '3.2', '4.0']
+        django: ['3.2', '4.0']
         exclude:
-          - python: '3.10'
-            django: '2.2'
           - python: '3.7'
             django: '4.0'
 
@@ -31,19 +29,16 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install tox tox-gh-actions codecov
+        run: pip install tox tox-gh-actions
 
       - name: Run tests
-        run: |
-          export TOXENV=py${PYTHON_VERSION/./}-django${DJANGO/./}
-          tox
-          codecov -e TOXENV,DJANGO --file reports/coverage-${TOXENV}.xml
+        run: tox
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
 
       - name: Publish coverage report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
   publish:
     name: Publish package to PyPI
