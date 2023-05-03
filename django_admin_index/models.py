@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils.text import capfirst
 from django.utils.translation import gettext_lazy as _
 
-from ordered_model.models import OrderedModel, OrderedModelQuerySet
+from ordered_model.models import OrderedModel, OrderedModelManager, OrderedModelQuerySet
 
 from .conf import settings
 
@@ -125,6 +125,14 @@ class AppLinkQuerySet(OrderedModelQuerySet):
         return self.get(app_group=app_group, link=link)
 
 
+class AppGroupManager(OrderedModelManager):
+    pass
+
+
+class AppLinkManager(OrderedModelManager):
+    pass
+
+
 class ContentTypeProxy(ContentType):
     class Meta:
         proxy = True
@@ -139,7 +147,7 @@ class AppGroup(OrderedModel):
     slug = models.SlugField(_("slug"), unique=True)
     models = models.ManyToManyField(ContentTypeProxy, blank=True)
 
-    objects = AppGroupQuerySet.as_manager()
+    objects = AppGroupManager.from_queryset(AppGroupQuerySet)()
 
     class Meta(OrderedModel.Meta):
         verbose_name = _("application group")
@@ -157,7 +165,7 @@ class AppLink(OrderedModel):
     name = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
 
-    objects = AppLinkQuerySet.as_manager()
+    objects = AppLinkManager.from_queryset(AppLinkQuerySet)()
 
     class Meta(OrderedModel.Meta):
         verbose_name = _("application link")
