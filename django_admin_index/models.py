@@ -150,7 +150,7 @@ class ContentTypeProxy(ContentType):
         return "{}.{}".format(self.app_label, capfirst(self.model))
 
 
-class AppGroup(OrderedModel, TranslationsMixin):
+class AppGroup(TranslationsMixin, OrderedModel):
     name = models.CharField(_("name"), max_length=200)
     slug = models.SlugField(_("slug"), unique=True)
     models = models.ManyToManyField(ContentTypeProxy, blank=True)
@@ -168,7 +168,7 @@ class AppGroup(OrderedModel, TranslationsMixin):
         return self.name
 
 
-class AppLink(OrderedModel, TranslationsMixin):
+class AppLink(TranslationsMixin, OrderedModel):
     app_group = models.ForeignKey(AppGroup, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     link = models.CharField(max_length=200)

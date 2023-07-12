@@ -1,4 +1,4 @@
-from django.conf import global_settings
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -11,9 +11,9 @@ def validate_translation_json_format(value):
         )
 
     for key, val in value.items():
-        if key not in dict(global_settings.LANGUAGES):
+        if key not in dict(settings.LANGUAGES):
             raise ValidationError(
-                _("The language code '{language_code}' is invalid.").format(
+                _("The language code '{language_code}' is not enabled.").format(
                     language_code=key
                 )
             )
