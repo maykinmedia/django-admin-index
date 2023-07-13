@@ -10,8 +10,9 @@ def validate_translation_json_format(value):
             _("The format of translations needs to be a JSON-object.")
         )
 
+    language_codes = [item[0] for item in settings.LANGUAGES]
     for key, val in value.items():
-        if key not in dict(settings.LANGUAGES):
+        if key not in language_codes:
             raise ValidationError(
                 _("The language code '{language_code}' is not enabled.").format(
                     language_code=key

@@ -191,3 +191,29 @@ class AdminIndexAppGroupTests(TestCase):
     def test_natural_key(self):
         obj = AppGroup.objects.get_by_natural_key(self.app_group.slug)
         self.assertEqual(obj.natural_key(), (self.app_group.slug,))
+
+    @override_settings(LANGUAGE_CODE="en")
+    def test_en_localized_app_group_name_is_returned(self):
+        self.app_group.translations = {"en": "My group", "nl": "Mijn groep"}
+        self.app_group.save()
+
+        request = self.factory.get(reverse("admin:index"))
+        request.user = self.superuser
+        app_group = AppGroup.objects.filter(id=self.app_group.id).as_list(
+            request, False
+        )
+
+        self.assertEqual(app_group[0]["name"], "My group")
+
+    @override_settings(LANGUAGE_CODE="nl")
+    def test_nl_localized_app_group_name_is_returned(self):
+        self.app_group.translations = {"en": "My group", "nl": "Mijn groep"}
+        self.app_group.save()
+
+        request = self.factory.get(reverse("admin:index"))
+        request.user = self.superuser
+        app_group = AppGroup.objects.filter(id=self.app_group.id).as_list(
+            request, False
+        )
+
+        self.assertEqual(app_group[0]["name"], "Mijn groep")
