@@ -9,6 +9,7 @@ class AppLinkInline(admin.TabularInline):
     model = AppLink
     fields = (
         "name",
+        "translations",
         "link",
     )
     fk_name = "app_group"
@@ -23,6 +24,7 @@ class AppGroupAdmin(OrderedModelAdmin):
     )
     fields = (
         "name",
+        "translations",
         "slug",
         "models",
     )

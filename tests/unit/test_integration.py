@@ -9,6 +9,7 @@ from django.contrib.auth.models import Permission, User
 from django.test import TestCase, override_settings
 
 from django_admin_index.conf import settings
+from django_admin_index.models import AppGroup, ContentTypeProxy
 
 if django.VERSION >= (1, 11):
     from django.urls import reverse
@@ -162,3 +163,43 @@ class AdminIndexIntegrationTests(TestCase):
 
         response = self.client.get(reverse("admin:index"))
         self.assertNotContains(response, 'href="None"')
+
+
+class AdminIndexLanguageTests(TestCase):
+    def setUp(self):
+        # Create new group...
+        self.app_group = AppGroup.objects.create(
+            name="My group",
+            slug="my-group",
+            translations={"en": "My group", "nl": "Mijn groep"},
+        )
+        # ...find the content type for model User (it needs to be registered in the admin)
+        self.ct_user = ContentTypeProxy.objects.get(app_label="auth", model="user")
+        # ...and this content type to the new group.
+        self.app_group.models.add(self.ct_user)
+        self.superuser = User.objects._create_user(
+            username="superuser",
+            email="user@example.com",
+            password="top_secret",
+            is_staff=True,
+            is_superuser=True,
+        )
+        self.assertTrue(
+            self.client.login(username=self.superuser.username, password="top_secret")
+        )
+
+    @override_settings(LANGUAGE_CODE="en")
+    def test_en_text_is_rendered_when_selected(self):
+        response = self.client.get(reverse("admin:index"))
+        html = response.content.decode("utf-8")
+
+        self.assertIn("My group", html)
+        self.assertNotIn("Mijn groep", html)
+
+    @override_settings(LANGUAGE_CODE="nl")
+    def test_nl_text_is_rendered_when_selected(self):
+        response = self.client.get(reverse("admin:index"))
+        html = response.content.decode("utf-8")
+
+        self.assertIn("Mijn groep", html)
+        self.assertNotIn("My group", html)
