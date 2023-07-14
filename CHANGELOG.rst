@@ -2,6 +2,18 @@
 Change history
 ==============
 
+3.1.0 (2023-07-14)
+==================
+
+🌐 Added content translations support
+
+You can now provide translations for the app group and link names, which are activated
+based on the currently active language. You (optionally) provide translations through a
+JSON datastructure, keyed by language code.
+
+* Fixed supported django version badge.
+* Added support for content translations.
+
 3.0.0 (2023-05-03)
 ==================
 
