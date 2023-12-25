@@ -1,7 +1,7 @@
 from django.contrib.admin import site
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models import F
+from django.db.models import F, Prefetch
 from django.urls import reverse
 from django.utils.text import capfirst
 from django.utils.translation import get_language, gettext_lazy as _
@@ -17,7 +17,7 @@ class AppGroupQuerySet(OrderedModelQuerySet):
         return self.get(slug=slug)
 
     def as_list(self, request, include_remaining=True):
-        # Convert to convienent dict
+        # Convert to convenient dict
         model_dicts = {}
 
         original_app_list = site.get_app_list(request)
@@ -56,8 +56,16 @@ class AppGroupQuerySet(OrderedModelQuerySet):
         # Create new list based on our groups, using the model_dicts constructed above.  # noqa
         result = []
         app_list = self.annotate(
-            localized_name=F(f"translations__{language_code}")
-        ).prefetch_related("models", "applink_set")
+            localized_name=F(f"translations__{language_code}"),
+        ).prefetch_related(
+            "models",
+            Prefetch(
+                "applink_set",
+                queryset=AppLink.objects.annotate(
+                    localized_name=F(f"translations__{language_code}"),
+                ),
+            ),
+        )
         active_app = request.path == reverse("admin:index")
         for app in app_list:
             models = []
@@ -71,9 +79,7 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                     if o["active"]:
                         active = True
 
-            for app_link in app.applink_set.annotate(
-                localized_name=F(f"translations__{language_code}")
-            ):
+            for app_link in app.applink_set.all():
                 models.append(
                     {
                         "name": app_link.localized_name or app_link.name,
