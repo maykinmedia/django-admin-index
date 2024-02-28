@@ -76,7 +76,7 @@ There are optional settings you can add to your ``settings.py``:
 
 - ``ADMIN_INDEX_SHOW_REMAINING_APPS`` (defaults to ``False``)
 
-  Show all models that are not added a to an `Application group` in a group
+  Show all models that are not added to an `Application group` in a group
   called "Miscellaneous" for **staff** users.
 
   NOTE: If no `Application groups` are defined, it will show all models
@@ -110,7 +110,7 @@ There are optional settings you can add to your ``settings.py``:
 * ``ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION`` (defaults to
   ``django_admin_index.utils.should_display_dropdown_menu``)
 
-  A python dotted path that can be imported to check when the dropdown menu should be
+  A Python dotted path that can be imported to check when the dropdown menu should be
   displayed in the admin. The default implementation displays this menu if the user is
   a staff user and ``ADMIN_INDEX_SHOW_MENU`` is enabled.
 
