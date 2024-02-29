@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 22:25+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps.py:13
+msgid "Admin Index"
+msgstr "Admin Index"
+
+#: models.py:127
+msgid "Miscellaneous"
+msgstr "Overige"
+
+#: models.py:160
+msgid "name"
+msgstr "naam"
+
+#: models.py:161
+msgid "slug"
+msgstr "slug"
+
+#: models.py:167
+msgid "application group"
+msgstr "applicatiegroep"
+
+#: models.py:168
+msgid "application groups"
+msgstr "applicatiegroepen"
+
+#: models.py:185
+msgid "application link"
+msgstr "applicatielink"
+
+#: models.py:186
+msgid "application links"
+msgstr "applicatielinks"
+
+#: templates/admin/change_form.html:13 templates/admin/change_list.html:13
+#: templates/admin/delete_confirmation.html:19
+#: templates/admin/delete_selected_confirmation.html:19
+#: templates/admin/object_history.html:12
+msgid "Home"
+msgstr ""
+
+#: templates/admin/change_form.html:21
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:27
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:26
+msgid "Delete multiple objects"
+msgstr ""
+
+#: templates/admin/index.html:24
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: templates/admin/index.html:36
+msgid "Add"
+msgstr ""
+
+#: templates/admin/index.html:43
+msgid "View"
+msgstr ""
+
+#: templates/admin/index.html:45
+msgid "Change"
+msgstr ""
+
+#: templates/admin/index.html:56
+msgid "You don't have permission to view or edit anything."
+msgstr ""
+
+#: templates/admin/object_history.html:20
+msgid "History"
+msgstr ""
+
+#: templates/django_admin_index/includes/app_list.html:11
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: translations.py:10
+msgid "The format of translations needs to be a JSON-object."
+msgstr "De vertalingen moeten een JSON-object zijn."
+
+#: translations.py:17
+#, python-brace-format
+msgid "The language code '{language_code}' is not enabled."
+msgstr "De taalcode '{language_code}' is niet actief."
+
+#: translations.py:25
+#, python-brace-format
+msgid "The translation for language '{language_code}' is not a string."
+msgstr "De vertaling voor de taal '{language_code}' moet een string zijn."
+
+#: translations.py:32
+msgid "translations"
+msgstr "vertalingen"
+
+#: translations.py:35
+msgid ""
+"A JSON-object that uses the Django language code as key and the localized "
+"name as value. If no translation can be found for the active language, the "
+"name is used as fallback. Example: {\"en\": \"File\", \"nl\": \"Bestand\"}"
+msgstr ""
+"Een JSON-object waarbij de key een Django taalcode is en de vertaalde naam "
+"de waarde. Indien er geen vertaling bestaat voor de actieve taal, dan wordt de "
+"onvertaalde naam gebruikt. Bijvoorbeeld: {\"en\": \"File\", \"nl\": \"Bestand\"}"
