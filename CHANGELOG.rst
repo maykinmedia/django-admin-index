@@ -2,6 +2,16 @@
 Change history
 ==============
 
+3.1.1 (2024-02-29)
+==================
+
+Bugfix release
+
+* Fixed N + 1 query regression introduced in 3.1.0
+* Fixed typos in README
+* Formatted the code with latest black version
+* Added missing Dutch translations
+
 3.1.0 (2023-07-14)
 ==================
 
