@@ -69,13 +69,10 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Build sdist and wheel
+      - name: Build wheel
         run: |
-          pip install pip setuptools wheel --upgrade
-          python setup.py sdist bdist_wheel
+          pip install build --upgrade
+          python -m build
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: ${{ secrets.PYPI_USERNAME }}
-          password: ${{ secrets.PYPI_TOKEN }}
