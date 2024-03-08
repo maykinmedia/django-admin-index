@@ -63,7 +63,7 @@ class AdminIndexTests(TestCase):
         self.assertEqual(len(result), 1)
 
     @override_settings(TEMPLATES=[{"OPTIONS": {"context_processors": []}}])
-    def test_check_admin_index_context_process_present(self):
+    def test_check_admin_index_context_process_not_present(self):
         result = check_admin_index_context_processor([])
         self.assertEqual(len(result), 0)
 
