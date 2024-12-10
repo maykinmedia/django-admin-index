@@ -86,6 +86,7 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                         "app_label": app.slug,
                         "admin_url": app_link.link,
                         "active": request.path.startswith(app_link.link),
+                        "view_only": True,
                     }
                 )
                 active = request.path.startswith(app_link.link)
