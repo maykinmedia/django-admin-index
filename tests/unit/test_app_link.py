@@ -59,6 +59,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "name": self.app_link.name,
                 "app_label": self.app_group.slug,
                 "admin_url": self.app_link.link,
+                "view_only": True,
             },
         )
 
@@ -180,6 +181,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "name": self.app_link.name,
                 "app_label": self.app_group.slug,
                 "admin_url": self.app_link.link,
+                "view_only": True,
             },
         )
 
@@ -208,6 +210,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "name": self.app_link.name,
                 "app_label": self.app_group.slug,
                 "admin_url": self.app_link.link,
+                "view_only": True,
             },
         )
 
@@ -236,6 +239,7 @@ class AdminIndexAppLinkTests(TestCase):
                 "name": self.app_link.name,
                 "app_label": self.app_group.slug,
                 "admin_url": self.app_link.link,
+                "view_only": True,
             },
         )
 
