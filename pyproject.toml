@@ -1,3 +1,108 @@
 [build-system]
-requires = ["setuptools >= 30.3.0"]  # version supporting setup.cfg
+requires = ["setuptools>=61.0.0"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-admin-index"
+version = "3.1.1"
+description = "Admin index for Django"
+authors = [
+    {name = "Maykin Media", email = "support@maykinmedia.nl"}
+]
+readme = "README.rst"
+license = {file = "LICENSE"}
+keywords = ["Django", "index", "dashboard"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Intended Audience :: Developers",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "django>=4.2",
+    "django-ordered-model>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/maykinmedia/django-admin-index"
+"Bug Tracker" = "https://github.com/maykinmedia/django-admin-index/issues"
+"Source Code" = "https://github.com/maykinmedia/django-admin-index"
+Changelog = "https://github.com/maykinmedia/django-admin-index/blob/main/CHANGELOG.rst"
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "pytest-django",
+    "tox",
+    "isort",
+    "black",
+    "flake8",
+]
+coverage = [
+    "pytest-cov",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+]
+release = [
+    "bump-my-version",
+]
+
+[tool.setuptools.packages.find]
+include = ["django_admin_index*"]
+namespaces = false
+
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+known_django = "django"
+known_first_party="django_admin_index"
+sections=["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+skip = ["env", ".tox", ".history"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]
+python_classes = ["test_*"]
+DJANGO_SETTINGS_MODULE = "tests.proj.settings"
+
+[tool.bumpversion]
+current_version = "3.1.1"
+files = [
+    {filename = "pyproject.toml"},
+    {filename = "README.rst"},
+    {filename = "django_admin_index/locale/nl/LC_MESSAGES/django.po"},
+    {filename = "package.json"},
+    {filename = "package-lock.json"},
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+    "django_admin_index"
+]
+omit = [
+    "django_admin_index/migrations/*",
+]
+
+[tool.coverage.report]
+exclude_also = [
+    "if (typing\\.)?TYPE_CHECKING:",
+    "@(typing\\.)?overload",
+    "class .*\\(.*Protocol.*\\):",
+    "@(abc\\.)?abstractmethod",
+    "raise NotImplementedError",
+    "\\.\\.\\.",
+    "pass",
+]
+omit = [
+    "django_admin_index/migrations/*",
+]
