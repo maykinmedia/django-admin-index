@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-admin-index"
-version = "3.1.1"
+version = "4.0.0"
 description = "Admin index for Django"
 authors = [
     {name = "Maykin Media", email = "support@maykinmedia.nl"}
@@ -75,7 +75,7 @@ python_classes = ["test_*"]
 DJANGO_SETTINGS_MODULE = "tests.proj.settings"
 
 [tool.bumpversion]
-current_version = "3.1.1"
+current_version = "4.0.0"
 files = [
     {filename = "pyproject.toml"},
     {filename = "README.rst"},
