@@ -2,6 +2,15 @@
 Change history
 ==============
 
+4.0.0 (2024-12-11)
+==================
+
+**Changes**
+
+* Add support for Python 3.12
+* Dropped support for Python < 3.10 and Django < 4.2
+* Changed App Links from `change` to `view` in admin index
+
 3.1.1 (2024-02-29)
 ==================
 
