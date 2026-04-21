@@ -17,6 +17,15 @@ Change history
 * Added support for Django 6.1 (requires Python 3.12 or newer).
 * Made the ``translations`` field optional in the admin, so app groups and
   app links no longer require a translation to be entered.
+* Added support for nested application groups. An application group can now
+  be given a parent group. On the admin index page, the child groups are shown
+  as separate tables under the parent group. In the dropdown menu, they are
+  shown as a submenu. Only two levels are supported. Existing application
+  groups without a parent work as before. A system check (``admin_index.W001``)
+  reports app groups which are nested too deep, which can happen if fixtures
+  are edited outside of the admin (and hence without guardrails). Projects that
+  ship their app groups as a fixture can run the same check in their own test
+  suite to catch this in CI; see the README.
 
 4.0.0 (2024-12-11)
 ==================

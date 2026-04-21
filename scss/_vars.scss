@@ -36,6 +36,12 @@ $_default-nav-sidebar-offset: 10px + 28px + 46px;  // heading padding top + bran
   --djai-dropdown-bg--active: var(--primary);
   --djai-dropdown-bg--hover: var(--primary);
   --djai-dropdown-fg: var(--header-link-color);
+  --djai-dropdown-fg--hover: var(--djai-dropdown-fg);
+
+  // Nested app groups on the index page use the colour that highlights a hovered
+  // item in a dropdown, which sets them apart from the darker caption of a
+  // top-level group. The text colour is Django's, as on any other caption.
+  --djai-app-group-nested-bg: var(--djai-dropdown-bg--hover);
 
   // default of 10px is the padding-bottom default of the header
   --djai-tablist-spacing-top: 10px;
