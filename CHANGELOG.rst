@@ -2,6 +2,17 @@
 Change history
 ==============
 
+4.1.0 (unreleased)
+==================
+
+**New features**
+
+* Added support for nested application groups. An application group can now
+  be given a parent group. On the admin index page, the child groups are shown
+  as separate tables under the parent group. In the dropdown menu, they are
+  shown as a submenu. Only two levels of nesting are supported. Existing
+  application groups without a parent work as before.
+
 4.0.0 (2024-12-11)
 ==================
 
@@ -135,7 +146,7 @@ Other improvements
 1.4.0
 =====
 
-* Fixed #31 -- Prevent excessive queries by changing the context processor to 
+* Fixed #31 -- Prevent excessive queries by changing the context processor to
   template tags (thanks @svenvandescheur).
 * Fixes #41 -- Added missing migration.
 * Fixed #34 -- Don't show item if the menu item URL is undefined.
