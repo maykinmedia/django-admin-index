@@ -23,6 +23,48 @@ regular Django permissions and whether it's registered in the admin.
 An application link is simply a URL with a name that you can add to an
 application group. It shows as a regular Django model.
 
+Application groups can be nested in two levels by selecting a `parent` group.
+This helps to organize a large number of models: the parent group acts as a
+container and its child groups are shown as separate tables under it on the
+admin index page and as submenus in the dropdown menu. A group that has a
+parent cannot have child groups of its own. Deleting a parent group turns its
+child groups into regular top-level groups.
+
+The two-level limit is enforced by model validation, which covers the admin.
+Writes that bypass validation, such as ``loaddata`` or ``QuerySet.update()``,
+can still nest groups too deeply; the admin index page falls back to showing
+such a group at the top level. A system check reports any group in that state,
+so ``manage.py check`` names the groups that need fixing. Silence it with
+``SILENCED_SYSTEM_CHECKS = ["admin_index.W001"]`` if you would rather not see
+it, or make it fatal with ``manage.py check --fail-level WARNING``.
+
+If you ship your application groups as a fixture, you can catch a broken one in
+your own CI rather than after deploying, by loading it in a test and running the
+same check:
+
+.. code-block:: python
+
+    from django.test import TestCase
+
+    from django_admin_index.apps import check_app_group_nesting
+
+
+    class AdminIndexFixtureTest(TestCase):
+        fixtures = ["admin_index.json"]
+
+        def test_fixture_is_valid(self):
+            issues = check_app_group_nesting()
+            if issues:
+                self.fail("\n".join(str(issue) for issue in issues))
+
+Loading the fixture does most of the work: a missing content type, a duplicate
+slug or a dangling reference all fail while the fixture loads. Too deeply nested
+groups are the case that loads without complaint, which is what the check adds.
+
+Export such a fixture with ``manage.py dumpdata admin_index --natural-primary
+--natural-foreign``. A plain ``dumpdata`` writes content types as primary keys,
+which do not survive being loaded into a different database.
+
 One final change in the Django admin is the removal of the App lists, that
 link to a list of models within an App. This concept became obsolete.
 
