@@ -14,6 +14,8 @@ class AdminIndexConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
 
     def ready(self):
+        from . import signals  # noqa: F401
+
         register(check_admin_index_app, Tags.compatibility)
         register(check_admin_index_context_processor, Tags.compatibility)
         register(check_request_context_processor, Tags.compatibility)

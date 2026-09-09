@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 22:25+0100\n"
+"POT-Creation-Date: 2026-09-08 10:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,31 +22,64 @@ msgstr ""
 msgid "Admin Index"
 msgstr "Admin Index"
 
-#: models.py:127
+#: models.py:213
 msgid "Miscellaneous"
 msgstr "Overige"
 
-#: models.py:160
+#: models.py:246
 msgid "name"
 msgstr "naam"
 
-#: models.py:161
+#: models.py:247
 msgid "slug"
 msgstr "slug"
 
-#: models.py:167
+#: models.py:255
+msgid "parent"
+msgstr "bovenliggende groep"
+
+#: models.py:257
+msgid ""
+"Nest this group under another group. Only two levels are supported: a group "
+"with a parent cannot have children of its own."
+msgstr ""
+"Plaats deze groep onder een andere groep. Er worden maximaal twee niveaus "
+"ondersteund: een groep met een bovenliggende groep kan zelf geen "
+"onderliggende groepen hebben."
+
+#: models.py:269
 msgid "application group"
 msgstr "applicatiegroep"
 
-#: models.py:168
+#: models.py:270
 msgid "application groups"
 msgstr "applicatiegroepen"
 
-#: models.py:185
+#: models.py:284
+msgid "An application group cannot be its own parent."
+msgstr "Een applicatiegroep kan niet zijn eigen bovenliggende groep zijn."
+
+#: models.py:290
+msgid ""
+"Only two levels of nesting are supported: the selected parent is itself "
+"nested under another group."
+msgstr ""
+"Er worden maximaal twee niveaus ondersteund: de gekozen bovenliggende groep "
+"valt zelf al onder een andere groep."
+
+#: models.py:299
+msgid ""
+"This application group has child groups and cannot be nested under another "
+"group."
+msgstr ""
+"Deze applicatiegroep heeft onderliggende groepen en kan daarom niet onder een "
+"andere groep worden geplaatst."
+
+#: models.py:314
 msgid "application link"
 msgstr "applicatielink"
 
-#: models.py:186
+#: models.py:315
 msgid "application links"
 msgstr "applicatielinks"
 
@@ -70,24 +103,7 @@ msgstr ""
 msgid "Delete multiple objects"
 msgstr ""
 
-#: templates/admin/index.html:24
-#, python-format
-msgid "Models in the %(name)s application"
-msgstr ""
-
-#: templates/admin/index.html:36
-msgid "Add"
-msgstr ""
-
-#: templates/admin/index.html:43
-msgid "View"
-msgstr ""
-
-#: templates/admin/index.html:45
-msgid "Change"
-msgstr ""
-
-#: templates/admin/index.html:56
+#: templates/admin/index.html:33
 msgid "You don't have permission to view or edit anything."
 msgstr ""
 
@@ -95,9 +111,26 @@ msgstr ""
 msgid "History"
 msgstr ""
 
+#: templates/django_admin_index/includes/app_group_table.html:6
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
 #: templates/django_admin_index/includes/app_list.html:11
 msgid "Dashboard"
 msgstr "Dashboard"
+
+#: templates/django_admin_index/includes/model_row.html:5
+msgid "Add"
+msgstr ""
+
+#: templates/django_admin_index/includes/model_row.html:8
+msgid "View"
+msgstr ""
+
+#: templates/django_admin_index/includes/model_row.html:9
+msgid "Change"
+msgstr ""
 
 #: translations.py:10
 msgid "The format of translations needs to be a JSON-object."
@@ -124,5 +157,6 @@ msgid ""
 "name is used as fallback. Example: {\"en\": \"File\", \"nl\": \"Bestand\"}"
 msgstr ""
 "Een JSON-object waarbij de key een Django taalcode is en de vertaalde naam "
-"de waarde. Indien er geen vertaling bestaat voor de actieve taal, dan wordt de "
-"onvertaalde naam gebruikt. Bijvoorbeeld: {\"en\": \"File\", \"nl\": \"Bestand\"}"
+"de waarde. Indien er geen vertaling bestaat voor de actieve taal, dan wordt "
+"de onvertaalde naam gebruikt. Bijvoorbeeld: {\"en\": \"File\", \"nl\": "
+"\"Bestand\"}"

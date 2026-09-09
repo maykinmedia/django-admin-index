@@ -23,6 +23,13 @@ regular Django permissions and whether it's registered in the admin.
 An application link is simply a URL with a name that you can add to an
 application group. It shows as a regular Django model.
 
+Application groups can be nested in two levels by selecting a `parent` group.
+This helps to organize a large number of models: the parent group acts as a
+container and its child groups are shown as separate tables under it on the
+admin index page and as submenus in the dropdown menu. A group that has a
+parent cannot have child groups of its own. Deleting a parent group turns its
+child groups into regular top-level groups.
+
 One final change in the Django admin is the removal of the App lists, that
 link to a list of models within an App. This concept became obsolete.
 

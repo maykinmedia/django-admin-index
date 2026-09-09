@@ -50,9 +50,11 @@ $djai-block: 'djai-dropdown-menu';
       }
     }
 
-    // deliberately after the --active style so it overrides it
+    // deliberately after the --active style so it overrides it.
+    // :focus-within (rather than :focus) keeps the dropdown open while keyboard
+    // focus moves to the links and nested groups inside it.
     &:hover,
-    &:focus {
+    &:focus-within {
       background-color: var(--djai-tab-bg--hover);
 
       @include link-style {
@@ -117,6 +119,63 @@ $djai-block: 'djai-dropdown-menu';
     padding: 10px;
   }
 
+  // A nested (child) app group inside a dropdown. Hovering or focusing it reveals
+  // a submenu with the child group's models.
+  & &__drop-item--has-submenu {
+    position: relative;
+    cursor: pointer;
+
+    > .#{$djai-block}__link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--djai-dropdown-fg);
+
+      &::after {
+        content: "\25B8";  // ▸
+        margin-left: 8px;
+      }
+    }
+
+    &:hover > .#{$djai-block}__submenu,
+    &:focus-within > .#{$djai-block}__submenu {
+      display: block;
+    }
+  }
+
+  & &__submenu {
+    display: none;  // hidden by default, visible by hovering over the parent item
+    min-width: 150px;
+    z-index: 2;
+
+    // Fly out next to the parent item. The dropdown has overflow-y: auto, so an
+    // absolutely positioned child would be clipped. A fixed position combined
+    // with CSS anchor positioning (the anchor names are set inline in the
+    // template) escapes that clipping.
+    position: fixed;
+    top: anchor(top);
+    left: anchor(right);
+    position-try-fallbacks: flip-inline;
+
+    // theme
+    background-color: var(--djai-dropdown-bg);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  // Browsers without anchor positioning: expand the submenu in place instead.
+  @supports not (anchor-name: --djai) {
+    & &__submenu {
+      position: static;
+      box-shadow: none;
+      padding-left: 1em;
+    }
+
+    & &__drop-item--has-submenu > &__link::after {
+      content: "\25BE";  // ▾
+    }
+  }
+
 }
 
 // mobile styling
@@ -133,6 +192,17 @@ $djai-block: 'djai-dropdown-menu';
 
     & &__item {
       margin-top: 3px;
+    }
+
+    // no room for a fly-out submenu: expand it in place
+    & &__submenu {
+      position: static;
+      box-shadow: none;
+      padding-left: 1em;
+    }
+
+    & &__drop-item--has-submenu > &__link::after {
+      content: "\25BE";  // ▾
     }
   }
 }
