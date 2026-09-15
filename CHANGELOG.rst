@@ -2,6 +2,20 @@
 Change history
 ==============
 
+5.0.0 (unreleased)
+==================
+
+**Backwards incompatible changes**
+
+* Dropped support for Django 4.2, which reached end of life. Django 5.2 or
+  newer is now required.
+* Dropped support for Python 3.10, which is about to reach end of life,
+  add support for Python 3.13
+
+**Changes**
+
+* Added support for Django 6.1 (requires Python 3.12 or newer).
+
 4.0.0 (2024-12-11)
 ==================
 
@@ -135,7 +149,7 @@ Other improvements
 1.4.0
 =====
 
-* Fixed #31 -- Prevent excessive queries by changing the context processor to 
+* Fixed #31 -- Prevent excessive queries by changing the context processor to
   template tags (thanks @svenvandescheur).
 * Fixes #41 -- Added missing migration.
 * Fixed #34 -- Don't show item if the menu item URL is undefined.
