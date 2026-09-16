@@ -14,9 +14,12 @@ class AdminIndexConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
 
     def ready(self):
+        from . import signals  # noqa: F401
+
         register(check_admin_index_app, Tags.compatibility)
         register(check_admin_index_context_processor, Tags.compatibility)
         register(check_request_context_processor, Tags.compatibility)
+        register(check_app_group_nesting)
 
 
 def check_admin_index_app(app_configs, **kwargs):
@@ -86,3 +89,37 @@ def check_request_context_processor(app_configs, **kwargs):
         )
 
     return issues
+
+
+def check_app_group_nesting(app_configs=None, **kwargs):
+    """Report application groups that are nested too deep"""
+    from django.db import DatabaseError
+
+    from .models import AppGroup
+
+    try:
+        # A group that is its own parent is its own grandparent, so this covers
+        # self-parenting as well.
+        names = list(
+            AppGroup.objects.filter(parent__parent__isnull=False)
+            .order_by("name")
+            .values_list("name", flat=True)
+        )
+    except DatabaseError:
+        # No database, or admin_index has not been migrated yet
+        return []
+
+    if not names:
+        return []
+
+    return [
+        Warning(
+            "Application groups are nested too deep: {}.".format(", ".join(names)),
+            hint=(
+                "Only two levels are supported, so these groups are shown at the top "
+                "level of the admin index page instead of under their parent. Edit "
+                "them in the admin and pick a top-level parent, or clear the parent."
+            ),
+            id="admin_index.W001",
+        )
+    ]

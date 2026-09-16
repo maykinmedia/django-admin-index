@@ -22,6 +22,21 @@
                             </div>
                         {% endif %}
                     {% endfor %}
+                    {% for child in app.children %}
+                        <div class="djai-dropdown-menu__drop-item djai-dropdown-menu__drop-item--has-submenu {% if child.active %}djai-dropdown-menu__drop-item--active{% endif %}" style="anchor-name: --submenu-{{ child.app_label }}" tabindex="0">
+                            <span class="djai-dropdown-menu__link">{{ child.name }}</span>
+                            <div class="djai-dropdown-menu__submenu" style="position-anchor: --submenu-{{ child.app_label }}">
+                                {% for model in child.models %}
+                                    {% if model.admin_url %}
+                                        <div class="djai-dropdown-menu__drop-item {% if model.active %}djai-dropdown-menu__drop-item--active{% endif %}">
+                                            <a href="{{ model.admin_url }}"
+                                               class="djai-dropdown-menu__link">{{ model.name }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </span>
             </div>
         {% endfor %}

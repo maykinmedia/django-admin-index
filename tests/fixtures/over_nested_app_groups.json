@@ -1,0 +1,35 @@
+[
+  {
+    "model": "admin_index.appgroup",
+    "fields": {
+      "name": "Configuration",
+      "slug": "configuration",
+      "order": 0,
+      "parent": null,
+      "translations": {},
+      "models": []
+    }
+  },
+  {
+    "model": "admin_index.appgroup",
+    "fields": {
+      "name": "Accounts",
+      "slug": "accounts",
+      "order": 0,
+      "parent": ["configuration"],
+      "translations": {},
+      "models": []
+    }
+  },
+  {
+    "model": "admin_index.appgroup",
+    "fields": {
+      "name": "Permissions",
+      "slug": "permissions",
+      "order": 0,
+      "parent": ["accounts"],
+      "translations": {},
+      "models": [["auth", "permission"]]
+    }
+  }
+]

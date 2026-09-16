@@ -1,0 +1,14 @@
+{% load i18n %}
+<table{% if nested %} class="djai-app-group-table--nested"{% endif %}>
+<caption>
+    {# Only Django's own app list entries have an app index page; application groups don't. #}
+    {% if group.app_url and not admin_index_settings.HIDE_APP_INDEX_PAGES %}
+        <a href="{{ group.app_url }}" class="section" title="{% blocktrans with name=group.name %}Models in the {{ name }} application{% endblocktrans %}">{{ group.name }}</a>
+    {% else %}
+        {{ group.name }}
+    {% endif %}
+</caption>
+{% for model in group.models %}
+    {% include "django_admin_index/includes/model_row.html" %}
+{% endfor %}
+</table>

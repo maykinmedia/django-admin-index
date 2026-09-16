@@ -1,0 +1,16 @@
+/*
+Nested application groups on the admin index page. A parent group is rendered as a
+module with an h2 header (which Django styles like a table caption). Its own models
+and its child groups are rendered as tables within that module, which we visually
+indent and give a different caption color so the hierarchy is clear.
+ */
+.module .djai-app-group-table--nested {
+  caption {
+    background: var(--djai-tab-bg);
+    padding-left: 16px;
+  }
+
+  th, td {
+    padding-left: 16px;
+  }
+}
