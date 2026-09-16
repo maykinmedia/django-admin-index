@@ -31,6 +31,7 @@ class TranslationsMixin(models.Model):
     translations = models.JSONField(
         _("translations"),
         default=dict,
+        blank=True,
         help_text=_(
             'A JSON-object that uses the Django language code as key and the localized name as value. If no translation can be found for the active language, the name is used as fallback. Example: {"en": "File", "nl": "Bestand"}'
         ),

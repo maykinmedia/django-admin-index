@@ -15,6 +15,8 @@ Change history
 **Changes**
 
 * Added support for Django 6.1 (requires Python 3.12 or newer).
+* Made the ``translations`` field optional in the admin, so app groups and
+  app links no longer require a translation to be entered.
 
 4.0.0 (2024-12-11)
 ==================
