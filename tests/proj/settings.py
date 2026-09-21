@@ -75,6 +75,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "tests.proj.wsgi.application"
 
+FIXTURE_DIRS = [os.path.join(BASE_DIR, "fixtures")]
+
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
