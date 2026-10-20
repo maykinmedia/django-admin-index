@@ -136,6 +136,19 @@ class AdminIndexAppGroupTests(TestCase):
         self.assertEqual(result[0]["models"][0]["name"], "Users")
         self.assertFalse(result[0]["models"][0]["active"])
 
+    def test_as_list_active_menu_item_with_app_links_reports_correct_active_group(self):
+        self.app_group.applink_set.create(name="some link", link="https://example.com")
+        request = self.factory.get(reverse("admin:auth_user_changelist"))
+        request.user = self.superuser
+
+        result = AppGroup.objects.as_list(request, include_remaining=True)
+
+        assert len(result) == 2, "Expected two groups"
+        group, remaining = result
+
+        assert group["active"], "Group with user model must be marked active"
+        assert not remaining["active"], "Misc must not be marked active"
+
     def test_context_anonymous(self):
         request = self.factory.get(reverse("admin:index"))
         request.user = AnonymousUser()

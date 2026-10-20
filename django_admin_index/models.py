@@ -66,21 +66,18 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                 ),
             ),
         )
-        active_app = request.path == reverse("admin:index")
+        has_active_app = request.path == reverse("admin:index")
         for app in app_list:
-            models = []
-            active = False
+            menu_items = []
             for model in app.models.all():
                 key = "{}.{}".format(model.app_label, model.model)
                 o = model_dicts.get(key)
                 if o:
-                    models.append(o)
+                    menu_items.append(o)
                     added.append(key)
-                    if o["active"]:
-                        active = True
 
             for app_link in app.applink_set.all():
-                models.append(
+                menu_items.append(
                     {
                         "name": app_link.localized_name or app_link.name,
                         "app_label": app.slug,
@@ -89,19 +86,16 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                         "view_only": True,
                     }
                 )
-                active = request.path.startswith(app_link.link)
 
-            if models:
+            if menu_items:
                 result.append(
                     {
                         "name": app.localized_name or app.name,
                         "app_label": app.slug,
-                        "models": sorted(models, key=lambda m: m["name"]),
-                        "active": active,
+                        "models": sorted(menu_items, key=lambda m: m["name"]),
+                        "active": any(m["active"] for m in menu_items),
                     }
                 )
-                if active:
-                    active_app = True
 
         other = [model_dicts[k] for k in model_dicts if k not in added]
 
@@ -123,12 +117,13 @@ class AppGroupQuerySet(OrderedModelQuerySet):
                 return self.as_list(request, include_remaining)
 
         elif other and include_remaining:
+            has_active_app = has_active_app or any(group["active"] for group in result)
             result.append(
                 {
                     "name": _("Miscellaneous"),
                     "app_label": "misc",
                     "models": sorted(other, key=lambda m: m["name"]),
-                    "active": not active_app,
+                    "active": not has_active_app,
                 }
             )
 
