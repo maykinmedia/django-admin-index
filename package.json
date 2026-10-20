@@ -1,6 +1,6 @@
 {
   "name": "django-admin-index",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "====================== Admin Index for Django ======================",
   "directories": {
     "test": "tests"

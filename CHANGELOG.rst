@@ -2,21 +2,33 @@
 Change history
 ==============
 
-5.0.0 (unreleased)
+5.0.0 (2026-10-20)
 ==================
 
-**Backwards incompatible changes**
+Feature and maintenance release.
+
+**💥 Breaking changes**
 
 * Dropped support for Django 4.2, which reached end of life. Django 5.2 or
   newer is now required.
-* Dropped support for Python 3.10, which is about to reach end of life,
-  add support for Python 3.13
+* Dropped support for Python 3.10, which reached end of life.
 
-**Changes**
+**Features**
 
+* Added support for Python 3.13.
 * Added support for Django 6.1 (requires Python 3.12 or newer).
 * Made the ``translations`` field optional in the admin, so app groups and
   app links no longer require a translation to be entered.
+
+**Bugfixes**
+
+* Fixed the "Miscellaneous" group being marked active when a model in another group that
+  has app links is actually active.
+
+**Project maintenance**
+
+* Hardened the CI pipeline with Zizmor.
+* Updated the Github Actions versions used.
 
 4.0.0 (2024-12-11)
 ==================
